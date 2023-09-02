@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    outline-style: none;
+}
+
+div.contents{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.original{
+    margin-bottom: 10px;
+}
+
+div.original input{
+    border: none;
+    border-bottom: 2px rgb(200, 200, 200) solid;
+}
+
+div.original input:focus{
+    border-bottom: 2px rgb(130, 205, 255) solid;
+}
+
+button{
+    border: none;
+    background-color: rgb(225, 225, 225);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+button:active{
+    background-color: rgb(200, 200, 200);
+}
+
+div.result{
+    margin-top: 10px;
+}
