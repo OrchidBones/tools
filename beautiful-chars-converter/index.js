@@ -16,6 +16,9 @@ $(document).ready(()=>{
                 }
                 tar_arr.push(char);
             });
+            if(type == 'ud') {
+                tar_arr = tar_arr.reverse(); // 颠倒字更改顺序
+            }
             var res = tar_arr.join('');
             $('#res-i').text(res);
         })
