@@ -1,0 +1,44 @@
+div.header{
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+div.content{
+    max-width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+div#import{
+    width: 70%;
+    display: inline-block;
+}
+
+div.button-group{
+    padding: 10px;
+}
+
+button#do{
+    margin-left: 5px; 
+}
+
+div#export{
+    width: 70%;
+    display: inline-block;
+    margin: 5px;
+}
+
+textarea{
+    resize: none;
+}
+
+@media screen and (max-width: 600px) {
+    div#import{
+        width: 90%;
+    }
+
+    div#export{
+        width: 90%;
+    }
+}

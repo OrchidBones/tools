@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汉字拼音简易转换器</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./js/pinyin_dict_withtone.js"></script>
+    <script src="./js/pinyinUtil.js"></script>
+    <script src="./js/main.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>汉字拼音简易转换器</h1>
+    </div>
+    <div class="content">
+        <div id="import" class="form-group">
+            <label for="name">在此输入汉字：</label>
+            <textarea name="import" id="imp" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="button-group">
+            <button id="do" class="btn btn-primary">汉字转拼音</button>
+            <button id="clear" class="btn btn-default">清空</button>
+        </div>
+        <div id="export" class="form-group">
+            <label for="name">输出结果：</label>
+            <textarea name="export" id="exp" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+</body>
+</html>
