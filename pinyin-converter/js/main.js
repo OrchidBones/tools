@@ -7,6 +7,6 @@ $(document).ready(()=>{
 
     $("button#clear").click(()=>{
         $("textarea#imp").val("");
-        $("textarea#emp").val("");
+        $("textarea#exp").val("");
     })
 });
