@@ -120,20 +120,6 @@
             }
         ]
     },{
-        "name": "中西文化比较",
-        "type": "考查",
-        "teacher": "史元辉",
-        "classroom": "2-212",
-        "startTime": 1,
-        "endTime": 16,
-        "timetable": [
-            {
-                "day": 2,
-                "time": 4,
-                "classtakingType": 0
-            }
-        ]
-    },{
         "name": "旅游英语",
         "type": "考查",
         "teacher": "李静莹",
