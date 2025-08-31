@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课表</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="contents">
+        <h1>课表</h1>
+        <div class="input-area">
+            <div class="weeknumber-area">
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">当前周</span>
+                        </div>
+                        <input type="text" id="weeknumber" class="form-control" placeholder="当前为第几周？">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="output-area">
+            <h5>输出结果：</h5>
+            <div class="table-area table-responsive"></div>
+        </div>
+    </div>
+</body>

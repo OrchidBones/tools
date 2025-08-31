@@ -1,0 +1,263 @@
+[
+    {
+        "name": "人工智能基础",
+        "type": "考查",
+        "teacher": "李爽蓉",
+        "classroom": "计算机基础教学实验室（3）",
+        "startTime": 1,
+        "endTime": 4,
+        "timetable": [
+            {
+                "day": 1,
+                "time": 1,
+                "classtakingType": 0
+            },{
+                "day": 3,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "二外I",
+        "type": "考试",
+        "teacher": "李琴",
+        "classroom": "2-412",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 1,
+                "time": 2,
+                "classtakingType": 0
+            },{
+                "day": 4,
+                "time": 4,
+                "classtakingType": 1
+            }
+        ]
+    },{
+        "name": "综合英语III",
+        "type": "考试",
+        "teacher": "胡晓榕",
+        "classroom": "2-211",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 1,
+                "time": 3,
+                "classtakingType": 0
+            },{
+                "day": 3,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "教育心理学",
+        "type": "考试",
+        "teacher": "安龙",
+        "classroom": "2-108",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 1,
+                "time": 4,
+                "classtakingType": 0
+            },
+            {
+                "day": 2,
+                "time": 2,
+                "classtakingType": 1
+            }
+        ]
+    },{
+        "name": "中国文学经典赏析",
+        "type": "考查",
+        "teacher": "史元辉",
+        "classroom": "-",
+        "startTime": 1,
+        "endTime": 8,
+        "timetable": [
+            {
+                "day": 1,
+                "time": 6,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语演讲与辩论",
+        "type": "考查",
+        "teacher": "Dani",
+        "classroom": "2-213",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 2,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "马克思主义基本原理",
+        "type": "考试",
+        "teacher": "曹勇",
+        "classroom": "2-210",
+        "startTime": 1,
+        "endTime": 14,
+        "timetable": [
+            {
+                "day": 2,
+                "time": 3,
+                "classtakingType": 2
+            },
+            {
+                "day": 5,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "中西文化比较",
+        "type": "考查",
+        "teacher": "史元辉",
+        "classroom": "2-212",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 2,
+                "time": 4,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "旅游英语",
+        "type": "考查",
+        "teacher": "李静莹",
+        "classroom": "2-313",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 2,
+                "time": 5,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "大学体育",
+        "type": "考查",
+        "teacher": "张武生",
+        "classroom": "操场排球场",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 3,
+                "time": 4,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语写作II",
+        "type": "考查",
+        "teacher": "刘娜",
+        "classroom": "2-221",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 4,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语阅读III",
+        "type": "考试",
+        "teacher": "李艳旸",
+        "classroom": "2-225",
+        "startTime": 1,
+        "endTime": 12,
+        "timetable": [
+            {
+                "day": 4,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "现代教育技术与人工智能应用",
+        "type": "考查",
+        "teacher": "陈光环",
+        "classroom": "1-201",
+        "startTime": 1,
+        "endTime": 8,
+        "timetable": [
+            {
+                "day": 4,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "形势与政策",
+        "type": "考查",
+        "teacher": "李娇",
+        "classroom": "2-210",
+        "startTime": 17,
+        "endTime": 17,
+        "timetable": [
+            {
+                "day": 4,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "影视翻译",
+        "type": "考查",
+        "teacher": "李侠",
+        "classroom": "2-118",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 4,
+                "time": 5,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英美国家概况",
+        "type": "考查",
+        "teacher": "李大艳",
+        "classroom": "2-312",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 5,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语视听说III",
+        "type": "考试",
+        "teacher": "车乒",
+        "classroom": "2-212",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "day": 5,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    }
+]

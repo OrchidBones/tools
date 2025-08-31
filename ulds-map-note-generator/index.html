@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ULDS插件地图注释快捷生成器</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/popper.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h4>ULDS插件 - 地图注释快捷生成器</h4>
+    </div>
+    <div class="contents">
+        <div class="input-area">
+            <div class="filename-area input-inner-item">
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">图片名称</span>
+                        </div>
+                        <input type="text" id="filename" class="form-control" placeholder="图片的名称，不带后缀名">
+                    </div>
+                </form>
+            </div>
+            <div class="seperator"><small>坐标</small></div>
+            <div class="coordinate-area input-inner-item row">
+                <div class="x-coordinate-area col">
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">X坐标</span>
+                            </div>
+                            <input type="text" id="coordinate-x" class="form-control" placeholder="数字或代码">
+                        </div>
+                    </form>
+                </div>
+                <div class="y-coordinate-area col">
+                    <form>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Y坐标</span>
+                            </div>
+                            <input type="text" id="coordinate-y" class="form-control" placeholder="数字或代码">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="coordinate-anchor-area input-inner-item">
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">坐标基准</span>
+                        </div>
+                        <select class="form-control">
+                            <option value="0" selected>基于屏幕</option>
+                            <option value="1">基于地图</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="seperator"><small>图层优先级</small></div>
+            <div class="z-index-area input-inner-item">
+                <form>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Z层级</span>
+                        </div>
+                        <input type="number" id="z-index" class="form-control" placeholder="0 - 远景，3 - 玩家/事件，4 - 星标图块" value="0">
+                    </div>
+                </form>
+            </div>
+            <div class="advanced-settings-area input-inner-item">
+                <button class="btn btn-light" data-toggle="collapse" data-target="#advanced-settings">更多设置...</button>
+                <div id="advanced-settings" class="collapse">
+                    <div class="foldername-area input-inner-subitem">
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">所在文件夹</span>
+                                </div>
+                                <input type="text" id="foldername" class="form-control" placeholder="所在文件夹，不填则是 parallaxes">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="image-target-type-area input-inner-subitem"> <!-- "loop": true/false -->
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">图片类型</span>
+                                </div>
+                                <select class="form-control">
+                                    <option value="0" selected>单贴图（正常）</option>
+                                    <option value="1">平铺贴图（循环播放）</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="blend-mode-area input-inner-subitem">
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">混合模式</span>
+                                </div>
+                                <select class="form-control">
+                                    <option value="0" selected>正常</option>
+                                    <option value="1">叠加</option>
+                                    <option value="2">正片叠底</option>
+                                    <option value="3">滤色</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="visibility-area input-inner-subitem">
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">显示条件</span>
+                                </div>
+                                <input type="text" id="visibility" class="form-control" placeholder="代码。满足什么条件时显示图片。">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="rotation-area input-inner-subitem">
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">旋转角度</span>
+                                </div>
+                                <input type="text" id="rotation" class="form-control" placeholder="数字或代码。π - Math.PI">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="opacity-area input-inner-subitem">
+                        <form>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">不透明度</span>
+                                </div>
+                                <input type="text" id="opacity" class="form-control" placeholder="0-255之间的数字或代码。">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="seperator"><small>横纵缩放</small></div>
+                    <div class="scale-area input-inner-subitem row">
+                        <div class="scale-x-area col">
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">横向缩放</span>
+                                    </div>
+                                    <input type="text" id="scale-x" class="form-control" placeholder="数字或代码">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="scale-y-area col">
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">纵向缩放</span>
+                                    </div>
+                                    <input type="text" id="scale-y" class="form-control" placeholder="数字或代码">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="seperator"><small>锚点</small></div>
+                    <div class="anchor-area input-inner-subitem row">
+                        <div class="anchor-x-area col">
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">锚点X</span>
+                                    </div>
+                                    <input type="text" id="anchor-x" class="form-control" placeholder="数字或代码">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="anchor-y-area col">
+                            <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">锚点Y</span>
+                                    </div>
+                                    <input type="text" id="anchor-y" class="form-control" placeholder="数字或代码">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="seperator"><small>截取图像</small></div>
+                    <div class="image-blt-area input-inner-subitem">
+                        <div class="row">
+                            <div class="blt-start-y-area col">
+                                <form>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">起始X</span>
+                                        </div>
+                                        <input type="text" id="blt-start-x" class="form-control" placeholder="数字或代码">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="blt-start-y-area col">
+                                <form>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">起始Y</span>
+                                        </div>
+                                        <input type="text" id="blt-start-y" class="form-control" placeholder="数字或代码">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="blt-width-area col">
+                                <form>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">截取宽度</span>
+                                        </div>
+                                        <input type="text" id="blt-width" class="form-control" placeholder="数字或代码">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="blt-height-area col">
+                                <form>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">截取高度</span>
+                                        </div>
+                                        <input type="text" id="blt-height" class="form-control" placeholder="数字或代码">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submit">
+                <button type="button" class="btn btn-primary">转换</button>
+            </div>
+        </div>
+        <div class="output-area">
+            <div class="desc">结果：</div>
+            <div class="result">
+                <form>
+                    <div class="input-group">
+                        <textArea class="form-control"></textArea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.contents{
+    width: 80%;
+    margin: auto;
+}
+
+.contents>h1{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.input-area{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,80 @@
+.header{
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.contents{
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.input-area, .output-area{
+    padding: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: rgb(206, 206, 206);
+    border-width: 1px;
+}
+
+.output-area{
+    margin-top: 10px;
+}
+
+.input-inner-item{
+    margin-bottom: 10px;
+}
+
+#advanced-settings{
+    margin-top: 10px;
+}
+
+.seperator{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.seperator small:before {
+    content: "—— ";
+}
+
+.seperator small:after {
+    content: " ——";
+}
+
+.advanced-settings-area{
+    margin-top: 30px;
+}
+
+.input-inner-subitem, .image-blt-area>div{
+    margin-bottom: 10px;
+}
+
+.coordinate-anchor-select label{
+    display: inline-block;
+}
+
+.submit{
+    margin-top: 30px;
+    width: 100%;
+    text-align: right;
+}
+
+.result div{
+    margin-top: 10px;
+}
+
+.result textArea{
+    height: 20em;
+    resize: none;
+}
+
+@media screen and (max-width: 600px) {
+    .contents{
+        width: 90%;
+    }
+}
