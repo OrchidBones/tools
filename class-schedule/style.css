@@ -19,3 +19,15 @@
     margin: auto;
     margin-bottom: 50px;
 }
+
+table {
+    table-layout: auto;
+}
+
+table th {
+    min-width: 150px;
+}
+
+table tr {
+    min-width: 150px;
+}

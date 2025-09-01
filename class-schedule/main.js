@@ -86,7 +86,7 @@ $(document).ready(()=>{
         }
         makeTableItemText(c) {
             let t = '';
-            t += c.name + ' ['+c.type+']' + '<br>';
+            t += '<b>' + c.name + '</b> ['+c.type+']' + '<br>';
             t += c.teacher + '<br>';
             t += c.classroom;
             return t;
