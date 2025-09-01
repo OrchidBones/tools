@@ -20,8 +20,8 @@
     },{
         "name": "二外I",
         "type": "考试",
-        "teacher": "李琴",
-        "classroom": "2-412",
+        "teacher": "赵彩琴",
+        "classroom": "2-207",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
@@ -70,20 +70,6 @@
                 "day": 2,
                 "time": 2,
                 "classtakingType": 1
-            }
-        ]
-    },{
-        "name": "中国文学经典赏析",
-        "type": "考查",
-        "teacher": "史元辉",
-        "classroom": "-",
-        "startTime": 1,
-        "endTime": 8,
-        "timetable": [
-            {
-                "day": 1,
-                "time": 6,
-                "classtakingType": 0
             }
         ]
     },{
