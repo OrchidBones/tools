@@ -17,14 +17,15 @@ $(document).ready(()=>{
         }
         getAllClasses() {
             const names = [];
-            scheduleData.forEach((c)=>{
+            this._source.forEach((c)=>{
                 names.push(c.name);
             });
             return names;
         }
         getClassTimetable(course) {
-            const timetable = {num: 0, day: [], time: [], ctt: []};
+            const timetable = {num: 0, classroom: [], day: [], time: [], ctt: []};
             course.timetable.forEach((tt)=>{
+                timetable.classroom.push(tt.classroom);
                 timetable.num++;
                 timetable.day.push(tt.day);
                 timetable.time.push(tt.time);
@@ -46,6 +47,7 @@ $(document).ready(()=>{
                 const timetable = this.getClassTimetable(c);
                 for(let i = 1; i <= timetable.num; i++) {
                     const cc = c.clone();
+                    cc.classroom = timetable.classroom[i-1];
                     cc.ctt = timetable.ctt[i-1];
                     schedule[timetable.day[i-1]][timetable.time[i-1]] = cc;
                 }

@@ -3,15 +3,16 @@
         "name": "人工智能基础",
         "type": "考查",
         "teacher": "李爽蓉",
-        "classroom": "计算机基础教学实验室（3）",
         "startTime": 1,
         "endTime": 4,
         "timetable": [
             {
+                "classroom": "计算机基础教学实验室（3）",
                 "day": 1,
                 "time": 1,
                 "classtakingType": 0
             },{
+                "classroom": "计算机基础教学实验室（3）",
                 "day": 3,
                 "time": 3,
                 "classtakingType": 0
@@ -26,10 +27,12 @@
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-207",
                 "day": 1,
                 "time": 2,
                 "classtakingType": 0
             },{
+                "classroom": "2-207",
                 "day": 4,
                 "time": 4,
                 "classtakingType": 1
@@ -39,15 +42,16 @@
         "name": "综合英语III",
         "type": "考试",
         "teacher": "胡晓榕",
-        "classroom": "2-211",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-211",
                 "day": 1,
                 "time": 3,
                 "classtakingType": 0
             },{
+                "classroom": "2-211",
                 "day": 3,
                 "time": 1,
                 "classtakingType": 0
@@ -62,11 +66,13 @@
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-108",
                 "day": 1,
                 "time": 4,
                 "classtakingType": 0
             },
             {
+                "classroom": "2-210",
                 "day": 2,
                 "time": 2,
                 "classtakingType": 1
@@ -76,11 +82,11 @@
         "name": "英语演讲与辩论",
         "type": "考查",
         "teacher": "Dani",
-        "classroom": "2-213",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-213",
                 "day": 2,
                 "time": 1,
                 "classtakingType": 0
@@ -90,16 +96,17 @@
         "name": "马克思主义基本原理",
         "type": "考试",
         "teacher": "曹勇",
-        "classroom": "2-210",
         "startTime": 1,
         "endTime": 14,
         "timetable": [
             {
+                "classroom": "2-210",
                 "day": 2,
                 "time": 3,
                 "classtakingType": 2
             },
             {
+                "classroom": "2-210",
                 "day": 5,
                 "time": 3,
                 "classtakingType": 0
@@ -109,11 +116,11 @@
         "name": "旅游英语",
         "type": "考查",
         "teacher": "李静莹",
-        "classroom": "2-313",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-312",
                 "day": 2,
                 "time": 5,
                 "classtakingType": 0
@@ -123,11 +130,11 @@
         "name": "大学体育",
         "type": "考查",
         "teacher": "张武生",
-        "classroom": "操场排球场",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "操场排球场",
                 "day": 3,
                 "time": 4,
                 "classtakingType": 0
@@ -137,11 +144,11 @@
         "name": "英语写作II",
         "type": "考查",
         "teacher": "刘娜",
-        "classroom": "2-221",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-221",
                 "day": 4,
                 "time": 1,
                 "classtakingType": 0
@@ -151,11 +158,11 @@
         "name": "英语阅读III",
         "type": "考试",
         "teacher": "李艳旸",
-        "classroom": "2-225",
         "startTime": 1,
         "endTime": 12,
         "timetable": [
             {
+                "classroom": "2-225",
                 "day": 4,
                 "time": 2,
                 "classtakingType": 0
@@ -165,11 +172,11 @@
         "name": "现代教育技术与人工智能应用",
         "type": "考查",
         "teacher": "陈光环",
-        "classroom": "1-201",
         "startTime": 1,
         "endTime": 8,
         "timetable": [
             {
+                "classroom": "1-201",
                 "day": 4,
                 "time": 3,
                 "classtakingType": 0
@@ -179,11 +186,11 @@
         "name": "形势与政策",
         "type": "考查",
         "teacher": "李娇",
-        "classroom": "2-210",
         "startTime": 17,
         "endTime": 17,
         "timetable": [
             {
+                "classroom": "2-210",
                 "day": 4,
                 "time": 3,
                 "classtakingType": 0
@@ -193,11 +200,11 @@
         "name": "影视翻译",
         "type": "考查",
         "teacher": "李侠",
-        "classroom": "2-118",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-118",
                 "day": 4,
                 "time": 5,
                 "classtakingType": 0
@@ -207,11 +214,11 @@
         "name": "英美国家概况",
         "type": "考查",
         "teacher": "李大艳",
-        "classroom": "2-312",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-312",
                 "day": 5,
                 "time": 1,
                 "classtakingType": 0
@@ -221,11 +228,11 @@
         "name": "英语视听说III",
         "type": "考试",
         "teacher": "车乒",
-        "classroom": "2-212",
         "startTime": 1,
         "endTime": 16,
         "timetable": [
             {
+                "classroom": "2-212",
                 "day": 5,
                 "time": 2,
                 "classtakingType": 0
