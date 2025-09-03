@@ -12,8 +12,11 @@ $(document).ready(()=>{
         isWeekNumberValid(wn) {
             return typeof(wn)==='number' && wn > 0 && wn <= this._maxWeekNumber;
         }
+        isClassAvailable(wn, c) {
+            return wn >= c.startTime && wn <= c.endTime;
+        }
         isClassOn(wn, c) {
-            return wn >= c.startTime && wn <= c.endTime && (c.ctt===0 || wn%2===1&&c.ctt===1 || wn%2===0&&c.ctt===2);
+            return this.isClassAvailable(wn, c) && (c.ctt===0 || wn%2===1&&c.ctt===1 || wn%2===0&&c.ctt===2);
         }
         getAllClasses() {
             const names = [];
@@ -41,15 +44,17 @@ $(document).ready(()=>{
             }
             return data;
         }
-        assignSchedule() {
+        assignSchedule(wn) {
             const schedule = this.getEmptySchedule();
             this._source.forEach((c)=>{
-                const timetable = this.getClassTimetable(c);
-                for(let i = 1; i <= timetable.num; i++) {
-                    const cc = c.clone();
-                    cc.classroom = timetable.classroom[i-1];
-                    cc.ctt = timetable.ctt[i-1];
-                    schedule[timetable.day[i-1]][timetable.time[i-1]] = cc;
+                if(this.isClassAvailable(wn, c)) {
+                    const timetable = this.getClassTimetable(c);
+                    for(let i = 1; i <= timetable.num; i++) {
+                        const cc = c.clone();
+                        cc.classroom = timetable.classroom[i-1];
+                        cc.ctt = timetable.ctt[i-1];
+                        schedule[timetable.day[i-1]][timetable.time[i-1]] = cc;
+                    }
                 }
             });
             return schedule;
@@ -64,7 +69,7 @@ $(document).ready(()=>{
         makeTableBodyHTML(wn) {
             let html = '<tbody>';
             const suffix = '</tbody>';
-            const schedule = this.assignSchedule();
+            const schedule = this.assignSchedule(wn);
             for(let i = 1; i <= 6; i++) {
                 let text1 = '<tr>';
                 const t = String(i*2-1) + '-' + String(i*2);
@@ -101,7 +106,6 @@ $(document).ready(()=>{
             html += this.makeTableHeadHTML();
             html += this.makeTableBodyHTML(wn);
             html += suffix;
-            console.log(html)
             return html;
         }
     };
