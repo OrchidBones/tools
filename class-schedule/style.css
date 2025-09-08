@@ -20,6 +20,19 @@
     margin-bottom: 50px;
 }
 
+.week-auto-detection{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.today-schedule{
+    margin-bottom: 30px;
+}
+
+.today-schedule div.table-area{
+    margin-top: 20px;
+}
+
 table {
     table-layout: auto;
 }
@@ -30,4 +43,20 @@ table th {
 
 table tr {
     min-width: 150px;
+}
+
+@media screen and (max-width: 992px) {
+    .input-area{
+        width: 75%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .input-area{
+        width: 100%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
 }

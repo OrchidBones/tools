@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>课表</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
@@ -12,13 +13,16 @@
 </head>
 <body>
     <div class="contents">
-        <h1>课表</h1>
+        <h1><strong>课表</strong></h1>
         <div class="input-area">
             <div class="weeknumber-area">
+                <div class="week-auto-detection alert alert-primary">
+                    <i class="fa fa-lightbulb-o"></i> 自动检测到当前为第 <span></span> 周
+                </div>
                 <form>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">当前周</span>
+                            <span class="input-group-text">自定义周数</span>
                         </div>
                         <input type="text" id="weeknumber" class="form-control" placeholder="当前为第几周？">
                     </div>
@@ -26,8 +30,14 @@
             </div>
         </div>
         <div class="output-area">
-            <h5>输出结果：</h5>
-            <div class="table-area table-responsive"></div>
+            <div class="today-schedule">
+                <h5>今日课表：<strong><span class="week-day"></span></strong></h5>
+                <div class="table-area table-responsive"></div>
+            </div>
+            <div class="whole-schedule">
+                <h5>本周课表：</h5>
+                <div class="table-area table-responsive"></div>
+            </div>
         </div>
     </div>
 </body>
