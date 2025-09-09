@@ -2,11 +2,34 @@ Object.prototype.clone = function() {
     return JSON.parse(JSON.stringify(this));
 };
 
+Number.prototype.isBetween = function(num1, num2) {
+    if(num1!==undefined&&num2!==undefined) {
+        let n1 = num1, n2 = num2;
+        if(num1>num2) {
+            n1 = num2;
+            n2 = num1;
+        }
+        return this >= n1 && this <= n2;
+    }
+};
+
 $(document).ready(()=>{
 
     class Common {
         constructor() {
             this._startDate = new Date("2025-08-31");
+            this._timetable = [
+                null,
+                {order: 1, start: {h: 8,  m: 0},  end: {h: 9, m: 49}},
+                {order: 2, start: {h: 10, m: 10}, end: {h: 11, m: 59}},
+                {order: 3, start: {h: 14, m: 30}, end: {h: 16, m: 19}},
+                {order: 4, start: {h: 16, m: 30}, end: {h: 18, m: 19}},
+                {order: 5, start: {h: 19, m: 30}, end: {h: 21, m: 19}},
+                {order: 6, start: {h: 21, m: 30}, end: {h: 23, m: 19}}
+            ]
+        }
+        timetable() {
+            return this._timetable;
         }
         getCurrentWeekNumber() {
             const curDate = new Date();
@@ -19,6 +42,12 @@ $(document).ready(()=>{
         }
         getCurrentDay() {
             return new Date().getDay();
+        }
+        getCurrentHours() {
+            return new Date().getHours();
+        }
+        getCurrentMinutes() {
+            return new Date().getMinutes();
         }
         convertWeekDayChar(wd) {
             const arr = ['日','一','二','三','四','五','六'];
@@ -33,9 +62,13 @@ $(document).ready(()=>{
             this._maxWeekNumber = 20;
             this._schedule = null;
             this.refreshSchedule();
+            this.refreshCurrentDateObject();
         }
         setWeekNumber(wn) {
             this._weekNumber = wn;
+        }
+        weekNumber() {
+            return this._weekNumber;
         }
         isWeekNumberValid() {
             const wn = this._weekNumber;
@@ -49,12 +82,41 @@ $(document).ready(()=>{
             const wn = this._weekNumber;
             return this.isClassAvailable(c) && (c.ctt===0 || wn%2===1&&c.ctt===1 || wn%2===0&&c.ctt===2);
         }
+        isCurrentClassTime(day, time) {
+            const date = this._currentDate;
+            const data = $Utils.timetable()[time];
+            return day === this.getRealCurrentDay() && date.getHours().isBetween(data.start.h, data.end.h) && date.getMinutes().isBetween(data.start.m, data.end.m);
+        }
+        isNextClassTime(day, time) {
+            const date = this._currentDate;
+            const prevData = $Utils.timetable()[time-1];
+            const nextData = $Utils.timetable()[time];
+            if(day === this.getRealCurrentDay()) {
+                if(!prevData) {
+                    if(date.getHours() < nextData.start.h || date.getMinutes() < nextData.start.m) {
+                        return true;
+                    }
+                } else {
+                    if((date.getHours() > prevData.start.h || date.getMinutes() > prevData.start.m) && (date.getHours() < nextData.start.h || date.getMinutes() < nextData.start.m)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        refreshCurrentDateObject() {
+            this._currentDate = new Date();
+        }
         getAllClasses() {
             const names = [];
             this._source.forEach((c)=>{
                 names.push(c.name);
             });
             return names;
+        }
+        getRealCurrentDay() {
+            const date = this._currentDate;
+            return date.getDay() === 0 ? 7 : date.getDay();
         }
         getClassTimetable(course) {
             const timetable = {num: 0, classroom: [], day: [], time: [], ctt: []};
@@ -109,8 +171,15 @@ $(document).ready(()=>{
                 const t = String(i*2-1) + '-' + String(i*2);
                 text1 += '<td>'+t+'节</td>'
                 for(let j = 1; j <= 7; j++) {
-                    let text2 = '<td>'
-                    const c = schedule[j][i];
+                    const day = j;
+                    const time = i;
+                    const c = schedule[day][time];
+                    let text2 = '<td class="class-'+day+'-'+time+'">';
+                    if(c && this.isClassOn(c) && this.isCurrentClassTime(day, time)) {
+                        text2 = '<td class="class-'+day+'-'+time+' curClass">'
+                    } else if(c && this.isClassOn(c) && this.isNextClassTime(day, time)) {
+                        text2 = '<td class="class-'+day+'-'+time+' nextClass">'
+                    }
                     if(c && this.isClassOn(c)) {
                         text2 += this.makeTableItemText(c);
                     } else {
@@ -135,7 +204,7 @@ $(document).ready(()=>{
         makeDailyTableHTML() {
             let html = '';
             const schedule = this._schedule;
-            const wd = $Utils.getCurrentDay() === 0 ? 7 : $Utils.getCurrentDay();
+            const wd = this.getRealCurrentDay();
             const daySche = schedule[wd];
             for(let i = 1; i <= 6; i++) {
                 let text = '<tr>';
@@ -162,6 +231,7 @@ $(document).ready(()=>{
             html += this.makeWeeklyTableHeadHTML();
             html += this.makeWeeklyTableBodyHTML();
             html += suffix;
+            console.log(html)
             return html;
         }
         generateDailyTableHTML() {
@@ -171,8 +241,16 @@ $(document).ready(()=>{
             html += prefix;
             html += this.makeDailyTableHTML();
             html += suffix;
-            console.log(html)
             return html;
+        }
+        applyRefreshTableHTML() {
+            $('.whole-schedule span').text(this.weekNumber());
+            const html1 = this.generateDailyTableHTML();
+            const html2 = this.generateWeeklyTableHTML();
+            $('.today-schedule div.table-area').empty();
+            $('.today-schedule div.table-area').append(html1);
+            $('.whole-schedule div.table-area').empty();
+            $('.whole-schedule div.table-area').append(html2);
         }
     };
 
@@ -181,30 +259,22 @@ $(document).ready(()=>{
     const weeknumber = $Utils.getCurrentWeekNumber();
     $('.week-auto-detection span').html('<strong>'+weeknumber+'</strong>');
     $('.today-schedule span').text($Utils.convertWeekDayChar($Utils.getCurrentDay()));
+    $('.whole-schedule span').text(weeknumber);
 
     $.getJSON('data.json', (scheduleData)=>{
-
         const schedule = new ClassSchedule(scheduleData);
-
-        const html1 = schedule.generateDailyTableHTML(weeknumber);
-        const html2 = schedule.generateWeeklyTableHTML(weeknumber);
-        $('.today-schedule div.table-area').append(html1);
-        $('.whole-schedule div.table-area').append(html2);
-
+        schedule.applyRefreshTableHTML();
         $('#weeknumber').blur(()=>{
             const wn = +$('#weeknumber').val();
             if(!wn) {
                 schedule.setWeekNumber($Utils.getCurrentWeekNumber());
-                const html = schedule.generateWeeklyTableHTML(weeknumber);
-                $('.whole-schedule div.table-area').empty();
-                $('.whole-schedule div.table-area').append(html);
+                schedule.refreshCurrentDateObject();
+                schedule.applyRefreshTableHTML();
             } else if(schedule.isWeekNumberValid(wn)) {
                 schedule.setWeekNumber(wn);
-                const html = schedule.generateWeeklyTableHTML(wn);
-                $('.whole-schedule div.table-area').empty();
-                $('.whole-schedule div.table-area').append(html);
+                schedule.refreshCurrentDateObject();
+                schedule.applyRefreshTableHTML();
             }
         });
-
     });
 });
