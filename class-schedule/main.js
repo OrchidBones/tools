@@ -19,7 +19,7 @@ $(document).ready(()=>{
         constructor() {
             this._startDate = new Date("2025-08-31");
             this._timetable = [
-                null,
+                {order: 0, start: {h: 0,  m: 0},  end: {h: 0, m: 0}},
                 {order: 1, start: {h: 8,  m: 0},  end: {h: 9, m: 49}},
                 {order: 2, start: {h: 10, m: 10}, end: {h: 11, m: 59}},
                 {order: 3, start: {h: 14, m: 30}, end: {h: 16, m: 19}},
@@ -60,9 +60,11 @@ $(document).ready(()=>{
             this._source = data;
             this._weekNumber = $Utils.getCurrentWeekNumber();
             this._maxWeekNumber = 20;
+            this._currentClass = null;
+            this._nextClass = null;
             this._schedule = null;
-            this.refreshSchedule();
             this.refreshCurrentDateObject();
+            this.refreshSchedule();
         }
         setWeekNumber(wn) {
             this._weekNumber = wn;
@@ -82,30 +84,79 @@ $(document).ready(()=>{
             const wn = this._weekNumber;
             return this.isClassAvailable(c) && (c.ctt===0 || wn%2===1&&c.ctt===1 || wn%2===0&&c.ctt===2);
         }
-        isCurrentClassTime(day, time) {
-            const date = this._currentDate;
-            const data = $Utils.timetable()[time];
-            return day === this.getRealCurrentDay() && date.getHours().isBetween(data.start.h, data.end.h) && date.getMinutes().isBetween(data.start.m, data.end.m);
+        isCurrentClassTime(c) {
+            return this._currentClass && this._currentClass === c;
         }
-        isNextClassTime(day, time) {
+        isNextClassTime(c) {
+            return this._nextClass && this._nextClass === c;
+        }
+        refreshCurrentDateObject() {
+            this._currentDate = new Date('2025-09-10 16:20:00');
+        }
+        refreshCurrentClass() {
+            this._currentClass = null;
+            const day = this.getRealCurrentDay();
+            const schedule = this._schedule;
+            const classList = schedule[day];
             const date = this._currentDate;
-            const prevData = $Utils.timetable()[time-1];
-            const nextData = $Utils.timetable()[time];
-            if(day === this.getRealCurrentDay()) {
-                if(!prevData) {
-                    if(date.getHours() < nextData.start.h || date.getMinutes() < nextData.start.m) {
-                        return true;
+            const that = this;
+            classList.forEach((c, i)=>{
+                if(c && this.isClassOn(c)) {
+                    const data = $Utils.timetable()[i];
+                    if((date.getHours()*60+date.getMinutes()).isBetween((data.start.h*60+data.start.m), (data.end.h*60+data.end.m))) {
+                        that._currentClass = c;
+                    }
+                }
+            });
+        }
+        refreshNextClass() {
+            this._nextClass = null;
+            const day = this.getRealCurrentDay();
+            const schedule = this._schedule;
+            const classList = schedule[day];
+            const date = this._currentDate;
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const currentClass = this._currentClass;
+            const duration = hours*60+minutes;
+            const list = $Utils.timetable();
+            if(!currentClass) {
+                const lastValidIndex = this.__findLastValidObjectIndex(classList);
+                if(duration>(list[0].end.h*60+list[0].end.m)&&duration<((list[1].start.h*60+list[1].start.m))) {
+                    if(classList[1]) {
+                        this._nextClass = classList[1];
+                    }
+                } else if(duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m)&&duration<(24*60)) {
+                    const tomorrowClassList = schedule[day+1];
+                    if(tomorrowClassList && tomorrowClassList[1]) {
+                        this._nextClass = tomorrowClassList[1];
                     }
                 } else {
-                    if((date.getHours() > prevData.start.h || date.getMinutes() > prevData.start.m) && (date.getHours() < nextData.start.h || date.getMinutes() < nextData.start.m)) {
-                        return true;
+                    for(let i = 1; i < classList.length; i++) {
+                        const prevData = list[i];
+                        if(classList[i]) {
+                            const nextIndex = this.__findNextValidObjectIndex(classList, i);
+                            const nextData = list[nextIndex === -1 ? classList.length : nextIndex];
+                            if(nextData && (duration>(prevData.end.h*60+prevData.end.m) && (duration<(nextData.start.h*60+nextData.start.m)))) {
+                                this._nextClass = classList[nextIndex];
+                            }
+                        }
                     }
                 }
             }
-            return false;
         }
-        refreshCurrentDateObject() {
-            this._currentDate = new Date();
+        __findNextValidObjectIndex(array, index) {
+            for(let i = index+1; i < array.length; i++) {
+                if(!!array[i]) return i;
+            }
+            return -1;
+        }
+        __findLastValidObjectIndex(array) {
+            let index = -1;
+            for(let i = 0; i < array.length; i++) {
+                if(!!array[i]) index = i;
+            }
+            return index;
         }
         getAllClasses() {
             const names = [];
@@ -146,7 +197,9 @@ $(document).ready(()=>{
                         const cc = c.clone();
                         cc.classroom = timetable.classroom[i-1];
                         cc.ctt = timetable.ctt[i-1];
-                        schedule[timetable.day[i-1]][timetable.time[i-1]] = cc;
+                        if(this.isClassOn(cc)) {
+                            schedule[timetable.day[i-1]][timetable.time[i-1]] = cc;
+                        }
                     }
                 }
             });
@@ -175,12 +228,12 @@ $(document).ready(()=>{
                     const time = i;
                     const c = schedule[day][time];
                     let text2 = '<td class="class-'+day+'-'+time+'">';
-                    if(c && this.isClassOn(c) && this.isCurrentClassTime(day, time)) {
+                    if(c && this.isCurrentClassTime(c)) {
                         text2 = '<td class="class-'+day+'-'+time+' curClass">'
-                    } else if(c && this.isClassOn(c) && this.isNextClassTime(day, time)) {
+                    } else if(c && this.isNextClassTime(c)) {
                         text2 = '<td class="class-'+day+'-'+time+' nextClass">'
                     }
-                    if(c && this.isClassOn(c)) {
+                    if(c) {
                         text2 += this.makeTableItemText(c);
                     } else {
                         text2 += ' ';
@@ -210,8 +263,16 @@ $(document).ready(()=>{
                 let text = '<tr>';
                 const t = String(i*2-1) + '-' + String(i*2);
                 text += '<td>'+t+'节</td>'
-                text += '<td>';
+                let text2 = '<td>'
                 const c = daySche[i];
+                const day = wd;
+                const time = i;
+                if(c && this.isCurrentClassTime(c)) {
+                    text2 = '<td class="class-'+day+'-'+time+' curClass">'
+                } else if(c && this.isNextClassTime(c)) {
+                    text2 = '<td class="class-'+day+'-'+time+' nextClass">'
+                }
+                text += text2;
                 if(c && this.isClassOn(c)) {
                     text += this.makeTableItemText(c);
                 } else {
@@ -231,7 +292,6 @@ $(document).ready(()=>{
             html += this.makeWeeklyTableHeadHTML();
             html += this.makeWeeklyTableBodyHTML();
             html += suffix;
-            console.log(html)
             return html;
         }
         generateDailyTableHTML() {
@@ -244,7 +304,12 @@ $(document).ready(()=>{
             return html;
         }
         applyRefreshTableHTML() {
+            $('.today-schedule span').text($Utils.convertWeekDayChar(this.getRealCurrentDay()));
             $('.whole-schedule span').text(this.weekNumber());
+            this.refreshCurrentDateObject();
+            this.refreshSchedule();
+            this.refreshCurrentClass();
+            this.refreshNextClass();
             const html1 = this.generateDailyTableHTML();
             const html2 = this.generateWeeklyTableHTML();
             $('.today-schedule div.table-area').empty();
@@ -258,8 +323,6 @@ $(document).ready(()=>{
 
     const weeknumber = $Utils.getCurrentWeekNumber();
     $('.week-auto-detection span').html('<strong>'+weeknumber+'</strong>');
-    $('.today-schedule span').text($Utils.convertWeekDayChar($Utils.getCurrentDay()));
-    $('.whole-schedule span').text(weeknumber);
 
     $.getJSON('data.json', (scheduleData)=>{
         const schedule = new ClassSchedule(scheduleData);
@@ -268,11 +331,9 @@ $(document).ready(()=>{
             const wn = +$('#weeknumber').val();
             if(!wn) {
                 schedule.setWeekNumber($Utils.getCurrentWeekNumber());
-                schedule.refreshCurrentDateObject();
                 schedule.applyRefreshTableHTML();
             } else if(schedule.isWeekNumberValid(wn)) {
                 schedule.setWeekNumber(wn);
-                schedule.refreshCurrentDateObject();
                 schedule.applyRefreshTableHTML();
             }
         });

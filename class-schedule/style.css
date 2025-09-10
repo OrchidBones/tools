@@ -45,14 +45,16 @@ table tr {
     min-width: 150px;
 }
 
-.curClass {
+td.curClass {
     border-width: 2px;
     border-color: rgba(123, 191, 251, 0.5);
+    background-color: rgba(123, 191, 251, 0.2);
 }
 
-.nextClass {
+td.nextClass {
     border-width: 2px;
     border-color: rgba(130, 246, 207, 0.5);
+    background-color: rgba(130, 246, 207, 0.2);
 }
 
 @media screen and (max-width: 992px) {
