@@ -91,7 +91,7 @@ $(document).ready(()=>{
             return this._nextClass && this._nextClass === c;
         }
         refreshCurrentDateObject() {
-            this._currentDate = new Date('2025-09-10 16:20:00');
+            this._currentDate = new Date();
         }
         refreshCurrentClass() {
             this._currentClass = null;
@@ -338,4 +338,5 @@ $(document).ready(()=>{
             }
         });
     });
+
 });
