@@ -62,6 +62,7 @@ $(document).ready(()=>{
             this._maxWeekNumber = 20;
             this._currentClass = null;
             this._nextClass = null;
+            this._isTodayOffClass = false;
             this._schedule = null;
             this.refreshCurrentDateObject();
             this.refreshSchedule();
@@ -83,6 +84,12 @@ $(document).ready(()=>{
         isClassOn(c) {
             const wn = this._weekNumber;
             return this.isClassAvailable(c) && (c.ctt===0 || wn%2===1&&c.ctt===1 || wn%2===0&&c.ctt===2);
+        }
+        isClassTaken(index, dayIndex) {
+            const date = this._currentDate;
+            const time = $Utils.timetable()[index];
+            const curDay = this.getRealCurrentDay();
+            return curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
         }
         isCurrentClassTime(c) {
             return this._currentClass && this._currentClass === c;
@@ -111,6 +118,7 @@ $(document).ready(()=>{
         }
         refreshNextClass() {
             this._nextClass = null;
+            this._isTodayOffClass = false;
             const day = this.getRealCurrentDay();
             const schedule = this._schedule;
             const classList = schedule[day];
@@ -130,6 +138,7 @@ $(document).ready(()=>{
                     const tomorrowClassList = schedule[day+1];
                     if(tomorrowClassList && tomorrowClassList[1]) {
                         this._nextClass = tomorrowClassList[1];
+                        this._isTodayOffClass = true;
                     }
                 } else {
                     for(let i = 1; i < classList.length; i++) {
@@ -227,12 +236,18 @@ $(document).ready(()=>{
                     const day = j;
                     const time = i;
                     const c = schedule[day][time];
-                    let text2 = '<td class="class-'+day+'-'+time+'">';
+                    let text2 = '';
                     if(c && this.isCurrentClassTime(c)) {
-                        text2 = '<td class="class-'+day+'-'+time+' curClass">'
+                        text2 += '<td id="class-'+day+'-'+time+'" class="curClass';
                     } else if(c && this.isNextClassTime(c)) {
-                        text2 = '<td class="class-'+day+'-'+time+' nextClass">'
+                        text2 += '<td id="class-'+day+'-'+time+'" class="nextClass';
+                    } else {
+                        text2 += '<td id="class-'+day+'-'+time+'" class="';
                     }
+                    if(this.isClassTaken(i, j)) {
+                        text2 += ' class-taken';
+                    }
+                    text2 += '">';
                     if(c) {
                         text2 += this.makeTableItemText(c);
                     } else {
@@ -258,20 +273,27 @@ $(document).ready(()=>{
             let html = '';
             const schedule = this._schedule;
             const wd = this.getRealCurrentDay();
-            const daySche = schedule[wd];
+            let daySche = schedule[wd];
+            if(this._isTodayOffClass) daySche = schedule[Math.min(7, wd+1)];
             for(let i = 1; i <= 6; i++) {
                 let text = '<tr>';
                 const t = String(i*2-1) + '-' + String(i*2);
                 text += '<td>'+t+'节</td>'
-                let text2 = '<td>'
+                let text2 = '';
                 const c = daySche[i];
                 const day = wd;
                 const time = i;
                 if(c && this.isCurrentClassTime(c)) {
-                    text2 = '<td class="class-'+day+'-'+time+' curClass">'
+                    text2 += '<td id="class-'+day+'-'+time+'" class="curClass';
                 } else if(c && this.isNextClassTime(c)) {
-                    text2 = '<td class="class-'+day+'-'+time+' nextClass">'
+                    text2 += '<td id="class-'+day+'-'+time+'" class="nextClass';
+                } else {
+                    text2 += '<td id="class-'+day+'-'+time+'" class="';
                 }
+                if(this.isClassTaken(i, wd)) {
+                    text2 += ' class-taken';
+                }
+                text2 += '">';
                 text += text2;
                 if(c && this.isClassOn(c)) {
                     text += this.makeTableItemText(c);
@@ -304,14 +326,20 @@ $(document).ready(()=>{
             return html;
         }
         applyRefreshTableHTML() {
-            $('.today-schedule span').text($Utils.convertWeekDayChar(this.getRealCurrentDay()));
-            $('.whole-schedule span').text(this.weekNumber());
             this.refreshCurrentDateObject();
             this.refreshSchedule();
             this.refreshCurrentClass();
             this.refreshNextClass();
             const html1 = this.generateDailyTableHTML();
             const html2 = this.generateWeeklyTableHTML();
+            if(this._isTodayOffClass) {
+                $('.today-schedule .time-tag').text('明日');
+                $('.today-schedule .week-day').text($Utils.convertWeekDayChar(Math.min(this.getRealCurrentDay()+1, 7)));
+            } else {
+                $('.today-schedule .time-tag').text('今日');
+                $('.today-schedule .week-day').text($Utils.convertWeekDayChar(this.getRealCurrentDay()));
+            }
+            $('.whole-schedule span').text(this.weekNumber());
             $('.today-schedule div.table-area').empty();
             $('.today-schedule div.table-area').append(html1);
             $('.whole-schedule div.table-area').empty();
@@ -338,5 +366,4 @@ $(document).ready(()=>{
             }
         });
     });
-
 });
