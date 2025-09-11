@@ -41,7 +41,8 @@ $(document).ready(()=>{
             return Math.ceil(dayDif / 7);
         }
         getCurrentDay() {
-            return new Date().getDay();
+            const date = new Date();
+            return date.getDay() === 0 ? 7 : date.getDay();
         }
         getCurrentHours() {
             return new Date().getHours();
@@ -50,7 +51,7 @@ $(document).ready(()=>{
             return new Date().getMinutes();
         }
         convertWeekDayChar(wd) {
-            const arr = ['日','一','二','三','四','五','六'];
+            const arr = [null,'一','二','三','四','五','六','日'];
             return '星期'+arr[wd];
         }
     };
@@ -98,7 +99,7 @@ $(document).ready(()=>{
             return this._nextClass && this._nextClass === c;
         }
         refreshCurrentDateObject() {
-            this._currentDate = new Date();
+            this._currentDate = new Date('2025-09-11 23:00:00');
         }
         refreshCurrentClass() {
             this._currentClass = null;
@@ -134,7 +135,7 @@ $(document).ready(()=>{
                     if(classList[1]) {
                         this._nextClass = classList[1];
                     }
-                } else if(duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m)&&duration<(24*60)) {
+                } else if(lastValidIndex>-1&&duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m)&&duration<(24*60)) {
                     const tomorrowClassList = schedule[day+1];
                     if(tomorrowClassList && tomorrowClassList[1]) {
                         this._nextClass = tomorrowClassList[1];
@@ -273,6 +274,7 @@ $(document).ready(()=>{
             let html = '';
             const schedule = this._schedule;
             const wd = this.getRealCurrentDay();
+            const nwd = Math.min(wd+1, 7);
             let daySche = schedule[wd];
             if(this._isTodayOffClass) daySche = schedule[Math.min(7, wd+1)];
             for(let i = 1; i <= 6; i++) {
@@ -290,7 +292,7 @@ $(document).ready(()=>{
                 } else {
                     text2 += '<td id="class-'+day+'-'+time+'" class="';
                 }
-                if(this.isClassTaken(i, wd)) {
+                if(this.isClassTaken(i, nwd)) {
                     text2 += ' class-taken';
                 }
                 text2 += '">';
