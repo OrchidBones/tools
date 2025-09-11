@@ -99,7 +99,7 @@ $(document).ready(()=>{
             return this._nextClass && this._nextClass === c;
         }
         refreshCurrentDateObject() {
-            this._currentDate = new Date('2025-09-11 23:00:00');
+            this._currentDate = new Date();
         }
         refreshCurrentClass() {
             this._currentClass = null;
