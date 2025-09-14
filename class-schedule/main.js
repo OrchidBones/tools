@@ -17,7 +17,7 @@ $(document).ready(()=>{
 
     class Common {
         constructor() {
-            this._startDate = new Date("2025-08-31");
+            this._startDate = new Date("2025-08-31 00:00:00");
             this._timetable = [
                 {order: 0, start: {h: 0,  m: 0},  end: {h: 0, m: 0}},
                 {order: 1, start: {h: 8,  m: 0},  end: {h: 9, m: 49}},
@@ -31,14 +31,17 @@ $(document).ready(()=>{
         timetable() {
             return this._timetable;
         }
+        getWeekNumber(date) {
+            const curDate = date;
+            const startDate = this._startDate;
+            const timeDif = curDate - startDate;
+            const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
+            console.log(dayDif)
+            return Math.ceil(dayDif / 7);
+        }
         getCurrentWeekNumber() {
             const curDate = new Date();
-            const startDate = this._startDate;
-            const curStamp = curDate.getTime();
-            const startStamp = startDate.getTime();
-            const timeDif = curStamp - startStamp;
-            const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
-            return Math.ceil(dayDif / 7);
+            return this.getWeekNumber(curDate);
         }
         getCurrentDay() {
             const date = new Date();
@@ -59,13 +62,13 @@ $(document).ready(()=>{
     class ClassSchedule {
         constructor(data) {
             this._source = data;
-            this._weekNumber = $Utils.getCurrentWeekNumber();
+            this.refreshCurrentDateObject();
+            this._weekNumber = $Utils.getWeekNumber(this._currentDate);
             this._maxWeekNumber = 20;
             this._currentClass = null;
             this._nextClass = null;
             this._isTodayOffClass = false;
             this._schedule = null;
-            this.refreshCurrentDateObject();
             this.refreshSchedule();
         }
         setWeekNumber(wn) {
@@ -88,7 +91,7 @@ $(document).ready(()=>{
         }
         isClassTaken(index, dayIndex) {
             const date = this._currentDate;
-            const curWeekNumber = $Utils.getCurrentWeekNumber();
+            const curWeekNumber = $Utils.getWeekNumber(date);
             const time = $Utils.timetable()[index];
             const curDay = this.getRealCurrentDay();
             return curWeekNumber >= this._weekNumber && curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
@@ -369,5 +372,4 @@ $(document).ready(()=>{
             }
         });
     });
-
 });
