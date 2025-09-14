@@ -88,9 +88,10 @@ $(document).ready(()=>{
         }
         isClassTaken(index, dayIndex) {
             const date = this._currentDate;
+            const curWeekNumber = $Utils.getCurrentWeekNumber();
             const time = $Utils.timetable()[index];
             const curDay = this.getRealCurrentDay();
-            return curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
+            return curWeekNumber >= this._weekNumber && curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
         }
         isCurrentClassTime(c) {
             return this._currentClass && this._currentClass === c;
@@ -368,4 +369,5 @@ $(document).ready(()=>{
             }
         });
     });
+
 });
