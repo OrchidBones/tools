@@ -11,13 +11,41 @@
 .contents>h1{
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .input-area{
     width: 50%;
     margin: auto;
-    margin-bottom: 50px;
+}
+
+.tip-area{
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.green-tip{
+    margin-right: 20px;
+}
+
+.green-block{
+    width: 10px;
+    height: 10px;
+    background-color: rgb(130, 246, 207);
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.blue-block{
+    width: 10px;
+    height: 10px;
+    background-color: rgb(123, 191, 251);
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.output-area{
+    margin-top: 50px;
 }
 
 .week-auto-detection{
@@ -65,7 +93,6 @@ td.class-taken {
     .input-area{
         width: 75%;
         margin: auto;
-        margin-bottom: 50px;
     }
 }
 
@@ -73,6 +100,5 @@ td.class-taken {
     .input-area{
         width: 100%;
         margin: auto;
-        margin-bottom: 50px;
     }
 }

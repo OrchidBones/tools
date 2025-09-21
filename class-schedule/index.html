@@ -16,7 +16,7 @@
         <h1><strong>课表</strong></h1>
         <div class="input-area">
             <div class="weeknumber-area">
-                <div class="week-auto-detection alert alert-primary">
+                <div class="week-auto-detection alert alert-warning">
                     <i class="fa fa-lightbulb-o"></i> 自动检测到当前为第 <span></span> 周
                 </div>
                 <form>
@@ -27,6 +27,12 @@
                         <input type="text" id="weeknumber" class="form-control" placeholder="当前为第几周？">
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="tip-area">
+            <div class="tip-bar">
+                <span class="green-tip"><div class="green-block"></div><span class="green-text">下一堂课</span></span>
+                <span class="blue-tip"><div class="blue-block"></div><span class="blue-text">本堂课</span></span>
             </div>
         </div>
         <div class="output-area">

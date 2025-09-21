@@ -17,7 +17,7 @@ $(document).ready(()=>{
 
     class Common {
         constructor() {
-            this._startDate = new Date("2025-08-31 00:00:00");
+            this._startDate = new Date("2025-08-31");
             this._timetable = [
                 {order: 0, start: {h: 0,  m: 0},  end: {h: 0, m: 0}},
                 {order: 1, start: {h: 8,  m: 0},  end: {h: 9, m: 49}},
@@ -31,17 +31,14 @@ $(document).ready(()=>{
         timetable() {
             return this._timetable;
         }
-        getWeekNumber(date) {
-            const curDate = date;
-            const startDate = this._startDate;
-            const timeDif = curDate - startDate;
-            const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
-            console.log(dayDif)
-            return Math.ceil(dayDif / 7);
-        }
         getCurrentWeekNumber() {
             const curDate = new Date();
-            return this.getWeekNumber(curDate);
+            const startDate = this._startDate;
+            const curStamp = curDate.getTime();
+            const startStamp = startDate.getTime();
+            const timeDif = curStamp - startStamp;
+            const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
+            return Math.ceil(dayDif / 7);
         }
         getCurrentDay() {
             const date = new Date();
@@ -62,13 +59,13 @@ $(document).ready(()=>{
     class ClassSchedule {
         constructor(data) {
             this._source = data;
-            this.refreshCurrentDateObject();
-            this._weekNumber = $Utils.getWeekNumber(this._currentDate);
+            this._weekNumber = $Utils.getCurrentWeekNumber();
             this._maxWeekNumber = 20;
             this._currentClass = null;
             this._nextClass = null;
             this._isTodayOffClass = false;
             this._schedule = null;
+            this.refreshCurrentDateObject();
             this.refreshSchedule();
         }
         setWeekNumber(wn) {
@@ -91,10 +88,9 @@ $(document).ready(()=>{
         }
         isClassTaken(index, dayIndex) {
             const date = this._currentDate;
-            const curWeekNumber = $Utils.getWeekNumber(date);
             const time = $Utils.timetable()[index];
             const curDay = this.getRealCurrentDay();
-            return curWeekNumber >= this._weekNumber && curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
+            return curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
         }
         isCurrentClassTime(c) {
             return this._currentClass && this._currentClass === c;
@@ -139,12 +135,12 @@ $(document).ready(()=>{
                     if(classList[1]) {
                         this._nextClass = classList[1];
                     }
-                } else if(lastValidIndex>-1&&duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m)&&duration<(24*60)) {
+                } else if(lastValidIndex>-1&&(duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m))&&(duration<(24*60))) {
                     const tomorrowClassList = schedule[day+1];
                     if(tomorrowClassList && tomorrowClassList[1]) {
                         this._nextClass = tomorrowClassList[1];
-                        this._isTodayOffClass = true;
                     }
+                    this._isTodayOffClass = true;
                 } else {
                     for(let i = 1; i < classList.length; i++) {
                         const prevData = list[i];
@@ -280,7 +276,8 @@ $(document).ready(()=>{
             const wd = this.getRealCurrentDay();
             const nwd = Math.min(wd+1, 7);
             let daySche = schedule[wd];
-            if(this._isTodayOffClass) daySche = schedule[Math.min(7, wd+1)];
+            if(this._isTodayOffClass && this._nextClass) daySche = schedule[nwd];
+            const d = this._isTodayOffClass && this._nextClass ? nwd : wd;
             for(let i = 1; i <= 6; i++) {
                 let text = '<tr>';
                 const t = String(i*2-1) + '-' + String(i*2);
@@ -296,7 +293,7 @@ $(document).ready(()=>{
                 } else {
                     text2 += '<td id="class-'+day+'-'+time+'" class="';
                 }
-                if(this.isClassTaken(i, nwd)) {
+                if(this.isClassTaken(i, d)) {
                     text2 += ' class-taken';
                 }
                 text2 += '">';
@@ -338,7 +335,7 @@ $(document).ready(()=>{
             this.refreshNextClass();
             const html1 = this.generateDailyTableHTML();
             const html2 = this.generateWeeklyTableHTML();
-            if(this._isTodayOffClass) {
+            if(this._isTodayOffClass && this._nextClass) {
                 $('.today-schedule .time-tag').text('明日');
                 $('.today-schedule .week-day').text($Utils.convertWeekDayChar(Math.min(this.getRealCurrentDay()+1, 7)));
             } else {
