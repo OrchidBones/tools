@@ -18,7 +18,7 @@
     margin: auto;
 }
 
-.tip-area{
+.tip-bar-area{
     width: 100%;
     text-align: center;
     margin-top: 30px;
@@ -48,7 +48,7 @@
     margin-top: 50px;
 }
 
-.week-auto-detection{
+.tip-area{
     margin-top: 30px;
     margin-bottom: 30px;
 }

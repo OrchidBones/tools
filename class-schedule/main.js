@@ -342,6 +342,11 @@ $(document).ready(()=>{
                 $('.today-schedule .time-tag').text('今日');
                 $('.today-schedule .week-day').text($Utils.convertWeekDayChar(this.getRealCurrentDay()));
             }
+            if(!this._isTodayOffClass && this._nextClass) {
+                const classroom = this._nextClass.classroom;
+                $('.next-classroom-area').empty();
+                $('.next-classroom-area').append('<div class="next-classroom-detection alert alert-info"><i class="fa fa-arrow-right"></i> 请到 <span class="next-classroom-text"><strong>'+classroom+'</strong></span> 上课</div>');
+            }
             $('.whole-schedule span').text(this.weekNumber());
             $('.today-schedule div.table-area').empty();
             $('.today-schedule div.table-area').append(html1);
@@ -353,7 +358,7 @@ $(document).ready(()=>{
     const $Utils = new Common();
 
     const weeknumber = $Utils.getCurrentWeekNumber();
-    $('.week-auto-detection span').html('<strong>'+weeknumber+'</strong>');
+    $('.week-auto-detection span.week-n').html('<strong>'+weeknumber+'</strong>');
 
     $.getJSON('data.json', (scheduleData)=>{
         const schedule = new ClassSchedule(scheduleData);
