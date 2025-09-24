@@ -24,11 +24,11 @@
     margin-top: 30px;
 }
 
-.green-tip{
+.next-tip{
     margin-right: 20px;
 }
 
-.green-block{
+.next-block{
     width: 10px;
     height: 10px;
     background-color: rgb(130, 246, 207);
@@ -36,7 +36,7 @@
     margin-right: 5px;
 }
 
-.blue-block{
+.current-block{
     width: 10px;
     height: 10px;
     background-color: rgb(123, 191, 251);

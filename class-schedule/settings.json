@@ -1,0 +1,20 @@
+{
+    "class_table_item_template": [
+        {
+            "parse_depth_note": "一行文本最多承载多少个变量？",
+            "parse_depth": 5
+        },
+        "<b>${name}</b> [${type}]",
+        "${teacher}",
+        "${classroom}"
+    ],
+    "daysOff": [
+        {
+            "note": "国庆前调休",
+            "ori_week": 4,
+            "ori_day": 7,
+            "tar_week": 4,
+            "tar_day": 2
+        }
+    ]
+}
