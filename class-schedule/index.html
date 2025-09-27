@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>课表</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
     <div class="contents">
-        <h1><strong>课表</strong></h1>
+        <h1><strong></strong></h1>
         <div class="tip-area">
             <div class="weeknumber-area">
-                <div class="week-auto-detection alert alert-warning">
-                    <i class="fa fa-lightbulb-o"></i> 自动检测到当前为第 <span class="week-n"></span> 周
+                <div class="week-auto-detection alert">
+                    <i class="fa fa-lightbulb-o"></i> <span class="week-detection-text"></span>
                 </div>
             </div>
             <div class="next-classroom-area">
@@ -27,25 +27,25 @@
             <form>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">自定义周数</span>
+                        <span class="input-group-text"></span>
                     </div>
-                    <input type="text" id="weeknumber" class="form-control" placeholder="当前为第几周？">
+                    <input type="text" id="weeknumber" class="form-control">
                 </div>
             </form>
         </div>
         <div class="tip-bar-area">
             <div class="tip-bar">
-                <span class="next-tip"><div class="next-block"></div><span class="next-text">下一堂课</span></span>
-                <span class="current-tip"><div class="current-block"></div><span class="current-text">本堂课</span></span>
+                <span class="next-tip"><div class="next-block"></div><span class="next-text"></span></span>
+                <span class="current-tip"><div class="current-block"></div><span class="current-text"></span></span>
             </div>
         </div>
         <div class="output-area">
             <div class="today-schedule">
-                <h5><span class="time-tag"></span>课表：<strong><span class="week-day"></span></strong></h5>
+                <h5><span class="time-tag"></span><span class="class-schedule-general-text"></span>: <strong><span class="week-day"></span></strong></h5>
                 <div class="table-area table-responsive"></div>
             </div>
             <div class="whole-schedule">
-                <h5>第 <strong><span></span></strong> 周课表：</h5>
+                <h5><span class="weeknumber-ordinal-numeral-text"></span><span class="class-schedule-general-text"></span>: </h5>
                 <div class="table-area table-responsive"></div>
             </div>
         </div>

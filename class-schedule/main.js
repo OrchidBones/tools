@@ -19,16 +19,8 @@ $(document).ready(()=>{
 
         class Common {
             constructor() {
-                this._startDate = new Date("2025-08-31");
-                this._timetable = [
-                    {order: 0, start: {h: 0,  m: 0},  end: {h: 0, m: 0}},
-                    {order: 1, start: {h: 8,  m: 0},  end: {h: 9, m: 49}},
-                    {order: 2, start: {h: 10, m: 10}, end: {h: 11, m: 59}},
-                    {order: 3, start: {h: 14, m: 30}, end: {h: 16, m: 19}},
-                    {order: 4, start: {h: 16, m: 30}, end: {h: 18, m: 19}},
-                    {order: 5, start: {h: 19, m: 30}, end: {h: 21, m: 19}},
-                    {order: 6, start: {h: 21, m: 30}, end: {h: 23, m: 19}}
-                ]
+                this._startDate = new Date(settings.semester_start_date);
+                this._timetable = settings.timetable;
             }
             timetable() {
                 return this._timetable;
@@ -53,8 +45,34 @@ $(document).ready(()=>{
                 return new Date().getMinutes();
             }
             convertWeekDayChar(wd) {
-                const arr = [null,'一','二','三','四','五','六','日'];
-                return '星期'+arr[wd];
+                const arr = [null].concat(settings.terms.weekday_suffix_texts);
+                return settings.terms.weekday_prefix_text+arr[wd];
+            }
+            applyLayoutSettings() {
+                this.applySettingsForTitle();
+                this.applySettingsForAlerts();
+                this.applySettingsForInput();
+                this.applySettingsForTips();
+                this.applySettingsForOutputAreaTitle();
+            }
+            applySettingsForTitle() {
+                $('h1 strong').html(settings.terms.class_schedule_title_text);
+            }
+            applySettingsForAlerts() {
+                $('.week-auto-detection .week-detection-text').html(settings.terms.alert_weeknumber_detection_text.replace('${weeknumber}', '<span class="week-n"></span>'));
+                $('.week-auto-detection').addClass('alert-'+settings.layout.alerts.weeknumber_bootstrap_theme);
+                // settings.layout.alerts.next_classroom_bootstrap_theme 在生成时自动应用
+            }
+            applySettingsForInput() {
+                $('form span.input-group-text').html(settings.terms.weeknumber_customization_text);
+            }
+            applySettingsForTips() {
+                $('.next-tip .next-text').html(settings.terms.next_class_text);
+                $('.current-tip .current-text').html(settings.terms.current_class_text);
+            }
+            applySettingsForOutputAreaTitle() {
+                $('.output-area .class-schedule-general-text').html(settings.terms.class_schedule_output_area_title_text);
+                $('.whole-schedule h5 .weeknumber-ordinal-numeral-text').html(settings.terms.weekday_ordinal_numeral_text.replace('${weeknumber}', '<span class="week-number"></span>'));
             }
         };
         
@@ -102,7 +120,7 @@ $(document).ready(()=>{
             constructor(data) {
                 this._source = data;
                 this._weekNumber = $Utils.getCurrentWeekNumber();
-                this._maxWeekNumber = 20;
+                this._maxWeekNumber = settings.max_week_number;
                 this._currentClass = null;
                 this._nextClass = null;
                 this._isTodayOffClass = false;
@@ -139,6 +157,11 @@ $(document).ready(()=>{
             }
             isDayDaysOff(day, wn) { // 是否调休
                 return !!this.getDayDaysOffData(day, wn);
+            }
+            hasClass(day, wn) {
+                const temp_schedule = this.assignSchedule(wn);
+                const classes = temp_schedule[day];
+                return !!classes.length;
             }
             getDayDaysOffData(day, wn) {
                 for(let i = 0; i < settings.daysOff.length; i++){
@@ -183,10 +206,12 @@ $(document).ready(()=>{
                 if(!currentClass) {
                     const lastValidIndex = this.__findLastValidObjectIndex(classList);
                     if(duration>(list[0].end.h*60+list[0].end.m)&&duration<((list[1].start.h*60+list[1].start.m))) {
+                        // 今日第一节课前
                         if(classList[1]) {
                             this._nextClass = classList[1];
                         }
-                    } else if(lastValidIndex>-1&&(duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m))&&(duration<(24*60))) {
+                    } else if(lastValidIndex===-1||(lastValidIndex>-1&&(duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m))&&(duration<(24*60)))) {
+                        // 今日课程结束 / 今日无课
                         const tomorrowClassList = schedule[day+1];
                         if(tomorrowClassList && tomorrowClassList[1]) {
                             this._nextClass = tomorrowClassList[1];
@@ -237,7 +262,7 @@ $(document).ready(()=>{
                     timetable.num++;
                     timetable.day.push(tt.day);
                     timetable.time.push(tt.time);
-                    timetable.ctt.push(tt.classtakingType);
+                    timetable.ctt.push(tt.classtakingType);   // classtakingType
                 });
                 return timetable;
             }
@@ -260,7 +285,7 @@ $(document).ready(()=>{
                             const classroom = timetable.classroom[i-1];
                             const ctt = timetable.ctt[i-1];
                             const cc = c.clone()
-                            cc.ctt = ctt;
+                            cc.ctt = ctt;   // classtakingType
                             cc.classroom = classroom;
                             if(this.isClassOn(cc, wn)) {
                                 schedule[day][time] = new Course(cc, day, time, classroom, ctt);
@@ -296,7 +321,7 @@ $(document).ready(()=>{
             makeWeeklyTableHeadHTML() {
                 let html = '<thead><tr>';
                 let suffix = '</tr></thead>'
-                html += '<th>时间</th>' + '<th>星期一</th>' + '<th>星期二</th>' + '<th>星期三</th>' + '<th>星期四</th>' + '<th>星期五</th>' + '<th>星期六</th>' + '<th>星期日</th>';
+                html += '<th>'+settings.terms.time_text+'</th>' + '<th>'+$Utils.convertWeekDayChar(1)+'</th>' + '<th>'+$Utils.convertWeekDayChar(2)+'</th>' + '<th>'+$Utils.convertWeekDayChar(3)+'</th>' + '<th>'+$Utils.convertWeekDayChar(4)+'</th>' + '<th>'+$Utils.convertWeekDayChar(5)+'</th>' + '<th>'+$Utils.convertWeekDayChar(6)+'</th>' + '<th>'+$Utils.convertWeekDayChar(7)+'</th>';
                 html += suffix;
                 return html;
             }
@@ -307,7 +332,7 @@ $(document).ready(()=>{
                 for(let i = 1; i <= 6; i++) {
                     let text1 = '<tr>';
                     const t = String(i*2-1) + '-' + String(i*2);
-                    text1 += '<td>'+t+'节</td>'
+                    text1 += '<td>'+t+settings.terms.class_quantifier_text+'</td>'
                     for(let j = 1; j <= 7; j++) {
                         const day = j;
                         const time = i;
@@ -341,8 +366,8 @@ $(document).ready(()=>{
             makeTableItemText(c) {
                 let t = '';
                 const re = /\${[a-z_]+}/g;
-                const parse_depth = settings.class_table_item_template[0].parse_depth;
-                settings.class_table_item_template.forEach((raw)=>{
+                const parse_depth = settings.class_table_item_template.config.parse_depth;
+                settings.class_table_item_template.content.forEach((raw)=>{
                     let raw1 = raw;
                     let raw2 = raw;
                     if(typeof(raw)==='string') {
@@ -352,7 +377,17 @@ $(document).ready(()=>{
                                 let tt = tta[0];
                                 let o_tt = tt;
                                 tt = tt.replace('${','').replace('}','');
-                                raw1 = raw1.replace(o_tt, c.object()[tt]);
+                                let finalText = tt;
+                                try {
+                                    finalText = eval('c.'+tt+'()');
+                                } catch(e1) {
+                                    try {
+                                        finalText = c.object()[tt];
+                                    } catch(e2) {
+                                        console.error(e2);
+                                    }
+                                }
+                                raw1 = raw1.replace(o_tt, finalText);
                                 raw2 = raw2.replace(o_tt, '');
                             } else {
                                 continue;
@@ -375,7 +410,7 @@ $(document).ready(()=>{
                 for(let i = 1; i <= 6; i++) {
                     let text = '<tr>';
                     const t = String(i*2-1) + '-' + String(i*2);
-                    text += '<td>'+t+'节</td>'
+                    text += '<td>'+t+settings.terms.class_quantifier_text+'</td>'
                     let text2 = '';
                     const c = daySche[i];
                     const day = wd;
@@ -427,34 +462,51 @@ $(document).ready(()=>{
                 this.refreshSchedule();
                 this.refreshCurrentClass();
                 this.refreshNextClass();
-                const html1 = this.generateDailyTableHTML();
-                const html2 = this.generateWeeklyTableHTML();
-                if(this._isTodayOffClass && this._nextClass) {
-                    $('.today-schedule .time-tag').text('明日');
-                    $('.today-schedule .week-day').text($Utils.convertWeekDayChar(Math.min(this.getRealCurrentDay()+1, 7)));
-                } else {
-                    $('.today-schedule .time-tag').text('今日');
-                    $('.today-schedule .week-day').text($Utils.convertWeekDayChar(this.getRealCurrentDay()));
-                }
+                this.applyTommorrowClassList();
                 if(!this._isTodayOffClass && this._nextClass) {
                     const classroom = this._nextClass.classroom();
                     $('.next-classroom-area').empty();
-                    $('.next-classroom-area').append('<div class="next-classroom-detection alert alert-info"><i class="fa fa-arrow-right"></i> 请到 <span class="next-classroom-text"><strong>'+classroom+'</strong></span> 上课</div>');
+                    $('.next-classroom-area').append('<div class="next-classroom-detection alert alert-'+settings.layout.alerts.next_classroom_bootstrap_theme+'"><i class="fa fa-arrow-right"></i> '+settings.terms.alert_next_classroom_detection_text.replace('${classroom}','<span class="next-classroom-text"><strong>'+classroom+'</strong></span>')+'</div>');
                 }
-                $('.whole-schedule span').text(this.weekNumber());
+                const html1 = this.generateDailyTableHTML();
+                const html2 = this.generateWeeklyTableHTML();
+                $('.whole-schedule span.week-number').html('<strong>'+this.weekNumber()+'</strong>');
                 $('.today-schedule div.table-area').empty();
                 $('.today-schedule div.table-area').append(html1);
                 $('.whole-schedule div.table-area').empty();
                 $('.whole-schedule div.table-area').append(html2);
             }
+            applyTommorrowClassList() {
+                if(this.needsTommorowFirstClass()) {
+                    const realDayNum = Math.min(this.getRealCurrentDay()+1, 7);
+                    const realCurDay = $Utils.convertWeekDayChar(realDayNum);
+                    const suffix = this.getSuffixForDaysOff(realDayNum, this._weekNumber);
+                    $('.today-schedule .time-tag').html(settings.terms.time_tag_tommorrow_text);
+                    $('.today-schedule .week-day').html(realCurDay+suffix);
+                } else {
+                    const realDayNum = this.getRealCurrentDay();
+                    const realCurDay = $Utils.convertWeekDayChar(realDayNum);
+                    const suffix = this.getSuffixForDaysOff(realDayNum, this._weekNumber);
+                    $('.today-schedule .time-tag').html(settings.terms.time_tag_today_text);
+                    $('.today-schedule .week-day').html(realCurDay+suffix);
+                }
+            }
+            needsTommorowFirstClass() {
+                return this._isTodayOffClass && this._nextClass;
+            }
+            getSuffixForDaysOff(rdn, wn) {
+                if(this.isDayDaysOff(rdn, wn)) {
+                    return settings.terms.days_off_suffix_text;
+                }
+                return '';
+            }
         };
 
         window.$Utils = new Common();
         window.$ClassSchedule = null;
-
+        $Utils.applyLayoutSettings();
         const weeknumber = $Utils.getCurrentWeekNumber();
         $('.week-auto-detection span.week-n').html('<strong>'+weeknumber+'</strong>');
-
         $.getJSON('data.json', (scheduleData)=>{
             const schedule = new ClassSchedule(scheduleData);
             schedule.applyRefreshTableHTML();

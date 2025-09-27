@@ -1,20 +1,20 @@
 {
     "terms": {
-        "class_schedule_title_text": "课表",
-        "class_schedule_output_area_title_text": "课表",
-        "time_text": "时间",
-        "weekday_prefix_text": "星期",
-        "weekday_suffix_texts": ["一", "二", "三", "四", "五", "六", "日"],
-        "time_tag_today_text": "今日",
-        "time_tag_tommorrow_text": "明日",
-        "current_class_text": "本堂课",
-        "next_class_text": "下一堂课",
-        "class_quantifier_text": "节",
-        "weeknumber_customization_text": "自定义周数",
-        "days_off_suffix_text": "（调休）",
-        "alert_weeknumber_detection_text": "自动检测到当前为第 ${weeknumber} 周",
-        "alert_next_classroom_detection_text": "请到 ${classroom} 上课",
-        "weekday_ordinal_numeral_text": "第 ${weeknumber} 周"
+        "class_schedule_title_text": "My Class Schedule",
+        "class_schedule_output_area_title_text": "'s Schedule",
+        "time_text": "Time",
+        "weekday_prefix_text": "",
+        "weekday_suffix_texts": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "time_tag_today_text": "Today",
+        "time_tag_tommorrow_text": "Tommorrow",
+        "current_class_text": "This Class",
+        "next_class_text": "Next Class",
+        "class_quantifier_text": "",
+        "weeknumber_customization_text": "Week Number",
+        "days_off_suffix_text": "(days off)",
+        "alert_weeknumber_detection_text": "You are currently at Week ${weeknumber}",
+        "alert_next_classroom_detection_text": "Your next class is in Classroom ${classroom}",
+        "weekday_ordinal_numeral_text": "Week ${weeknumber}"
     },
     "layout": {
         "alerts": {
@@ -45,7 +45,7 @@
     },
     "daysOff": [
         {
-            "note": "国庆前调休",
+            "note": "",
             "ori_week": 4,
             "ori_day": 7,
             "tar_week": 4,
