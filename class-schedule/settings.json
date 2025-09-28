@@ -9,20 +9,28 @@
         "time_tag_tommorrow_text": "明日",
         "current_class_text": "本堂课",
         "next_class_text": "下一堂课",
-        "class_quantifier_text": "节",
+        "class_quantifier_text": "${classnumber} 节",
         "weeknumber_customization_text": "自定义周数",
         "days_off_suffix_text": "（调休）",
+        "time_format": "hh点mm分",
         "alert_weeknumber_detection_text": "自动检测到当前为第 ${weeknumber} 周",
-        "alert_next_classroom_detection_text": "请到 ${classroom} 上课",
+        "alert_next_classroom_detection_text": "请在${time}前到 ${classroom} 上课",
         "weekday_ordinal_numeral_text": "第 ${weeknumber} 周"
     },
     "layout": {
-        "alerts": {
+        "alert": {
             "weeknumber_bootstrap_theme": "warning",
             "next_classroom_bootstrap_theme": "info"
+        },
+        "tableitem_mark": {
+            "mark_color_note": "可以是Bootstrap颜色名、十六进制颜色、RGB颜色、RGBA颜色。若为RGBA颜色, 则忽略以下设置的边框和背景不透明度。",
+            "current_class_color": "rgb(123, 191, 251)",
+            "next_class_color": "rgb(130, 246, 207)",
+            "special_class_border_opacity_100": "50",
+            "special_class_background_opacity_100": "20"
         }
     },
-    "semester_start_date": "2025-08-31",
+    "semester_start_date": "2025-08-31 00:00:00",
     "max_week_number": 20,
     "timetable": [
         {"start": {"h": 0,  "m": 0},  "end": {"h": 0,  "m": 0}},
@@ -43,7 +51,7 @@
             "${classroom}"
         ]
     },
-    "daysOff": [
+    "additional_class_days": [
         {
             "note": "国庆前调休",
             "ori_week": 4,

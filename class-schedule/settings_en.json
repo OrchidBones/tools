@@ -9,20 +9,28 @@
         "time_tag_tommorrow_text": "Tommorrow",
         "current_class_text": "This Class",
         "next_class_text": "Next Class",
-        "class_quantifier_text": "",
+        "class_quantifier_text": "Class ${classnumber}",
         "weeknumber_customization_text": "Week Number",
-        "days_off_suffix_text": "(days off)",
-        "alert_weeknumber_detection_text": "You are currently at Week ${weeknumber}",
-        "alert_next_classroom_detection_text": "Your next class is in Classroom ${classroom}",
+        "days_off_suffix_text": "(additional)",
+        "time_format": "hh: mm",
+        "alert_weeknumber_detection_text": "You are currently at Week ${weeknumber}.",
+        "alert_next_classroom_detection_text": "Please go to Classroom ${classroom} before ${time}.",
         "weekday_ordinal_numeral_text": "Week ${weeknumber}"
     },
     "layout": {
-        "alerts": {
+        "alert": {
             "weeknumber_bootstrap_theme": "warning",
             "next_classroom_bootstrap_theme": "info"
+        },
+        "tableitem_mark": {
+            "mark_color_note": "The two parameters below can be bootstrap theme color (like the above), hex color, rgb color or rgba color. If rgba color is used, the settings on opacity will be ignored.",
+            "current_class_color": "rgb(123, 191, 251)",
+            "next_class_color": "rgb(130, 246, 207)",
+            "special_class_border_opacity_100": "50",
+            "special_class_background_opacity_100": "20"
         }
     },
-    "semester_start_date": "2025-08-31",
+    "semester_start_date": "2025-08-31 00:00:00",
     "max_week_number": 20,
     "timetable": [
         {"start": {"h": 0,  "m": 0},  "end": {"h": 0,  "m": 0}},
@@ -43,7 +51,7 @@
             "${classroom}"
         ]
     },
-    "daysOff": [
+    "additional_class_days": [
         {
             "note": "",
             "ori_week": 4,
