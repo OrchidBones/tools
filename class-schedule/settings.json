@@ -11,7 +11,8 @@
         "next_class_text": "下一堂课",
         "class_quantifier_text": "${classnumber} 节",
         "weeknumber_customization_text": "自定义周数",
-        "days_off_suffix_text": "（调休）",
+        "special_class_days_suffix_text": "（特殊）",
+        "holidays_suffix_text": "（放假）",
         "time_format": "hh点mm分",
         "alert_weeknumber_detection_text": "自动检测到当前为第 ${weeknumber} 周",
         "alert_next_classroom_detection_text": "请在${time}前到 ${classroom} 上课",
@@ -32,8 +33,9 @@
     },
     "semester_start_date": "2025-08-31 00:00:00",
     "max_week_number": 20,
+    "max_classes_per_day": 6,
+    "timetable_note": "参数数量必须与 max_classes_per_day 保持一致。",
     "timetable": [
-        {"start": {"h": 0,  "m": 0},  "end": {"h": 0,  "m": 0}},
         {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
         {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},
         {"start": {"h": 14, "m": 30}, "end": {"h": 16, "m": 19}},
@@ -41,23 +43,31 @@
         {"start": {"h": 19, "m": 30}, "end": {"h": 21, "m": 19}},
         {"start": {"h": 21, "m": 30}, "end": {"h": 23, "m": 19}}
     ],
-    "class_table_item_template": {
-        "config": {
-            "parse_depth": 5
-        },
-        "content": [
-            "<b>${name}</b> [${type}]",
-            "${teacher}",
-            "${classroom}"
-        ]
-    },
-    "additional_class_days": [
+    "class_table_item_template": [
+        "<b>${name}</b> [${type}]",
+        "${teacher}",
+        "${classroom}"
+    ],
+    "holidays": [
+        {
+            "note": "国庆&中秋",
+            "startDate": "2025-10-01",
+            "endDate": "2025-10-08"
+        }
+    ],
+    "special_class_days_note": "指定某一天上另一天的课。可以设置调休等安排。",
+    "special_class_days": [
         {
             "note": "国庆前调休",
             "ori_week": 4,
             "ori_day": 7,
             "tar_week": 4,
             "tar_day": 2
+        },
+        {
+            "note": "国庆后调休",
+            "ori_date": "2025-10-11",
+            "tar_date": "2025-10-01"
         }
     ]
 }

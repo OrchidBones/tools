@@ -2,6 +2,10 @@ Object.prototype.clone = function() {
     return JSON.parse(JSON.stringify(this));
 };
 
+Date.prototype.clone = function() {
+    return new Date(this.getTime());
+};
+
 Number.prototype.isBetween = function(num1, num2) {
     if(num1!==undefined&&num2!==undefined) {
         let n1 = num1, n2 = num2;
@@ -20,29 +24,25 @@ $(document).ready(()=>{
         class Common {
             constructor() {
                 this._startDate = new Date(settings.semester_start_date);
-                this._timetable = settings.timetable;
+                this._timetable = [{start: {h: 0,  m: 0}, end: {h: 0,  m: 0}}].concat(settings.timetable);
             }
             timetable() {
                 return this._timetable;
             }
             getCurrentWeekNumber() {
-                const curDate = new Date();
+                return this.getWeekNumberByDate(new Date());
+            }
+            getCertainDay(date) {
+                return date.getDay() === 0 ? 7 : date.getDay();
+            }
+            getWeekNumberByDate(date) {
+                const curDate = date;
                 const startDate = this._startDate;
                 const curStamp = curDate.getTime();
                 const startStamp = startDate.getTime();
                 const timeDif = curStamp - startStamp;
                 const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
                 return Math.ceil(dayDif / 7);
-            }
-            getCurrentDay() {
-                const date = new Date();
-                return date.getDay() === 0 ? 7 : date.getDay();
-            }
-            getCurrentHours() {
-                return new Date().getHours();
-            }
-            getCurrentMinutes() {
-                return new Date().getMinutes();
             }
             convertWeekDayChar(wd) {
                 const arr = [null].concat(settings.terms.weekday_suffix_texts);
@@ -52,6 +52,9 @@ $(document).ready(()=>{
                 const start = this._timetable[timeIndex].start;
                 const temp_str = settings.terms.time_format;
                 return temp_str.replace('hh', start.h).replace('mm', start.m);
+            }
+            convertYMDString_private(date) { // for comparison
+                return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' 00:00:00';
             }
             convertCssColorText(source, opacity) {
                 if(source.includes('rgba')) { // rgba
@@ -68,6 +71,31 @@ $(document).ready(()=>{
                     return 'rgba(var(--bs-'+source+'-rgb), .'+String(opacity)+')';
                 }
             }
+            formatClassParamString(sourceStr, course) {
+                const re = /\${[a-zA-Z_]+}/gi;
+                let t = sourceStr;
+                let tta = t.match(re);
+                if(tta) {
+                    for(const result of tta) {
+                        let tt = result;
+                        tt = tt.replace('${','').replace('}','');
+                        let finalText = tt;
+                        if(course) {
+                            try {
+                                finalText = eval('cource.'+tt+'()');
+                            } catch(e1) {
+                                try {
+                                    finalText = course.object()[tt];
+                                } catch(e2) {
+                                    console.error(e2);
+                                }
+                            }
+                        }
+                        t = t.replace(result, finalText);
+                    }
+                }
+                return t;
+            }
             applyLayoutSettings() {
                 this.applySettingsForTitle();
                 this.applySettingsForAlerts();
@@ -82,7 +110,6 @@ $(document).ready(()=>{
             applySettingsForAlerts() {
                 $('.week-auto-detection .week-detection-text').html(settings.terms.alert_weeknumber_detection_text.replace('${weeknumber}', '<span class="week-n"></span>'));
                 $('.week-auto-detection').addClass('alert-'+settings.layout.alert.weeknumber_bootstrap_theme);
-                // settings.layout.alerts.next_classroom_bootstrap_theme 在生成时自动应用
             }
             applySettingsForInput() {
                 $('form span.input-group-text').html(settings.terms.weeknumber_customization_text);
@@ -99,8 +126,16 @@ $(document).ready(()=>{
                 const currentColor = settings.layout.tableitem_mark.current_class_color;
                 const nextColor = settings.layout.tableitem_mark.next_class_color;
                 const borderOpacity = settings.layout.tableitem_mark.special_class_border_opacity_100;
-                $('.next-block').css({"background-color": this.convertCssColorText(nextColor, borderOpacity)});
-                $('.current-block').css({"background-color": this.convertCssColorText(currentColor, borderOpacity)});
+                const backgroundOpacity = settings.layout.tableitem_mark.special_class_background_opacity_100;
+                const diff = borderOpacity - backgroundOpacity;
+                $('.next-block').css({
+                    "background-color": this.convertCssColorText(nextColor, borderOpacity),
+                    "border-color": this.convertCssColorText(nextColor, Math.min(borderOpacity+diff, 100))
+                });
+                $('.current-block').css({
+                    "background-color": this.convertCssColorText(currentColor, borderOpacity),
+                    "border-color": this.convertCssColorText(currentColor, Math.min(borderOpacity+diff, 100))
+                });
             }
         };
         
@@ -130,6 +165,9 @@ $(document).ready(()=>{
             endTime() {
                 return this.object().endTime;
             }
+            timetable() {
+                return this.object().timetable;
+            }
             day() {
                 return this._day;
             }
@@ -141,6 +179,9 @@ $(document).ready(()=>{
             }
             takingType() {
                 return this._takingType;
+            }
+            classtakingType() {
+                return this.takingType();
             }
         };
 
@@ -171,11 +212,14 @@ $(document).ready(()=>{
             isClassOn(c, wn) { // c: object from json
                 return this.isClassAvailable(c, wn) && (c.ctt===0 || wn%2===1&&c.ctt===1 || wn%2===0&&c.ctt===2);
             }
-            isClassTaken(index, dayIndex) {
+            isClassTaken(timeIndex, day) {
                 const date = this._currentDate;
-                const time = $Utils.timetable()[index];
+                const time = $Utils.timetable()[timeIndex];
                 const curDay = this.getRealCurrentDay();
-                return curDay > dayIndex || (curDay === dayIndex && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m));
+                const nwn = $Utils.getWeekNumberByDate(date);
+                const wn = this._weekNumber;
+                if(wn > nwn) return false;
+                return nwn > wn || (curDay > day || (curDay === day && (date.getHours()*60+date.getMinutes()) > (time.end.h*60+time.end.m)));
             }
             isCurrentClassTime(c) {
                 return this._currentClass && this._currentClass === c;
@@ -183,19 +227,50 @@ $(document).ready(()=>{
             isNextClassTime(c) {
                 return this._nextClass && this._nextClass === c;
             }
-            isAdditionalClassDay(day, wn) { // 是否调休
-                return !!this.getAdditionalClassDayData(day, wn);
+            isWeekDaySpecialClassDay(day, wn) { // or isWeekDaySpecialClassDay(date)
+                if(arguments.length < 2) {
+                    return !!this.getSpecialClassDayByDt(day);
+                }
+                return !!this.getSpecialClassDayByWn(day, wn);
             }
             hasClass(day, wn) {
                 const temp_schedule = this.assignSchedule(wn);
                 const classes = temp_schedule[day];
                 return !!classes.length;
             }
-            getAdditionalClassDayData(day, wn) {
-                for(let i = 0; i < settings.additional_class_days.length; i++){
-                    const sc = settings.additional_class_days[i];
+            formatClassParamString(sourceStr, course) {
+                const result = Common.prototype.formatClassParamString.call(this, sourceStr, course);
+                if(result.includes('${weeknumber}')) {
+                    return result.replace('${weeknumber}', this._weekNumber);
+                }
+                return result;
+            }
+            getDateByWeekDay(day, wn) {
+                const date = this._currentDate;
+                const rwn = $Utils.getWeekNumberByDate(date);
+                const cur_day = $Utils.getCertainDay(date);
+                const diff = day - cur_day + (wn - rwn) * 7;
+                const newDate = date.clone();
+                newDate.setTime(newDate.getTime()+diff*(1000*60*60*24));
+                return newDate;
+            }
+            getSpecialClassDayByWn(day, wn) {
+                for(let i = 0; i < settings.special_class_days.length; i++){
+                    const sc = settings.special_class_days[i];
                     if(typeof(sc)==="object"&&sc.ori_day===day&&sc.ori_week===wn) {
                         return sc;
+                    }
+                }
+                return null;
+            }
+            getSpecialClassDayByDt(date) { // 
+                for(let i = 0; i < settings.special_class_days.length; i++){
+                    const sc = settings.special_class_days[i];
+                    if(typeof(sc)==="object"&&sc.ori_date) {
+                        const temp_date = new Date(sc.ori_date+' 00:00:00');
+                        if(date.getTime()===temp_date.getTime()) {
+                            return sc;
+                        }
                     }
                 }
                 return null;
@@ -233,19 +308,19 @@ $(document).ready(()=>{
                 const list = $Utils.timetable();
                 if(!currentClass) {
                     const lastValidIndex = this.__findLastValidObjectIndex(classList);
-                    if(duration>(list[0].end.h*60+list[0].end.m)&&duration<((list[1].start.h*60+list[1].start.m))) {
+                    const firstClassIndex = this.__findFirstValidObjectIndex(classList);
+                    if(firstClassIndex>-1&&duration.isBetween(list[0].end.h*60+list[0].end.m, list[firstClassIndex].start.h*60+list[firstClassIndex].start.m)) {
                         // 今日第一节课前
-                        const firstClassIndex = this.__findFirstValidObjectIndex(classList);
-                        if(firstClassIndex>-1&&classList[firstClassIndex]) {
+                        if(classList[firstClassIndex]) {
                             this._nextClass = classList[firstClassIndex];
                         }
-                    } else if(lastValidIndex===-1||(lastValidIndex>-1&&(duration>(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m))&&(duration<(24*60)))) {
+                    } else if(lastValidIndex===-1||(lastValidIndex>-1&&duration.isBetween(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m, 24*60))) {
                         // 今日课程结束 / 今日无课
                         const tomorrowClassList = schedule[day+1];
                         if(tomorrowClassList) {
-                            const firstClassIndex = this.__findFirstValidObjectIndex(tomorrowClassList);
-                            if(firstClassIndex>-1 && tomorrowClassList[firstClassIndex]) {
-                                this._nextClass = tomorrowClassList[firstClassIndex];
+                            const firstClassIndexT = this.__findFirstValidObjectIndex(tomorrowClassList);
+                            if(firstClassIndexT>-1 && tomorrowClassList[firstClassIndexT]) {
+                                this._nextClass = tomorrowClassList[firstClassIndexT];
                             }
                         }
                         this._isTodayOffClass = true;
@@ -255,10 +330,18 @@ $(document).ready(()=>{
                             if(classList[i]) {
                                 const nextIndex = this.__findNextValidObjectIndex(classList, i);
                                 const nextData = list[nextIndex === -1 ? classList.length : nextIndex];
-                                if(nextData && (duration>(prevData.end.h*60+prevData.end.m) && (duration<(nextData.start.h*60+nextData.start.m)))) {
+                                if(nextData && duration.isBetween(prevData.end.h*60+prevData.end.m, nextData.start.h*60+nextData.start.m)) {
                                     this._nextClass = classList[nextIndex];
                                 }
                             }
+                        }
+                    }
+                    if(this._nextClass) {
+                        const date = this._currentDate;
+                        const nwn = $Utils.getWeekNumberByDate(date);
+                        const wn = this._weekNumber;
+                        if (wn>nwn||wn<nwn) {
+                            this._nextClass = null;
                         }
                     }
                 }
@@ -294,8 +377,7 @@ $(document).ready(()=>{
                 return names;
             }
             getRealCurrentDay() {
-                const date = this._currentDate;
-                return date.getDay() === 0 ? 7 : date.getDay();
+                return $Utils.getCertainDay(this._currentDate);
             }
             getClassTimetable(course) {
                 const timetable = {num: 0, classroom: [], day: [], time: [], ctt: []};
@@ -304,7 +386,7 @@ $(document).ready(()=>{
                     timetable.num++;
                     timetable.day.push(tt.day);
                     timetable.time.push(tt.time);
-                    timetable.ctt.push(tt.classtakingType);   // classtakingType
+                    timetable.ctt.push(this.convertClassTakingType_private(tt.classtakingType));   // classtakingType
                 });
                 return timetable;
             }
@@ -338,22 +420,56 @@ $(document).ready(()=>{
                 return schedule;
             }
             rearrangeSchedule(wn) {
-                this.rearrangeScheduleForAdditionalClassDay(wn);
+                this.rearrangeScheduleForSpecialClassDay(wn);
+                this.rearrangeScheduleForHolidays(wn);
             }
-            rearrangeScheduleForAdditionalClassDay(wn) {
+            rearrangeScheduleForSpecialClassDay(wn) {
                 const schedule = this._schedule;
                 for(let i = 0; i <= 7; i++) {
-                    const AdditionalClassDay = this.getAdditionalClassDayData(i, wn);
-                    if(!!AdditionalClassDay) {
-                        const tar_day = AdditionalClassDay.tar_day;
-                        const temp_schedule = this.assignSchedule(AdditionalClassDay.tar_week);
-                        const day = i;
-                        for(let j = 1; j <= schedule.length; j++) {
-                            const tar_class = temp_schedule[tar_day][j];
-                            schedule[day][j] = tar_class;
+                    const SpecialClassDay = this.getSpecialClassDayByWn(i, wn) || this.getSpecialClassDayByDt(new Date($Utils.convertYMDString_private(this.getDateByWeekDay(i, wn))));
+                    if(!!SpecialClassDay) {
+                        if(SpecialClassDay.tar_day) {
+                            const tar_day = SpecialClassDay.tar_day;
+                            const temp_schedule = this.assignSchedule(SpecialClassDay.tar_week);
+                            const day = i;
+                            for(let j = 1; j <= settings.max_classes_per_day; j++) {
+                                const tar_class = temp_schedule[tar_day][j];
+                                schedule[day][j] = tar_class;
+                            }
+                        } else if(SpecialClassDay.tar_date) {
+                            const tar_date = new Date(SpecialClassDay.tar_date+' 00:00:00');
+                            const tar_day = $Utils.getCertainDay(tar_date);
+                            const nwn = $Utils.getWeekNumberByDate(tar_date);
+                            const temp_schedule = this.assignSchedule(nwn);
+                            const day = i;
+                            for(let j = 1; j <= settings.max_classes_per_day; j++) {
+                                const tar_class = temp_schedule[tar_day][j];
+                                schedule[day][j] = tar_class;
+                            }
                         }
                     }
                 }
+            }
+            rearrangeScheduleForHolidays(wn) {
+                const schedule = this._schedule;
+                for(let i = 1; i <= 7; i++) {
+                    const st = schedule[i];
+                    if(this.isWeekDayHoliday(i, wn)) {
+                        schedule[i] = st.map(course => null);
+                    }
+                }
+            }
+            isWeekDayHoliday(day, wn) {
+                const day_date = this.getDateByWeekDay(day, wn);
+                for(let h = 0; h < settings.holidays.length; h++) {
+                    const holiday = settings.holidays[h];
+                    const startDate = new Date(holiday.startDate+' 00:00:00');
+                    const endDate = new Date(holiday.endDate+' 23:59:59');
+                    if(day_date.getTime().isBetween(startDate.getTime(), endDate.getTime())) {
+                        return true;
+                    }
+                }
+                return false;
             }
             refreshSchedule() {
                 const wn = this._weekNumber;
@@ -371,7 +487,7 @@ $(document).ready(()=>{
                 let html = '<tbody>';
                 const suffix = '</tbody>';
                 const schedule = this._schedule;
-                for(let i = 1; i <= 6; i++) {
+                for(let i = 1; i <= settings.max_classes_per_day; i++) {
                     let text1 = '<tr>';
                     const t = String(i*2-1) + '-' + String(i*2);
                     const tt = settings.terms.class_quantifier_text;
@@ -414,8 +530,7 @@ $(document).ready(()=>{
                 let daySche = schedule[wd];
                 if(this._isTodayOffClass && this._nextClass) daySche = schedule[nwd];
                 const d = this._isTodayOffClass && this._nextClass ? nwd : wd;
-                const wn = this._weekNumber;
-                for(let i = 1; i <= 6; i++) {
+                for(let i = 1; i <= settings.max_classes_per_day; i++) {
                     let text = '<tr>';
                     const t = String(i*2-1) + '-' + String(i*2);
                     const tt = settings.terms.class_quantifier_text;
@@ -449,36 +564,9 @@ $(document).ready(()=>{
             }
             makeTableItemText(c) {
                 let t = '';
-                const re = /\${[a-z_]+}/g;
-                const parse_depth = settings.class_table_item_template.config.parse_depth;
-                settings.class_table_item_template.content.forEach((raw)=>{
-                    let raw1 = raw;
-                    let raw2 = raw;
-                    if(typeof(raw)==='string') {
-                        for(let i = 0; i < parse_depth; i++) {
-                            let tta = re.exec(raw2);
-                            if(tta) {
-                                let tt = tta[0];
-                                let o_tt = tt;
-                                tt = tt.replace('${','').replace('}','');
-                                let finalText = tt;
-                                try {
-                                    finalText = eval('c.'+tt+'()');
-                                } catch(e1) {
-                                    try {
-                                        finalText = c.object()[tt];
-                                    } catch(e2) {
-                                        console.error(e2);
-                                    }
-                                }
-                                raw1 = raw1.replace(o_tt, finalText);
-                                raw2 = raw2.replace(o_tt, '');
-                            } else {
-                                continue;
-                            }
-                        }
-                        t += raw1 + '<br>';
-                    }
+                settings.class_table_item_template.forEach((raw)=>{
+                    const raw1 = this.formatClassParamString(raw, c);
+                    t += raw1 + '<br>';
                 });
                 return t;
             }
@@ -515,13 +603,13 @@ $(document).ready(()=>{
                 if(this.needsTommorowFirstClass()) {
                     const realDayNum = Math.min(this.getRealCurrentDay()+1, 7);
                     const realCurDay = $Utils.convertWeekDayChar(realDayNum);
-                    const suffix = this.getSuffixForAdditionalClassDay(realDayNum, this._weekNumber);
+                    const suffix = this.getSuffixForSpecialClassDay(realDayNum, this._weekNumber) || this.getSuffixForHoliday(realCurDay, this._weekNumber);
                     $('.today-schedule .time-tag').html(settings.terms.time_tag_tommorrow_text);
                     $('.today-schedule .week-day').html(realCurDay+suffix);
                 } else {
                     const realDayNum = this.getRealCurrentDay();
                     const realCurDay = $Utils.convertWeekDayChar(realDayNum);
-                    const suffix = this.getSuffixForAdditionalClassDay(realDayNum, this._weekNumber);
+                    const suffix = this.getSuffixForSpecialClassDay(realDayNum, this._weekNumber) || this.getSuffixForHoliday(realDayNum, this._weekNumber);
                     $('.today-schedule .time-tag').html(settings.terms.time_tag_today_text);
                     $('.today-schedule .week-day').html(realCurDay+suffix);
                 }
@@ -564,11 +652,37 @@ $(document).ready(()=>{
                     "background-color": $Utils.convertCssColorText(nextColor, backgroundOpacity)
                 });
             }
-            getSuffixForAdditionalClassDay(rdn, wn) {
-                if(this.isAdditionalClassDay(rdn, wn)) {
-                    return settings.terms.days_off_suffix_text;
+            getSuffixForSpecialClassDay(rdn, wn) {
+                if(this.isWeekDaySpecialClassDay(rdn, wn)) {
+                    return settings.terms.special_class_days_suffix_text;
                 }
                 return '';
+            }
+            getSuffixForHoliday(day, wn) {
+                if(this.isWeekDayHoliday(day, wn)) {
+                    return settings.terms.holidays_suffix_text;
+                }
+                return '';
+            }
+            convertClassTakingType_private(ctt) {
+                switch(ctt) {
+                    case 0:
+                        return 0;
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                }
+                switch(String(ctt).toLowerCase()) {
+                    case 'every_week':
+                        return 0;
+                    case 'odd_week':
+                        return 1;
+                    case 'even_week':
+                        return 2;
+                    default:
+                        return 0;
+                }
             }
         };
 
@@ -583,7 +697,7 @@ $(document).ready(()=>{
             $('#weeknumber').blur(()=>{
                 const wn = +$('#weeknumber').val();
                 if(!wn) {
-                    schedule.setWeekNumber($Utils.getCurrentWeekNumber());
+                    schedule.setWeekNumber(weeknumber);
                     schedule.applyRefreshTableHTML();
                 } else if(schedule.isWeekNumberValid(wn)) {
                     schedule.setWeekNumber(wn);

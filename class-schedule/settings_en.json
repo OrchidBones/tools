@@ -11,10 +11,11 @@
         "next_class_text": "Next Class",
         "class_quantifier_text": "Class ${classnumber}",
         "weeknumber_customization_text": "Week Number",
-        "days_off_suffix_text": "(additional)",
+        "special_class_days_suffix_text": " (special)",
+        "holidays_suffix_text": " (holiday)",
         "time_format": "hh: mm",
         "alert_weeknumber_detection_text": "You are currently at Week ${weeknumber}.",
-        "alert_next_classroom_detection_text": "Please go to Classroom ${classroom} before ${time}.",
+        "alert_next_classroom_detection_text": "Please be in Classroom ${classroom} before ${time}.",
         "weekday_ordinal_numeral_text": "Week ${weeknumber}"
     },
     "layout": {
@@ -32,8 +33,9 @@
     },
     "semester_start_date": "2025-08-31 00:00:00",
     "max_week_number": 20,
+    "max_classes_per_day": 6,
+    "timetable_note": "The number of params must equal to the param max_classes_per_day.",
     "timetable": [
-        {"start": {"h": 0,  "m": 0},  "end": {"h": 0,  "m": 0}},
         {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
         {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},
         {"start": {"h": 14, "m": 30}, "end": {"h": 16, "m": 19}},
@@ -41,23 +43,31 @@
         {"start": {"h": 19, "m": 30}, "end": {"h": 21, "m": 19}},
         {"start": {"h": 21, "m": 30}, "end": {"h": 23, "m": 19}}
     ],
-    "class_table_item_template": {
-        "config": {
-            "parse_depth": 5
-        },
-        "content": [
-            "<b>${name}</b> [${type}]",
-            "${teacher}",
-            "${classroom}"
-        ]
-    },
-    "additional_class_days": [
+    "class_table_item_template": [
+        "<b>${name}</b> [${type}]",
+        "${teacher}",
+        "${classroom}"
+    ],
+    "holidays": [
+        {
+            "note": "",
+            "startDate": "2025-10-01",
+            "endDate": "2025-10-08"
+        }
+    ],
+    "special_class_days_note": "You can specify a day with classes on another day.",
+    "special_class_days": [
         {
             "note": "",
             "ori_week": 4,
             "ori_day": 7,
             "tar_week": 4,
             "tar_day": 2
+        },
+        {
+            "note": "",
+            "ori_date": "2025-10-11",
+            "tar_date": "2025-10-01"
         }
     ]
 }

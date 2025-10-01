@@ -33,6 +33,8 @@
     height: 10px;
     display: inline-block;
     margin-right: 5px;
+    border-width: 1px;
+    border-style: solid;
 }
 
 .current-block{
@@ -40,6 +42,8 @@
     height: 10px;
     display: inline-block;
     margin-right: 5px;
+    border-width: 1px;
+    border-style: solid;
 }
 
 .output-area{
