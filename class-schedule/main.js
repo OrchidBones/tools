@@ -293,6 +293,14 @@ $(document).ready(()=>{
                         }
                     }
                 });
+                if(this._currentClass) {
+                    const date = this._currentDate;
+                    const nwn = $Utils.getWeekNumberByDate(date);
+                    const wn = this._weekNumber;
+                    if (wn>nwn||wn<nwn) {
+                        this._currentClass = null;
+                    }
+                }
             }
             refreshNextClass() {
                 this._nextClass = null;
