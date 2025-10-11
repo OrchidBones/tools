@@ -4,42 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unicode艺术字符转换器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="./main.js"></script>
 </head>
 <body>
+    <div class="header">
+        <h1><b>艺术字符转换器</b></h1>
+        <h5>支持26个英文字母及10个阿拉伯数字</h5>
+    </div>
     <div class="contents">
         <div class="original">
-            <div class="desc">请输入英文：</div>
-            <input type="text" id="ori-i">
-            <button class="convert">转换</button>
-        </div>
-        <div class="type">
-            <span class="type-desc">类型：</span>
-            <select id="type">
-                <option value="b">粗体</option>
-                <option value="bi">粗斜体</option>
-                <option value="s">手写体</option>
-                <option value="bs">粗体手写体</option>
-                <option value="f">Fraktur</option>
-                <option value="bf">粗体Fraktur</option>
-                <option value="ns">无衬线</option>
-                <option value="nsi">无衬线斜体</option>
-                <option value="nsbi">无衬线粗斜体</option>
-                <option value="e">等宽</option>
-                <option value="ud">颠倒字</option>
-                <option value="hl">镂空字</option>
-                <option value="lls">大间距字</option>
-                <option value="wb">白底方框字</option>
-                <option value="bb">黑底方框字</option>
-                <option value="wbc">白底圆框字</option>
-            </select>
+            <div class="desc">原文本</div>
+            <textarea type="text" id="ori-i" class="form-control" rows="5" placeholder="输入文本..."></textarea>
+            <div class="type form-group">
+                <select id="type" class="form-select">
+                    <option value="b">衬线粗体</option>
+                    <option value="i">衬线斜体</option>
+                    <option value="bi">衬线粗斜体</option>
+                    <option value="s">手写体</option>
+                    <option value="bs">手写粗体</option>
+                    <option value="f">哥特体</option>
+                    <option value="bf">哥特粗体</option>
+                    <option value="ns">无衬线</option>
+                    <option value="nsi">无衬线斜体</option>
+                    <option value="nsbi">无衬线粗斜体</option>
+                    <option value="e">等宽</option>
+                    <option value="ud">颠倒字</option>
+                    <option value="hl">镂空字</option>
+                    <option value="lls">大间距字</option>
+                    <option value="wb">白底方框字</option>
+                    <option value="bb">黑底方框字</option>
+                    <option value="wbc">白底圆框字</option>
+                    <option value="bbc">黑底圆框字</option>
+                    <option value="dss">迷你上标字</option>
+                    <option value="ris">迷你字</option>
+                    <option value="zg">乱码字</option>
+                    <option value="run">遗迹古文字</option>
+                    <option value="crr">胖圆体</option>
+                    <option value="ds">带斜线字</option>
+                    <option value="rus">西里尔伪字</option>
+                    <option value="emo">emoji伪字</option>
+                </select>
+            </div>
+            <div class="button-area"><button class="convert btn btn-primary">转换</button></div>
         </div>
         <div class="result">
-            <div class="desc">结果：</div>
-            <div id="res-i"></div>
+            <div class="desc">结果</div>
+            <textarea type="text" id="res-i" class="form-control" rows="5"></textarea>
         </div>
     </div>
 </body>
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="index.js"></script>
 </html>
