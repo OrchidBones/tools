@@ -69,5 +69,23 @@
             "ori_date": "2025-10-11",
             "tar_date": "2025-10-01"
         }
+    ],
+    "special_class_times": [
+        {
+            "note": "国庆后法语补课",
+            "class_name": "二外I",
+            "classroom": "2-207",
+            "action_note": "add - 强制替换, 默认项; try_add - 检测原本是否有课, 有课则不替换; remove - 如果有课, 则取消该时间段的课程, 此时 class_name 参数无效",
+            "action": "add",
+            "week": 6,
+            "day": 4,
+            "time": 4
+        },
+        {
+            "note": "国庆后第一节综英课老师身体不适请假无法上课",
+            "action": "remove",
+            "date":"2025-10-11",
+            "time": 1
+        }
     ]
 }

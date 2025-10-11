@@ -239,9 +239,9 @@ $(document).ready(()=>{
                 return !!classes.length;
             }
             formatClassParamString(sourceStr, course) {
-                const result = Common.prototype.formatClassParamString.call(this, sourceStr, course);
+                let result = Common.prototype.formatClassParamString.call(this, sourceStr, course);
                 if(result.includes('${weeknumber}')) {
-                    return result.replace('${weeknumber}', this._weekNumber);
+                    result = result.replace('${weeknumber}', this._weekNumber);
                 }
                 return result;
             }
@@ -263,11 +263,33 @@ $(document).ready(()=>{
                 }
                 return null;
             }
-            getSpecialClassDayByDt(date) { // 
+            getSpecialClassDayByDt(date) {
                 for(let i = 0; i < settings.special_class_days.length; i++){
                     const sc = settings.special_class_days[i];
                     if(typeof(sc)==="object"&&sc.ori_date) {
                         const temp_date = new Date(sc.ori_date+' 00:00:00');
+                        if(date.getTime()===temp_date.getTime()) {
+                            return sc;
+                        }
+                    }
+                }
+                return null;
+            }
+            
+            getSpecialClassTimeDByWn(day, wn) {
+                for(let i = 0; i < settings.special_class_times.length; i++){
+                    const sc = settings.special_class_times[i];
+                    if(typeof(sc)==="object"&&sc.day===day&&sc.week===wn) {
+                        return sc;
+                    }
+                }
+                return null;
+            }
+            getSpecialClassTimeDByDt(date) {
+                for(let i = 0; i < settings.special_class_times.length; i++){
+                    const sc = settings.special_class_times[i];
+                    if(typeof(sc)==="object"&&sc.date) {
+                        const temp_date = new Date(sc.date+' 00:00:00');
                         if(date.getTime()===temp_date.getTime()) {
                             return sc;
                         }
@@ -318,12 +340,12 @@ $(document).ready(()=>{
                     const lastValidIndex = this.__findLastValidObjectIndex(classList);
                     const firstClassIndex = this.__findFirstValidObjectIndex(classList);
                     if(firstClassIndex>-1&&duration.isBetween(list[0].end.h*60+list[0].end.m, list[firstClassIndex].start.h*60+list[firstClassIndex].start.m)) {
-                        // 今日第一节课前
+                        // before today's first class
                         if(classList[firstClassIndex]) {
                             this._nextClass = classList[firstClassIndex];
                         }
                     } else if(lastValidIndex===-1||(lastValidIndex>-1&&duration.isBetween(list[lastValidIndex].end.h*60+list[lastValidIndex].end.m, 24*60))) {
-                        // 今日课程结束 / 今日无课
+                        // when today's classes were all taken or no class today
                         const tomorrowClassList = schedule[day+1];
                         if(tomorrowClassList) {
                             const firstClassIndexT = this.__findFirstValidObjectIndex(tomorrowClassList);
@@ -384,6 +406,15 @@ $(document).ready(()=>{
                 });
                 return names;
             }
+            findClassObjectByName(name) {
+                for (let i = 0; i < this._source.length; i++) {
+                    const obj = this._source[i];
+                    if(obj.name === name) {
+                        return obj;
+                    }
+                }
+                return null;
+            }
             getRealCurrentDay() {
                 return $Utils.getCertainDay(this._currentDate);
             }
@@ -416,24 +447,33 @@ $(document).ready(()=>{
                             const time = timetable.time[i-1];
                             const classroom = timetable.classroom[i-1];
                             const ctt = timetable.ctt[i-1];
-                            const cc = c.clone()
+                            const cc = c.clone();
                             cc.ctt = ctt;   // classtakingType
                             cc.classroom = classroom;
                             if(this.isClassOn(cc, wn)) {
-                                schedule[day][time] = new Course(cc, day, time, classroom, ctt);
+                                schedule[day][time] = new Course(cc, day, time, classroom, ctt);;
                             }
                         }
                     }
                 });
                 return schedule;
             }
+            assignInstantCource(c, classroom, t, d) {
+                if(c) {
+                    const cc = c.clone();
+                    cc.ctt = 0;
+                    cc.classroom = classroom;
+                    return new Course(cc, d, t, classroom, 0);
+                }
+            }
             rearrangeSchedule(wn) {
                 this.rearrangeScheduleForSpecialClassDay(wn);
+                this.rearrangeScheduleForSpecialClassTime(wn);
                 this.rearrangeScheduleForHolidays(wn);
             }
             rearrangeScheduleForSpecialClassDay(wn) {
                 const schedule = this._schedule;
-                for(let i = 0; i <= 7; i++) {
+                for(let i = 1; i <= 7; i++) {
                     const SpecialClassDay = this.getSpecialClassDayByWn(i, wn) || this.getSpecialClassDayByDt(new Date($Utils.convertYMDString_private(this.getDateByWeekDay(i, wn))));
                     if(!!SpecialClassDay) {
                         if(SpecialClassDay.tar_day) {
@@ -454,6 +494,36 @@ $(document).ready(()=>{
                                 const tar_class = temp_schedule[tar_day][j];
                                 schedule[day][j] = tar_class;
                             }
+                        }
+                    }
+                }
+            }
+            rearrangeScheduleForSpecialClassTime(wn) {
+                const schedule = this._schedule;
+                for(let i = 1; i <= 7; i++) {
+                    const spday = this.getSpecialClassTimeDByWn(i, wn) || this.getSpecialClassTimeDByDt(new Date($Utils.convertYMDString_private(this.getDateByWeekDay(i, wn))));
+                    if(!!spday) {
+                        const action = spday.action === undefined ? 'add' : (['add', 'try_add', 'remove'].includes(spday.action.toLowerCase()) ? spday.action.toLowerCase() : 'add');
+                        const day = i;
+                        const time = spday.time;
+                        switch(action) {
+                            case 'try_add':
+                                if(!schedule[day][time]) {
+                                    const classroom = spday.classroom || '';
+                                    const classObject = this.findClassObjectByName(spday.class_name || '');
+                                    if(classObject)
+                                    schedule[day][time] = this.assignInstantCource(classObject, classroom, time, day);
+                                }
+                                break;
+                            case 'remove':
+                                schedule[day][time] = null;
+                                break;
+                            case 'add':
+                                const classroom = spday.classroom || '';
+                                const classObject = this.findClassObjectByName(spday.class_name || '');
+                                if(classObject)
+                                schedule[day][time] = this.assignInstantCource(classObject, classroom, time, day);
+                                break;
                         }
                     }
                 }
@@ -631,7 +701,7 @@ $(document).ready(()=>{
                     const timeStr = $Utils.convertClassStartTimeChar(nextClass.time());
                     const classroom = nextClass.classroom();
                     $('.next-classroom-area').empty();
-                    $('.next-classroom-area').append('<div class="next-classroom-detection alert alert-'+settings.layout.alert.next_classroom_bootstrap_theme+'"><i class="fa fa-arrow-right"></i> '+settings.terms.alert_next_classroom_detection_text.replace('${classroom}','<span class="next-classroom-text"><strong>'+classroom+'</strong></span>').replace('${time}', '<span class="next-classroom-time-text">'+timeStr+'</span>')+'</div>');
+                    $('.next-classroom-area').append('<div class="next-classroom-detection alert alert-'+settings.layout.alert.next_classroom_bootstrap_theme+'"><i class="fa fa-arrow-right"></i> '+settings.terms.alert_next_classroom_detection_text.replace('${classroom}','<span class="next-classroom-text"><strong>'+classroom+'</strong></span>').replace('${time}', '<span class="next-classroom-time-text">'+timeStr+'</span>').replace('${name}', '<span class="next-class-name-text">'+this._nextClass.name()+'</span>')+'</div>');
                 }
             }
             needsNextClassroomTip() {
