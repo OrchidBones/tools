@@ -23,14 +23,18 @@ $(document).ready(()=>{
 
         class Common {
             constructor() {
+                this._currentDate = new Date();
                 this._startDate = new Date(settings.semester_start_date);
                 this._timetable = [{start: {h: 0,  m: 0}, end: {h: 0,  m: 0}}].concat(settings.timetable);
+            }
+            currentDate() {
+                return this._currentDate;
             }
             timetable() {
                 return this._timetable;
             }
             getCurrentWeekNumber() {
-                return this.getWeekNumberByDate(new Date());
+                return this.getWeekNumberByDate(this._currentDate);
             }
             getCertainDay(date) {
                 return date.getDay() === 0 ? 7 : date.getDay();
@@ -44,6 +48,13 @@ $(document).ready(()=>{
                 const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
                 return Math.ceil(dayDif / 7);
             }
+            formatTimeNumString(timeText) {
+                let text = String(timeText);
+                if(text.length === 1) {
+                    text = '0' + text;
+                }
+                return text;
+            }
             convertWeekDayChar(wd) {
                 const arr = [null].concat(settings.terms.weekday_suffix_texts);
                 return settings.terms.weekday_prefix_text+arr[wd];
@@ -51,7 +62,7 @@ $(document).ready(()=>{
             convertClassStartTimeChar(timeIndex) {
                 const start = this._timetable[timeIndex].start;
                 const temp_str = settings.terms.time_format;
-                return temp_str.replace('hh', start.h).replace('mm', start.m);
+                return temp_str.replace('hh', this.formatTimeNumString(start.h)).replace('mm', this.formatTimeNumString(start.m));
             }
             convertYMDString_private(date) { // for comparison
                 return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' 00:00:00';
@@ -298,7 +309,7 @@ $(document).ready(()=>{
                 return null;
             }
             refreshCurrentDateObject() {
-                this._currentDate = new Date();
+                this._currentDate = $Utils.currentDate();
             }
             refreshCurrentClass() {
                 this._currentClass = null;

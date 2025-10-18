@@ -212,6 +212,14 @@ $(document).ready(()=>{
         $('#res-i').val(res);
     };
 
+    const windowWidth = $(window).width();
+    const mobileThreshold = 768;
+    if (windowWidth < mobileThreshold) {
+        $('button.type-item.mobile-device-adaption').each((index, elem)=>{
+            $(elem).text('*'+elem.getAttribute("note"));
+        });
+    }
+
     $('button.type-item').each((index, elem)=>{
         $(elem).text(convertChars($(elem).val(), $(elem).text()));
     });
