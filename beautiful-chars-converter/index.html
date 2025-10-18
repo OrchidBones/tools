@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
     <script src="./main.js"></script>
 </head>
 <body>
@@ -18,43 +19,88 @@
     </div>
     <div class="contents">
         <div class="original">
+            <div class="type">
+                <div class="row">
+                    <button value="b" class="type-item col btn btn-light" note="衬线粗体">Serif Bold</button>
+                    <button value="i" class="type-item col btn btn-light" note="衬线斜体">Serif Italic</button>
+                </div>
+                <div class="row">
+                    <button value="bi" class="type-item col btn btn-light" note="衬线粗斜体">Serif Bold Italic</button>
+                    <button value="s" class="type-item col btn btn-light" note="手写体">Script</button>
+                </div>
+                <div class="row">
+                    <button value="bs" class="type-item col btn btn-light" note="手写粗体">Bold Script</button>
+                    <button value="f" class="type-item col btn btn-light" note="哥特体">Fraktur</button>
+                </div>
+                <div class="row">
+                    <button value="bf" class="type-item col btn btn-light" note="哥特粗体">Bold Fraktur</button>
+                    <button value="ns" class="type-item col btn btn-light" note="无衬线">Sans Serif</button>
+                </div>
+                <div class="row">
+                    <button value="nbi" class="type-item col btn btn-light" note="无衬线粗体">Sans Bold</button>
+                    <button value="nsi" class="type-item col btn btn-light" note="无衬线斜体">Sans Italic</button>
+                </div>
+                <div class="row">
+                    <button value="nsbi" class="type-item col btn btn-light" note="无衬线粗斜体">Sans Bold Italic</button>
+                    <button value="e" class="type-item col btn btn-light" note="等宽">Monospace</button>
+                </div>
+                <div class="row">
+                    <button value="ud" class="type-item col btn btn-light" note="颠倒">Inverted</button>
+                    <button value="mr" class="type-item col btn btn-light" note="左右镜像">Mirrored</button>
+                </div>
+                <div class="row">
+                    <button value="rl" class="type-item col btn btn-light" note="左旋90">Rotated Left</button>
+                    <button value="rr" class="type-item col btn btn-light" note="右旋90">Rotated Right</button>
+                </div>
+                <div class="row">
+                    <button value="hl" class="type-item col btn btn-light" note="镂空">Double Struck</button>
+                    <button value="lls" class="type-item col btn btn-light" note="大间距">Fullwidth</button>
+                </div>
+                <div class="row">
+                    <button value="prt" class="type-item col btn btn-light" note="括号">Quoted</button>
+                    <button value="dbl" class="type-item col btn btn-light mobile-device-only" note="虚线方框">Block</button>
+                </div>
+                <div class="row">
+                    <button value="wb" class="type-item col btn btn-light" note="方框">Squared</button>
+                    <button value="bb" class="type-item col btn btn-light" note="黑底方框">Squared Negative</button>
+                </div>
+                <div class="row">
+                    <button value="wbc" class="type-item col btn btn-light" note="圆框">Bubble</button>
+                    <button value="bbc" class="type-item col btn btn-light" note="黑底圆框">Black Bubble</button>
+                </div>
+                <div class="row">
+                    <button value="ds" class="type-item col btn btn-light computer-only" note="带斜线">Slashed</button>
+                    <button value="ris" class="type-item col btn btn-light computer-only" note="迷你下标">Subscript</button>
+                </div>
+                <div class="row">
+                    <button value="dss" class="type-item col btn btn-light" note="迷你上标">Superscript</button>
+                    <button value="rus" class="type-item col btn btn-light" note="西里尔伪字">Cyrillic</button>
+                </div>
+                <div class="row">
+                    <button value="zg" class="type-item col btn btn-light" note="带乱码">Unreadable Deco</button>
+                    <button value="run" class="type-item col btn btn-light" note="遗迹古文">Ruins</button>
+                </div>
+                <div class="row">
+                    <button value="crr" class="type-item col btn btn-light" note="胖圆体">Curvy</button>
+                    <button value="emo" class="type-item col btn btn-light" note="emoji伪字">Emoji</button>
+                </div>
+                <div class="row">
+                    <button value="ush" class="type-item col btn btn-light" note="上装饰">Upper Squiggles And Hooks</button>
+                    <button value="lsh" class="type-item col btn btn-light" note="下装饰">Lower Squiggles And Hooks</button>
+                </div>
+                <div class="row">
+                    <button value="crk" class="type-item col btn btn-light" note="切罗基伪字">Cherokee</button>
+                    <button value="car" class="type-item col btn btn-light" note="加拿大土著伪字">Aboriginal</button>
+                </div>
+            </div>
             <div class="desc">原文本</div>
             <textarea type="text" id="ori-i" class="form-control" rows="5" placeholder="输入文本..."></textarea>
-            <div class="type form-group">
-                <select id="type" class="form-select">
-                    <option value="b">衬线粗体</option>
-                    <option value="i">衬线斜体</option>
-                    <option value="bi">衬线粗斜体</option>
-                    <option value="s">手写体</option>
-                    <option value="bs">手写粗体</option>
-                    <option value="f">哥特体</option>
-                    <option value="bf">哥特粗体</option>
-                    <option value="ns">无衬线</option>
-                    <option value="nsi">无衬线斜体</option>
-                    <option value="nsbi">无衬线粗斜体</option>
-                    <option value="e">等宽</option>
-                    <option value="ud">颠倒字</option>
-                    <option value="hl">镂空字</option>
-                    <option value="lls">大间距字</option>
-                    <option value="wb">白底方框字</option>
-                    <option value="bb">黑底方框字</option>
-                    <option value="wbc">白底圆框字</option>
-                    <option value="bbc">黑底圆框字</option>
-                    <option value="dss">迷你上标字</option>
-                    <option value="ris">迷你字</option>
-                    <option value="zg">乱码字</option>
-                    <option value="run">遗迹古文字</option>
-                    <option value="crr">胖圆体</option>
-                    <option value="ds">带斜线字</option>
-                    <option value="rus">西里尔伪字</option>
-                    <option value="emo">emoji伪字</option>
-                </select>
-            </div>
-            <div class="button-area"><button class="convert btn btn-primary">转换</button></div>
         </div>
         <div class="result">
             <div class="desc">结果</div>
-            <textarea type="text" id="res-i" class="form-control" rows="5"></textarea>
+            <textarea readonly type="text" id="res-i" class="form-control" rows="5"></textarea>
+            <div class="result-note"></div>
+            <div class="copy-area"><button class="copy-btn btn btn-primary" data-clipboard-target="#res-i">点我复制</button></div>
         </div>
     </div>
 </body>
