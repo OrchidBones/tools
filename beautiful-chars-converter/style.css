@@ -82,4 +82,5 @@ textarea {
 div.copy-area{
     width: 100%;
     text-align: right;
+    margin-top: 20px;
 }

@@ -116,11 +116,11 @@ $(document).ready(()=>{
             "tar": "\u15e9,\u15f7,\u1455,\u15de,\u156e,\u148b,\u154b,\u15ba,\u144a,\u148e,\u1559,\u1602,\u163b,\u162f,\u15dc,\u146d,\u161d,\u1587,\u1515,\u1615,\u155e,\u1553,\u163a,\u166e,\u1489,\u14ef,\u15e9,\u15f7,\u1455,\u15de,\u156e,\u148b,\u154b,\u15ba,\u144a,\u148e,\u1559,\u1602,\u163b,\u162f,\u15dc,\u146d,\u161d,\u1587,\u1515,\u1615,\u155e,\u1553,\u163a,\u166e,\u1489,\u14ef"
         },
         "ush": {
-            "ori": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+            "ori": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
             "tar": "\u1ea3,\u0253,\u0188,\u0257,\u1ebb,\u1e1f,\u0260,\u0266,\u1ec9,\u0135,\u0199,\ua78e,\u1e3f,\u03ae,\u01a1,\u01a5,\u02a0,\u027c,\u015b,\u0165,\u01b0,\u2c71,\u2c73,x\u0302,\u01b4,\u017a,\u1ea2,\u0181,\u0106,\u010e,\u1ebe,\u1e1e,\u0193,\ua7aa,\u1ec8,\u0134,\u0198,\u0139,\u1e3e,\u0143,\u01a0,\ua754,\u213a,\u0210,\u015a,\u01ac,\u01af,\u0474,\u2c72,x\u0302,\u01b3,\u017d"
         },
         "lsh": {
-            "ori": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+            "ori": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
             "tar": "\u1d8f,\u1d80,ç,\u1d81,\u1d92,\u1d82,\u1d83,\u2c68,\u1d96,\u029d,\u1d84,\u1d85,\u1d86,\u1d87,\u01eb,\u1d88,\u024b,\u1d89,\u1d8a,\u01ab,\u1d99,\u1d8c,\u0429,\u1d8d,\u01b4,\u1d8e,\u0104,\u0181,Ç,\u018a,\u0118,\u0191,\u0122,\ua7aa\u0321,i\u0322,\ud835\udc09,\u0136,l\u0321,\u2c6e,\u019d,\u01ea,\u01a4,\ua756,\u2c64,\u2c7e,\u01ae,\u0172,\u1e7e,\u2c72,\u04b2,\u01b3,\u0224"
         },
         "nbi": {
@@ -149,6 +149,11 @@ $(document).ready(()=>{
         }
     };
 
+    const commonSettingsInverted = {
+        "ori": "（）【】{}“”‘’《》，。()[]<>/\\".split(''),
+        "tar": "）（】【}{”“’‘》《'°)(][><\\/".split('')
+    };
+
     const selectedBtnCss = {
         "border-color": "rgb(var(--bs-primary-rgb))",
         "color": "rgb(var(--bs-primary-rgb))"
@@ -159,22 +164,31 @@ $(document).ready(()=>{
 
     $('button.type-item[value="b"]').css(selectedBtnCss);
 
+    const needsCharReversed = function(type) {
+        return window.reversedConvertTypes.includes(type);
+    }
+
     const convertChars = function(type, text) {
         const curType = type;
         const input = text;
         if(data[curType]) {
             const table = data[curType];
+            const oriTable = table['ori'].split('');
+            const tarTable = table['tar'].split(',');
+            const startTable = needsCharReversed(curType) ? oriTable.concat(commonSettingsInverted.ori) : oriTable;
+            const finalTable = needsCharReversed(curType) ? tarTable.concat(commonSettingsInverted.tar) : tarTable;
+            console.log(startTable)
             const arr = input.split('');
             let tar_arr = [];
             arr.forEach((item)=>{
-                const index = table['ori'].indexOf(item);
+                const index = startTable.indexOf(item);
                 let char = item;
-                if(index != -1) {
-                    char = table['tar'].split(',')[index];
+                if(index > -1) {
+                    char = finalTable[index];
                 }
                 tar_arr.push(char);
             });
-            if(window.reversedConvertTypes.includes(curType)) {
+            if(needsCharReversed(curType)) {
                 tar_arr = tar_arr.reverse();
             }
             const res = tar_arr.join('');
@@ -189,11 +203,11 @@ $(document).ready(()=>{
         let html_end = '</div>'
         let needsNotes = false;
         if($(elem).hasClass('computer-only')) {
-            html += '<div class="note-item">※ 仅限电脑端查看</div>';
+            html += '<div class="note-item">※ 该文字效果仅限<b>电脑端</b>查看</div>';
             needsNotes = true;
         }
         if($(elem).hasClass('mobile-device-only')) {
-            html += '<div class="note-item">※ 仅限手机端查看</div>';
+            html += '<div class="note-item">※ 该文字效果仅限<b>移动端</b>查看</div>';
             needsNotes = true;
         }
         if(window.reversedConvertTypes.includes($(elem).val())) {
