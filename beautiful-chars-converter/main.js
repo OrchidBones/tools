@@ -160,7 +160,7 @@ $(document).ready(()=>{
     };
 
     window.currentConvertType = 'b';
-    window.reversedConvertTypes = ['ud', 'mr'];
+    window.reversedConvertTypes = ['ud', 'mr', 'rr'];
 
     $('button.type-item[value="b"]').css(selectedBtnCss);
 
