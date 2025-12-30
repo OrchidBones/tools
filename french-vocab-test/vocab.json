@@ -1,0 +1,1593 @@
+[
+    {
+        "french": "madame",
+        "meaning": "女士",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "monsieur",
+        "meaning": "先生",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "bien",
+        "meaning": "好地",
+        "type": "副词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "bon",
+        "meaning": "好的（阳性）",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "bonne",
+        "masculineForm": ""
+    },
+    {
+        "french": "bonne",
+        "meaning": "好的（阴性）",
+        "type": "形容词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "bon"
+    },{
+        "french": "acteur",
+        "meaning": "演员（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "actrice",
+        "masculineForm": ""
+    },{
+        "french": "actrice",
+        "meaning": "演员（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "acteur"
+    },{
+        "french": "facteur",
+        "meaning": "邮递员（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "factrice",
+        "masculineForm": ""
+    },{
+        "french": "factrice",
+        "meaning": "邮递员（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "facteur"
+    },{
+        "french": "chercheur",
+        "meaning": "研究员",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "journaliste",
+        "meaning": "记者",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "styliste",
+        "meaning": "服装设计师",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "avocat",
+        "meaning": "律师（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "avocate",
+        "masculineForm": ""
+    },{
+        "french": "avocate",
+        "meaning": "律师（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "avocat"
+    },{
+        "french": "moniteur",
+        "meaning": "教练员（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "monitrice",
+        "masculineForm": ""
+    },{
+        "french": "monitrice",
+        "meaning": "教练员（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "moniteur"
+    },{
+        "french": "pilote",
+        "meaning": "飞行员",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "professeur",
+        "meaning": "教师",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "économiste",
+        "meaning": "经济学家",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "cinéaste",
+        "meaning": "电影编导",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "le",
+        "meaning": "定冠词（阳性）",
+        "type": "限定词",
+        "gender": "阳性",
+        "feminineForm": "la",
+        "masculineForm": ""
+    },{
+        "french": "la",
+        "meaning": "定冠词（阴性）",
+        "type": "限定词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "le"
+    },{
+        "french": "être",
+        "meaning": "是；在",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "suis",
+            "tu": "es",
+            "il/elle": "est",
+            "nous": "sommes",
+            "vous": "êtes",
+            "ils/elles": "sont"
+        }
+    },{
+        "french": "zéro",
+        "meaning": "数字0",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "un",
+        "meaning": "数字1（阳性）；不定冠词单数（阳性）",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "une",
+        "masculineForm": ""
+    },
+    {
+        "french": "une",
+        "meaning": "数字1（阴性）；不定冠词单数（阴性）",
+        "type": "形容词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "un"
+    },
+    {
+        "french": "deux",
+        "meaning": "数字2",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "trois",
+        "meaning": "数字3",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "quatre",
+        "meaning": "数字4",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "cinq",
+        "meaning": "数字5",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "six",
+        "meaning": "数字6",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "sept",
+        "meaning": "数字7",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "huit",
+        "meaning": "数字8",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "neuf",
+        "meaning": "数字9",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "dix",
+        "meaning": "数字10",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "onze",
+        "meaning": "数字11",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "douze",
+        "meaning": "数字12",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "treize",
+        "meaning": "数字13",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "quatorze",
+        "meaning": "数字14",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "quinze",
+        "meaning": "数字15",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "seize",
+        "meaning": "数字16",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "dix-sept",
+        "meaning": "数字17",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "dix-huit",
+        "meaning": "数字18",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "dix-neuf",
+        "meaning": "数字19",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt",
+        "meaning": "数字20",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt et un",
+        "meaning": "数字21（阳性）",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "vingt et une",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt et une",
+        "meaning": "数字21（阴性）",
+        "type": "形容词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "vingt et un"
+    },
+    {
+        "french": "vingt-deux",
+        "meaning": "数字22",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-trois",
+        "meaning": "数字23",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-quatre",
+        "meaning": "数字24",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-cinq",
+        "meaning": "数字25",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-six",
+        "meaning": "数字26",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-sept",
+        "meaning": "数字27",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-huit",
+        "meaning": "数字28",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "vingt-neuf",
+        "meaning": "数字29",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },
+    {
+        "french": "trente",
+        "meaning": "数字30",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "stylo",
+        "meaning": "钢笔",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "parfum",
+        "meaning": "香水",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "livre",
+        "meaning": "书",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "drapeau",
+        "meaning": "旗",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "papier",
+        "meaning": "纸",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "verre",
+        "meaning": "玻璃杯",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "vélo",
+        "meaning": "自行车",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "jupe",
+        "meaning": "裙子",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "guitare",
+        "meaning": "吉他",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "voiture",
+        "meaning": "汽车",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "revue",
+        "meaning": "杂志",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "veste",
+        "meaning": "上衣",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "serviette",
+        "meaning": "毛巾",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "vert",
+        "meaning": "绿色（阳性）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "verte",
+        "masculineForm": ""
+    },{
+        "french": "verte",
+        "meaning": "绿色（阴性）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "vert"
+    },{
+        "french": "noir",
+        "meaning": "黑色（阳性）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "noire",
+        "masculineForm": ""
+    },{
+        "french": "noire",
+        "meaning": "黑色（阴性）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "noir"
+    },{
+        "french": "bleu",
+        "meaning": "蓝色（阳性）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "bleue",
+        "masculineForm": ""
+    },{
+        "french": "bleue",
+        "meaning": "蓝色（阴性）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "bleu"
+    },{
+        "french": "jaune",
+        "meaning": "黄色",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "rouge",
+        "meaning": "红色",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "quel",
+        "meaning": "什么样的（阳性）",
+        "type": "形容词",
+        "gender": "阳性",
+        "feminineForm": "quelle",
+        "masculineForm": ""
+    },{
+        "french": "quelle",
+        "meaning": "什么样的（阴性）",
+        "type": "形容词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "quel"
+    },{
+        "french": "couleur",
+        "meaning": "颜色",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "nom",
+        "meaning": "名字",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "roman",
+        "meaning": "小说",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "manuel",
+        "meaning": "教材",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "magnétophone",
+        "meaning": "录音机",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "manteau",
+        "meaning": "大衣",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "banc",
+        "meaning": "长条凳",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "document",
+        "meaning": "资料，文件",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "disque",
+        "meaning": "唱片",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "peigne",
+        "meaning": "梳子",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "lac",
+        "meaning": "湖泊",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "pantalon",
+        "meaning": "裤子",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "timbre",
+        "meaning": "邮票",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "radio",
+        "meaning": "收音机",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "robe",
+        "meaning": "连衣裙",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "moto",
+        "meaning": "摩托车",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "chaise",
+        "meaning": "椅子",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "lettre",
+        "meaning": "信",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "cassette",
+        "meaning": "磁带",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "brosse",
+        "meaning": "刷子",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "rivière",
+        "meaning": "河流",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "peinture",
+        "meaning": "画",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "photo",
+        "meaning": "照片",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "chemise",
+        "meaning": "衬衣",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "enveloppe",
+        "meaning": "信封",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "pomme",
+        "meaning": "苹果",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "banane",
+        "meaning": "香蕉",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "étudiant",
+        "meaning": "大学生（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "étudiante",
+        "masculineForm": ""
+    },{
+        "french": "étudiante",
+        "meaning": "大学生（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "étudiant"
+    },{
+        "french": "chimiste",
+        "meaning": "化学家",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "secrétaire",
+        "meaning": "秘书",
+        "type": "名词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "technicien",
+        "meaning": "技术员（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "technicienne",
+        "masculineForm": ""
+    },{
+        "french": "technicienne",
+        "meaning": "技术员（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "technicien"
+    },{
+        "french": "ouvrier",
+        "meaning": "工人（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "ouvrière",
+        "masculineForm": ""
+    },{
+        "french": "ouvrière",
+        "meaning": "工人（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "ouvrier"
+    },{
+        "french": "médicin",
+        "meaning": "医生",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "pharmacien",
+        "meaning": "药剂师（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "pharmacienne",
+        "masculineForm": ""
+    },{
+        "french": "pharmacienne",
+        "meaning": "药剂师（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "pharmacien"
+    },{
+        "french": "chanteur",
+        "meaning": "歌手（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "chanteuse",
+        "masculineForm": ""
+    },{
+        "french": "chanteuse",
+        "meaning": "歌手（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "chanteur"
+    },{
+        "french": "venteur",
+        "meaning": "售货员（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "venteuse",
+        "masculineForm": ""
+    },{
+        "french": "venteuse",
+        "meaning": "售货员（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "venteur"
+    },{
+        "french": "ingénieur",
+        "meaning": "工程师",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "Chinois",
+        "meaning": "中国人（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "Chinoise",
+        "masculineForm": ""
+    },{
+        "french": "Chinoise",
+        "meaning": "中国人（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "Chinois",
+        "masculineForm": ""
+    },{
+        "french": "Français",
+        "meaning": "法国人（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "Française",
+        "masculineForm": ""
+    },{
+        "french": "Française",
+        "meaning": "法国人（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "Français"
+    },{
+        "french": "Espagnol",
+        "meaning": "西班牙人（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "Espagnole",
+        "masculineForm": ""
+    },{
+        "french": "Espagnole",
+        "meaning": "西班牙人（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "Espagnol"
+    },{
+        "french": "Indien",
+        "meaning": "印度人（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "Indienne",
+        "masculineForm": ""
+    },{
+        "french": "Indienne",
+        "meaning": "印度人（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "Indien"
+    },{
+        "french": "Japonais",
+        "meaning": "日本人（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "Japonaise",
+        "masculineForm": ""
+    },{
+        "french": "Japonaise",
+        "meaning": "日本人（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "Japonais"
+    },{
+        "french": "tableau",
+        "meaning": "画幅",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "mur",
+        "meaning": "墙壁",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "crayon",
+        "meaning": "铅笔",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "cahier",
+        "meaning": "笔记本",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "camion",
+        "meaning": "卡车",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "magasin",
+        "meaning": "商店",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "aspirateur",
+        "meaning": "吸尘器",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "ticket",
+        "meaning": "票证",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "fleur",
+        "meaning": "花",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "table",
+        "meaning": "桌子",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "porte",
+        "meaning": "门",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "poche",
+        "meaning": "衣袋",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "sur",
+        "meaning": "在……上面",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "sous",
+        "meaning": "在……下面",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "devant",
+        "meaning": "在……前面",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "derrière",
+        "meaning": "在……后面",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "dans",
+        "meaning": "在……里面",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "avoir",
+        "meaning": "拥有",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "ai",
+            "tu": "as",
+            "il/elle": "a",
+            "nous": "avons",
+            "vous": "avez",
+            "ils/elles": "ont"
+        }
+    },{
+        "french": "apprendre",
+        "meaning": "学习",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "apprends",
+            "tu": "apprends",
+            "il/elle": "apprend",
+            "nous": "apprenons",
+            "vous": "apprenez",
+            "ils/elles": "apprennent"
+        }
+    },{
+        "french": "faire",
+        "meaning": "做",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "fais",
+            "tu": "fais",
+            "il/elle": "fait",
+            "nous": "faisons",
+            "vous": "faites",
+            "ils/elles": "font"
+        }
+    },{
+        "french": "venir",
+        "meaning": "来",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "viens",
+            "tu": "viens",
+            "il/elle": "vient",
+            "nous": "venons",
+            "vous": "venez",
+            "ils/elles": "viennent"
+        }
+    },{
+        "french": "aller",
+        "meaning": "走，去",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "vais",
+            "tu": "vas",
+            "il/elle": "va",
+            "nous": "allons",
+            "vous": "allez",
+            "ils/elles": "vont"
+        }
+    },{
+        "french": "soldat",
+        "meaning": "士兵（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "soldate",
+        "masculineForm": ""
+    },{
+        "french": "soldate",
+        "meaning": "士兵（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "soldat"
+    },{
+        "french": "officier",
+        "meaning": "军官（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "officière",
+        "masculineForm": ""
+    },{
+        "french": "officière",
+        "meaning": "军官（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "officier"
+    },{
+        "french": "instituteur",
+        "meaning": "小学教师（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "institutrice",
+        "masculineForm": ""
+    },{
+        "french": "institutrice",
+        "meaning": "小学教师（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "instituteur"
+    },{
+        "french": "dialogue",
+        "meaning": "对话",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "âge",
+        "meaning": "年龄",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "an",
+        "meaning": "年，岁数",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "frère",
+        "meaning": "兄弟",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "père",
+        "meaning": "父亲",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "sœur",
+        "meaning": "姐妹",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "famille",
+        "meaning": "家庭",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "usine",
+        "meaning": "工厂",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "mère",
+        "meaning": "母亲",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "école",
+        "meaning": "学校",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "carte",
+        "meaning": "证件，地图",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "département",
+        "meaning": "系",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "français",
+        "meaning": "法语",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "anglais",
+        "meaning": "英语",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "musculin",
+        "meaning": "阳性",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "féminin",
+        "meaning": "阴性",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "exercice",
+        "meaning": "练习",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "conversation",
+        "meaning": "交谈",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "année",
+        "meaning": "年级",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "conjugason",
+        "meaning": "动词变位",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "langue",
+        "meaning": "语言",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "faculté",
+        "meaning": "学院",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "voici",
+        "meaning": "这儿",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "voilà",
+        "meaning": "那儿",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "entre",
+        "meaning": "在……之间",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "en",
+        "meaning": "在……",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "aussi",
+        "meaning": "同样，也",
+        "type": "副词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "comme",
+        "meaning": "作为",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "pour",
+        "meaning": "对……来说，为了……",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "ça",
+        "meaning": "这个，那个，这些，那些",
+        "type": "介词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "très",
+        "meaning": "特别，十分，很",
+        "type": "副词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "beaucoup",
+        "meaning": "很多，许多",
+        "type": "副词",
+        "gender": "无性别",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "bienvenu",
+        "meaning": "受欢迎者（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "bienvenne",
+        "masculineForm": ""
+    },{
+        "french": "bienvenne",
+        "meaning": "受欢迎者（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "bienvenu"
+    },{
+        "french": "ami",
+        "meaning": "朋友（男）",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "amie",
+        "masculineForm": ""
+    },{
+        "french": "amie",
+        "meaning": "朋友（女）",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": "ami"
+    },{
+        "french": "programme",
+        "meaning": "课程安排，计划",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "cours",
+        "meaning": "课，课程",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "jour",
+        "meaning": "日子，天，白天",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "repos",
+        "meaning": "休息",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "soir",
+        "meaning": "晚上",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "temps",
+        "meaning": "时间",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "monument",
+        "meaning": "纪念性建筑，名胜古迹",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "étude",
+        "meaning": "学习",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "chambre",
+        "meaning": "宿舍",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "heure",
+        "meaning": "小时",
+        "type": "名词",
+        "gender": "阴性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "lundi",
+        "meaning": "星期一",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "mardi",
+        "meaning": "星期二",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "mercredi",
+        "meaning": "星期三",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "jeudi",
+        "meaning": "星期四",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "vendredi",
+        "meaning": "星期五",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "samedi",
+        "meaning": "星期六",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "dimanche",
+        "meaning": "星期日",
+        "type": "名词",
+        "gender": "阳性",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "parler",
+        "meaning": "说，讲",
+        "type": "动词",
+        "gender": "无性别",
+        "conjugation": {
+            "je": "parle",
+            "tu": "parles",
+            "il/elle": "parle",
+            "nous": "parlons",
+            "vous": "parlez",
+            "ils/elles": "parlent"
+        }
+    },{
+        "french": "difficile",
+        "meaning": "困难的",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    },{
+        "french": "facile",
+        "meaning": "简单的",
+        "type": "形容词",
+        "gender": "阴阳同形",
+        "feminineForm": "",
+        "masculineForm": ""
+    }
+]
