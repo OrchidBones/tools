@@ -144,6 +144,7 @@ $(document).ready(function() {
 
     $('#back-to-select').click(function() {
         resetQuiz();
+        $('#next-question').html('<span>下一题</span><i class="bi bi-arrow-right"></i>').addClass('hidden');
         if (currentQuiz.type === 'comprehensive') {
             showScreen('welcome-screen');
             setActiveNav('nav-home');
@@ -174,8 +175,9 @@ $(document).ready(function() {
 
     // 单词本排序事件
     $('#vocab-sort').change(function() {
+        const filterType = getFilterTypeByParties();
         currentPage = 1; // 排序变化时重置到第一页
-        renderVocabBook();
+        renderVocabBook(filterType, $('#vocab-search').val());
     });
 });
 
@@ -371,10 +373,10 @@ function generateSingleGenderFormQuestion(vocab) {
     // 阴阳同形词汇处理
     if (vocab.gender === '阴阳同形') {
         question.questionText = `请问 "${vocab.french}" 对应的阴/阳性形式是什么？`;
-        question.correctAnswer = '无';
+        question.correctAnswer = vocab.french;
         
         // 生成干扰项（包含"无"选项）
-        const distractors = [{ text: '无', value: '无' }];
+        const distractors = [{ text: vocab.french, value: vocab.french }];
         const candidates = [];
         
         vocabData.forEach(v => {
