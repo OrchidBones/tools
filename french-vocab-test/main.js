@@ -36,6 +36,7 @@ $(document).ready(function() {
 
     $('#nav-comprehensive').click(function(e) {
         e.preventDefault();
+        resetQuiz();
         startComprehensiveQuiz();
         setActiveNav('nav-comprehensive');
     });
@@ -209,8 +210,8 @@ function setActiveNav(navId) {
 
 // 开始综合练习
 function startComprehensiveQuiz() {
-    resetQuiz();
     currentQuiz.type = 'comprehensive';
+    resetQuiz();
     generateQuizQuestions();
     showScreen('quiz-screen');
     loadCurrentQuestion();
