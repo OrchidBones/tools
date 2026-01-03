@@ -525,6 +525,38 @@ function generateQuestionByType(vocab, type) {
     };
 
     switch(type) {
+        case 'conjugation':
+            if (vocab.type === '动词' && vocab.conjugation) {
+                return generateUniqueConjugationQuestion(vocab);
+            }
+        
+        case 'gender-form':
+            if(!(vocab.meaning.includes('数字')) && 
+            ((vocab.type === '名词' || vocab.type === '形容词') && (vocab.feminineForm || vocab.masculineForm) 
+            || vocab.gender === '阴阳同形')) {
+                return generateSingleGenderFormQuestion(vocab);
+            }
+
+        case 'gender':
+            if(!(vocab.meaning.includes('数字')) && (vocab.type === '名词' || vocab.type === '形容词')) {
+                question.questionText = `请问 "${vocab.french}" 的词性（阴阳性）是？`;
+                question.options = [
+                    { text: '阳性', value: '阳性' },
+                    { text: '阴性', value: '阴性' },
+                    { text: '无性别', value: '无性别' },
+                    { text: '阴阳同形', value: '阴阳同形' }
+                ];
+                
+                if (vocab.type === '动词') {
+                    question.correctAnswer = '无性别';
+                } else if (vocab.gender === '阴阳同形') {
+                    question.correctAnswer = '阴阳同形';
+                } else {
+                    question.correctAnswer = vocab.gender || '无性别';
+                }
+                break;
+            }
+
         case 'meaning':
             // 中法互译
             if (Math.random() > 0.5) {
@@ -538,33 +570,6 @@ function generateQuestionByType(vocab, type) {
             }
             break;
         
-        case 'gender':
-            question.questionText = `请问 "${vocab.french}" 的词性（阴阳性）是？`;
-            question.options = [
-                { text: '阳性', value: '阳性' },
-                { text: '阴性', value: '阴性' },
-                { text: '无性别', value: '无性别' },
-                { text: '阴阳同形', value: '阴阳同形' }
-            ];
-            
-            if (vocab.type === '动词') {
-                question.correctAnswer = '无性别';
-            } else if (vocab.gender === '阴阳同形') {
-                question.correctAnswer = '阴阳同形';
-            } else {
-                question.correctAnswer = vocab.gender || '无性别';
-            }
-            break;
-        
-        case 'gender-form':
-            return generateSingleGenderFormQuestion(vocab);
-            
-        case 'conjugation':
-            if (vocab.type === '动词' && vocab.conjugation) {
-                return generateUniqueConjugationQuestion(vocab);
-            } else {
-                return generateQuestionByType(vocab, 'meaning');
-            }
     }
 
     question.options = shuffleArray(question.options);
