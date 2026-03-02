@@ -38,13 +38,13 @@
     "timetable": [
         {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
         {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},
-        {"start": {"h": 14, "m": 30}, "end": {"h": 16, "m": 19}},
-        {"start": {"h": 16, "m": 30}, "end": {"h": 18, "m": 19}},
-        {"start": {"h": 19, "m": 30}, "end": {"h": 21, "m": 19}},
-        {"start": {"h": 21, "m": 30}, "end": {"h": 23, "m": 19}}
+        {"start": {"h": 14, "m": 0}, "end": {"h": 15, "m": 49}},
+        {"start": {"h": 16, "m": 10}, "end": {"h": 17, "m": 59}},
+        {"start": {"h": 19, "m": 0}, "end": {"h": 20, "m": 49}},
+        {"start": {"h": 21, "m": 10}, "end": {"h": 22, "m": 59}}
     ],
     "class_table_item_template": [
-        "<b>${name}</b> [${type}]",
+        "<b>${name}</b>",
         "${teacher}",
         "${classroom}"
     ],
@@ -56,36 +56,6 @@
         }
     ],
     "special_class_days_note": "You can specify a day with classes on another day.",
-    "special_class_days": [
-        {
-            "note": "",
-            "ori_week": 4,
-            "ori_day": 7,
-            "tar_week": 4,
-            "tar_day": 2
-        },
-        {
-            "note": "",
-            "ori_date": "2025-10-11",
-            "tar_date": "2025-10-01"
-        }
-    ],
-    "special_class_times": [
-        {
-            "note": "",
-            "class_name": "二外I",
-            "classroom": "2-207",
-            "action_note": "add - (default) add the specific class or replace the class at that time with the specific class; try_add - if there is no class at that time, then add the specific class; remove - remove the class at that time. class_name is invalid in this case.",
-            "action": "add",
-            "week": 6,
-            "day": 4,
-            "time": 4
-        },
-        {
-            "note": "",
-            "action": "remove",
-            "date":"2025-10-11",
-            "time": 1
-        }
-    ]
+    "special_class_days": [],
+    "special_class_times": []
 }
