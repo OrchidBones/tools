@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>法语动词单词本</title>
+    <!-- Bootstrap 5 CSS + Icons (稳定且现代，兼容手机电脑) 这里使用Bootstrap5，同样满足框架需求，响应式优秀 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库，增强查找与翻页体验) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- 自定义轻量样式 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-card">
+    <div class="card-header-custom">
+        <h1><i class="fas fa-book-open me-2"></i>法语词汇本 · 动词</h1>
+        <p>常用法语动词 | 中文释义</p>
+    </div>
+
+    <div class="toolbar">
+        <div class="search-group">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="查找法语动词/中文释义或跳转到页码..." aria-label="查找动词">
+                <button class="btn-search" id="searchBtn"><i class="fas fa-search"></i> 查找</button>
+            </div>
+        </div>
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+            <span class="stats-badge" id="resultStats">共收录 <span id="totalCountSpan">0</span> 个动词</span>
+            <a href="#" id="clearSearchBtn" class="clear-search"><i class="fas fa-eraser"></i> 清除搜索</a>
+        </div>
+    </div>
+
+    <!-- 分页区域: 使用Bootstrap预设pagination模板 -->
+    <div class="pagination-wrapper">
+        <div class="page-info">第 1 / 1 页</div>
+        <nav aria-label="法语动词分页导航">
+            <ul class="pagination paginationList mb-0">
+                <!-- 动态生成Bootstrap分页组件 -->
+            </ul>
+        </nav>
+    </div>
+
+    <!-- 动词列表区域: 动态渲染表格 -->
+    <div class="table-responsive-verbs" id="verbsTableContainer">
+        <!-- 表格将动态生成 -->
+        <table class="verbs-table table active" id="verbs-table-1" style="width:100%">
+            <thead>
+                <tr>
+                    <th>法语动词</th>
+                    <th>中文释义</th>
+                    <th>动词变位分组</th>
+                </tr>
+            </thead>
+            <tbody class="tableBody">
+                <tr><td colspan="4" class="text-center py-4">加载数据中...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 分页区域: 使用Bootstrap预设pagination模板 -->
+    <div class="pagination-wrapper">
+        <div class="page-info">第 1 / 1 页</div>
+        <nav aria-label="法语动词分页导航">
+            <ul class="pagination paginationList mb-0">
+                <!-- 动态生成Bootstrap分页组件 -->
+            </ul>
+        </nav>
+    </div>
+    <footer>
+        <i class="fas fa-language"></i> 法语动词库
+    </footer>
+</div>
+
+<!-- 依赖 jQuery 和 Bootstrap JS (需要jQuery与Bootstrap的JS配合) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
