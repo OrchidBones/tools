@@ -16,7 +16,8 @@
         "time_format": "hh点mm分",
         "alert_weeknumber_detection_text": "自动检测到当前为第 ${weeknumber} 周",
         "alert_next_classroom_detection_text": "请在${time}前到 ${classroom} 上课",
-        "weekday_ordinal_numeral_text": "第 ${weeknumber} 周"
+        "weekday_ordinal_numeral_text": "第 ${weeknumber} 周",
+        "table_head_date_format": "YYYY-MM-DD"
     },
     "layout": {
         "alert": {
@@ -70,9 +71,9 @@
             "tar_day": 0
         },
         {
-            "note": "国庆后调休",
-            "ori_date": "2025-10-11",
-            "tar_date": "2025-10-01"
+            "note": "劳动节调休",
+            "ori_date": "2026-05-09",
+            "tar_date": "2026-05-12"
         }
     ],
     "special_class_times": [
@@ -89,7 +90,15 @@
         {
             "note": "国庆后第一节综英课老师身体不适请假无法上课",
             "action": "remove",
-            "date":"2025-10-11",
+            "date": "2025-10-11",
+            "time": 1
+        },
+        {
+            "note": "综英调课",
+            "class_name": "综合英语IV",
+            "classroom": "2-211",
+            "action": "add",
+            "date": "2026-05-11",
             "time": 1
         }
     ]

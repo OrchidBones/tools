@@ -48,6 +48,12 @@ $(document).ready(()=>{
                 const dayDif = Math.floor(timeDif / (1000 * 60 * 60 * 24));
                 return Math.ceil(dayDif / 7);
             }
+            getWeekdayDateByWeekNumber(wd, wn) {
+                const startDate = this._startDate;
+                const date = new Date();
+                date.setTime(startDate.getTime()+(1000 * 60 * 60 * 24 * (7 * (wn - 1) + wd)));
+                return date;
+            }
             formatTimeNumString(timeText) {
                 let text = String(timeText);
                 if(text.length === 1) {
@@ -520,7 +526,7 @@ $(document).ready(()=>{
                         switch(action) {
                             case 'try_add':
                                 if(!schedule[day][time]) {
-                                    const classroom = spday.classroom || '';
+                                    const classroom = spday.classroom || '-';
                                     const classObject = this.findClassObjectByName(spday.class_name || '');
                                     if(classObject)
                                     schedule[day][time] = this.assignInstantCource(classObject, classroom, time, day);
@@ -530,7 +536,7 @@ $(document).ready(()=>{
                                 schedule[day][time] = null;
                                 break;
                             case 'add':
-                                const classroom = spday.classroom || '';
+                                const classroom = spday.classroom || '-';
                                 const classObject = this.findClassObjectByName(spday.class_name || '');
                                 if(classObject)
                                 schedule[day][time] = this.assignInstantCource(classObject, classroom, time, day);
@@ -566,10 +572,18 @@ $(document).ready(()=>{
                 this.rearrangeSchedule(wn);
             }
             makeWeeklyTableHeadHTML() {
-                let html = '<thead><tr>';
-                let suffix = '</tr></thead>'
-                html += '<th>'+settings.terms.time_text+'</th>' + '<th>'+$Utils.convertWeekDayChar(1)+'</th>' + '<th>'+$Utils.convertWeekDayChar(2)+'</th>' + '<th>'+$Utils.convertWeekDayChar(3)+'</th>' + '<th>'+$Utils.convertWeekDayChar(4)+'</th>' + '<th>'+$Utils.convertWeekDayChar(5)+'</th>' + '<th>'+$Utils.convertWeekDayChar(6)+'</th>' + '<th>'+$Utils.convertWeekDayChar(7)+'</th>';
-                html += suffix;
+                const wn = this._weekNumber;
+                const format = settings.terms.table_head_date_format;
+                let html = `<thead><tr>
+                    <th>${settings.terms.time_text}</th>
+                    <th>${$Utils.convertWeekDayChar(1)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(1, wn)).format(format)}</span></th>
+                    <th>${$Utils.convertWeekDayChar(2)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(2, wn)).format(format)}</span></th>
+                    <th>${$Utils.convertWeekDayChar(3)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(3, wn)).format(format)}</span></th>
+                    <th>${$Utils.convertWeekDayChar(4)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(4, wn)).format(format)}</span></th>
+                    <th>${$Utils.convertWeekDayChar(5)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(5, wn)).format(format)}</span></th>
+                    <th>${$Utils.convertWeekDayChar(6)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(6, wn)).format(format)}</span></th>
+                    <th>${$Utils.convertWeekDayChar(7)}<br><span style="font-weight: normal;">${dayjs($Utils.getWeekdayDateByWeekNumber(7, wn)).format(format)}</span></th>
+                </tr></thead>`;
                 return html;
             }
             makeWeeklyTableBodyHTML() {
@@ -661,7 +675,7 @@ $(document).ready(()=>{
             }
             generateWeeklyTableHTML() {
                 let html = '';
-                const prefix = '<table class="table table-bordered table-responsive">';
+                const prefix = '<table class="table table-bordered table-responsive main-schedule">';
                 const suffix = '</table>';
                 html += prefix;
                 html += this.makeWeeklyTableHeadHTML();

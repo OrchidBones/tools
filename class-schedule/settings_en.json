@@ -4,7 +4,7 @@
         "class_schedule_output_area_title_text": "'s Schedule",
         "time_text": "Time",
         "weekday_prefix_text": "",
-        "weekday_suffix_texts": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "weekday_suffix_texts": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         "time_tag_today_text": "Today",
         "time_tag_tommorrow_text": "Tommorrow",
         "current_class_text": "This Class",
@@ -14,9 +14,10 @@
         "special_class_days_suffix_text": " (special)",
         "holidays_suffix_text": " (holiday)",
         "time_format": "hh: mm",
-        "alert_weeknumber_detection_text": "You are currently at Week ${weeknumber}.",
+        "alert_weeknumber_detection_text": "Currently at Week ${weeknumber}.",
         "alert_next_classroom_detection_text": "Please be in Classroom ${classroom} before ${time}.",
-        "weekday_ordinal_numeral_text": "Week ${weeknumber}"
+        "weekday_ordinal_numeral_text": "Week ${weeknumber}",
+        "table_head_date_format": "YYYY-MM-DD"
     },
     "layout": {
         "alert": {
