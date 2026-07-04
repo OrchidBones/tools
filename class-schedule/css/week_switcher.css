@@ -1,0 +1,99 @@
+/* 扁平化样式 */
+.week-switcher {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(222, 222, 222);
+    margin: auto;
+    width: 50%;
+}
+
+.week-switcher .btn-nav {
+    border: none;
+    background: #fff;
+    color: inherit;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.week-switcher .btn-nav-prev {
+    border-right: rgb(222, 222, 222) 1px solid;
+}
+
+.week-switcher .btn-nav-prev i {
+    margin-right: 20px;
+}
+
+.week-switcher .btn-nav-next i {
+    margin-left: 20px;
+}
+
+.week-switcher .btn-nav:hover {
+    background: #efefef;
+}
+
+.week-switcher .btn-nav:active {
+    background: #d8d8d8;
+}
+
+.week-switcher .btn-nav:disabled {
+    color: gray;
+    background: #fff;
+    cursor: not-allowed;
+}
+
+.week-switcher .week-display {
+    background: #ffffff;
+    color: #333;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 140px;
+    text-align: center;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    user-select: none;
+}
+
+@media screen and (max-width: 992px) {
+    .week-switcher{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .week-switcher{
+        width: 100%;
+    }
+}
+
+/* 不同主题色 */
+.week-switcher.theme-green .btn-nav { background: #28a745; }
+.week-switcher.theme-green .btn-nav:hover { background: #218838; }
+.week-switcher.theme-green .btn-nav:active { background: #1e7e34; }
+
+.week-switcher.theme-dark .btn-nav { background: #343a40; }
+.week-switcher.theme-dark .btn-nav:hover { background: #23272b; }
+.week-switcher.theme-dark .btn-nav:active { background: #1d2124; }
+
+.week-switcher.theme-purple .btn-nav { background: #6f42c1; }
+.week-switcher.theme-purple .btn-nav:hover { background: #5a32a3; }
+.week-switcher.theme-purple .btn-nav:active { background: #4e2c8f; }
+
+/* 大尺寸 */
+.week-switcher.size-lg .btn-nav { padding: 14px 28px; font-size: 18px; }
+.week-switcher.size-lg .week-display { padding: 14px 40px; font-size: 18px; min-width: 180px; }
+
+/* 小尺寸 */
+.week-switcher.size-sm .btn-nav { padding: 6px 14px; font-size: 14px; }
+.week-switcher.size-sm .week-display { padding: 6px 20px; font-size: 14px; min-width: 100px; }
