@@ -137,14 +137,17 @@ export default class HtmlManager {
         $('.today-schedule .time-tag').html(timeTag);
         $('.today-schedule .week-day').html(weekDay);
     }
-    renderScheduleTable(nextClassWeekDay, schedule, wn, spl, hl) {
-        const html1 = this.generateDailyTableHTML(nextClassWeekDay, schedule, wn);
-        const html2 = this.generateWeeklyTableHTML(schedule, wn, spl, hl);
+    renderScheduleTable(schedule, wn, spl, hl) {
+        const html = this.generateWeeklyTableHTML(schedule, wn, spl, hl);
         $('.whole-schedule span.week-number').html('<strong>'+wn+'</strong>');
-        $('.today-schedule div.table-area').empty();
-        $('.today-schedule div.table-area').append(html1);
         $('.whole-schedule div.table-area').empty();
-        $('.whole-schedule div.table-area').append(html2);
+        $('.whole-schedule div.table-area').append(html);
+    }
+    renderDailyScheduleTable(nextClassWeekDay, schedule, wn) {
+        const html = this.generateDailyTableHTML(nextClassWeekDay, schedule, wn);
+        if(!$('.today-schedule div.table-area').html()) {
+            $('.today-schedule div.table-area').append(html);
+        }
     }
     generateDailyTableHTML(nextClassWeekDay, schedule, wn) {
         let html = '';

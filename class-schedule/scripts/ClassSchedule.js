@@ -242,6 +242,7 @@ export default class ClassSchedule {
         this.renderExamReminderTip();
         this.renderNextClassroomTip();
         this.renderScheduleTable();
+        this.renderDailyScheduleTable();
         this.applyTommorrowClassList();
         this.updateWeekNumberNaviState();
         this.updateWeekNumberInputValue();
@@ -256,7 +257,7 @@ export default class ClassSchedule {
                 if(taken.includes(e)) return false;
                 const d = $DateManager.getWeekdayDateByWeekNumber(e.day(), e.startTime());
                 const dif = $DateManager.getDayDifferenceBetween(date, d);
-                if(dif > 0 && dif <= this.settings().exam_reminder_x_days_before) {
+                if(dif >= 0 && dif <= this.settings().exam_reminder_x_days_before) {
                     return true;
                 }
                 return false;
@@ -272,7 +273,10 @@ export default class ClassSchedule {
         }
     }
     renderScheduleTable() {
-        $HtmlManager.renderScheduleTable(this._nextClassWeekDay, this._schedule, this.weekNumber(), this._specialClassDayList, this._holidayList);
+        $HtmlManager.renderScheduleTable(this._schedule, this.weekNumber(), this._specialClassDayList, this._holidayList);
+    }
+    renderDailyScheduleTable() {
+        $HtmlManager.renderDailyScheduleTable(this._nextClassWeekDay, this._schedule, this.weekNumber());
     }
     applyTommorrowClassList() {
         const currentDay = $DateManager.getCurrentWeekDay();
