@@ -1,0 +1,284 @@
+[
+    {
+        "name": "中国基础教育改革专题",
+        "type": "",
+        "teacher": "王翠英",
+        "startTime": 1,
+        "endTime": 8,
+        "timetable": [
+            {
+                "classroom": "2-212",
+                "day": 1,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "学生教育与班级管理",
+        "type": "",
+        "teacher": "张晓娟",
+        "startTime": 1,
+        "endTime": 8,
+        "timetable": [
+            {
+                "classroom": "2-408",
+                "day": 1,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "毛泽东思想和中国特色社会主义理论体系概论",
+        "type": "",
+        "teacher": "宫敏燕",
+        "startTime": 1,
+        "endTime": 14,
+        "timetable": [
+            {
+                "classroom": "2-212",
+                "day": 1,
+                "time": 3,
+                "classtakingType": 0
+            },{
+                "classroom": "2-212",
+                "day": 3,
+                "time": 1,
+                "classtakingType": 2
+            }
+        ]
+    },{
+        "name": "区域国别学导论",
+        "type": "",
+        "teacher": "宫昀",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "classroom": "2-520",
+                "day": 1,
+                "time": 4,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语戏剧",
+        "type": "",
+        "teacher": "张艳霞",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "classroom": "2-212",
+                "day": 1,
+                "time": 5,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "教师职业道德",
+        "type": "",
+        "teacher": "李桂梅",
+        "startTime": 1,
+        "endTime": 8,
+        "timetable": [
+            {
+                "classroom": "2-210",
+                "day": 2,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "综合英语IV",
+        "type": "",
+        "teacher": "胡晓榕",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "classroom": "2-211",
+                "day": 2,
+                "time": 3,
+                "classtakingType": 0
+            },{
+                "classroom": "2-211",
+                "day": 5,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "二外II",
+        "type": "",
+        "teacher": "赵彩琴",
+        "startTime": 1,
+        "endTime": 12,
+        "timetable": [
+            {
+                "classroom": "2-118",
+                "day": 2,
+                "time": 4,
+                "classtakingType": 0
+            },{
+                "classroom": "2-323",
+                "day": 4,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语写作III",
+        "type": "",
+        "teacher": "白莉",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "classroom": "2-116(东)",
+                "day": 3,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "体育保健班",
+        "type": "",
+        "teacher": "张武生",
+        "startTime": 1,
+        "endTime": 17,
+        "timetable": [
+            {
+                "classroom": "操场排球场",
+                "day": 3,
+                "time": 4,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "翻译I",
+        "type": "",
+        "teacher": "李侠",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "classroom": "2-105",
+                "day": 5,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "跨文化交际",
+        "type": "",
+        "teacher": "高艳梅",
+        "startTime": 1,
+        "endTime": 16,
+        "timetable": [
+            {
+                "classroom": "2-224",
+                "day": 5,
+                "time": 3,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "翻译I考试",
+        "type": "",
+        "teacher": "李侠",
+        "startTime": 18,
+        "endTime": 18,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 3,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "英语写作III考试",
+        "type": "",
+        "teacher": "白莉",
+        "startTime": 18,
+        "endTime": 18,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 4,
+                "time": 1,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "学生教育与班级管理考试",
+        "type": "",
+        "teacher": "张晓娟",
+        "startTime": 18,
+        "endTime": 18,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 4,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "跨文化交际考试",
+        "type": "",
+        "teacher": "高艳梅",
+        "startTime": 18,
+        "endTime": 18,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 5,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "综合英语IV考试",
+        "type": "",
+        "teacher": "胡晓榕",
+        "startTime": 19,
+        "endTime": 19,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 2,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "二外II考试",
+        "type": "",
+        "teacher": "赵彩琴",
+        "startTime": 19,
+        "endTime": 19,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 3,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    },{
+        "name": "毛泽东思想和中国特色社会主义理论体系概论考试",
+        "type": "",
+        "teacher": "宫敏燕",
+        "startTime": 19,
+        "endTime": 19,
+        "timetable": [
+            {
+                "classroom": "2-313",
+                "day": 4,
+                "time": 2,
+                "classtakingType": 0
+            }
+        ]
+    }
+]

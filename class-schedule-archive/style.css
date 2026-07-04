@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.contents{
+    width: 80%;
+    margin: auto;
+}
+
+.contents>h1{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.input-area{
+    width: 50%;
+    margin: auto;
+}
+
+.tip-bar-area{
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.next-tip{
+    margin-right: 20px;
+}
+
+.next-block{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.current-block{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.output-area{
+    margin-top: 50px;
+}
+
+.tip-area{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.today-schedule{
+    margin-bottom: 30px;
+}
+
+.today-schedule div.table-area{
+    margin-top: 20px;
+}
+
+table {
+    table-layout: auto;
+}
+
+table th {
+    min-width: 150px;
+    vertical-align: top;
+}
+
+table tr {
+    min-width: 150px;
+}
+
+td.curClass {
+    border-width: 2px;
+}
+
+td.nextClass {
+    border-width: 2px;
+}
+
+td.class-taken {
+    color: rgb(196, 196, 196);
+}
+
+@media screen and (max-width: 992px) {
+    .input-area{
+        width: 75%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .input-area{
+        width: 100%;
+        margin: auto;
+    }
+}

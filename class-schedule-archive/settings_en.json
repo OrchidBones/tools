@@ -1,0 +1,62 @@
+{
+    "terms": {
+        "class_schedule_title_text": "My Class Schedule",
+        "class_schedule_output_area_title_text": "'s Schedule",
+        "time_text": "Time",
+        "weekday_prefix_text": "",
+        "weekday_suffix_texts": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        "time_tag_today_text": "Today",
+        "time_tag_tommorrow_text": "Tommorrow",
+        "current_class_text": "This Class",
+        "next_class_text": "Next Class",
+        "class_quantifier_text": "Class ${classnumber}",
+        "weeknumber_customization_text": "Week Number",
+        "special_class_days_suffix_text": " (special)",
+        "holidays_suffix_text": " (holiday)",
+        "time_format": "hh: mm",
+        "alert_weeknumber_detection_text": "Currently at Week ${weeknumber}.",
+        "alert_next_classroom_detection_text": "Please be in Classroom ${classroom} before ${time}.",
+        "weekday_ordinal_numeral_text": "Week ${weeknumber}",
+        "table_head_date_format": "YYYY-MM-DD"
+    },
+    "layout": {
+        "alert": {
+            "weeknumber_bootstrap_theme": "warning",
+            "next_classroom_bootstrap_theme": "info"
+        },
+        "tableitem_mark": {
+            "mark_color_note": "The two parameters below can be bootstrap theme color (like the above), hex color, rgb color or rgba color. If rgba color is used, the settings on opacity will be ignored.",
+            "current_class_color": "rgb(123, 191, 251)",
+            "next_class_color": "rgb(130, 246, 207)",
+            "special_class_border_opacity_100": "50",
+            "special_class_background_opacity_100": "20"
+        }
+    },
+    "semester_start_date": "2025-08-31 00:00:00",
+    "max_week_number": 20,
+    "max_classes_per_day": 6,
+    "timetable_note": "The number of params must equal to the param max_classes_per_day.",
+    "timetable": [
+        {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
+        {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},
+        {"start": {"h": 14, "m": 0}, "end": {"h": 15, "m": 49}},
+        {"start": {"h": 16, "m": 10}, "end": {"h": 17, "m": 59}},
+        {"start": {"h": 19, "m": 0}, "end": {"h": 20, "m": 49}},
+        {"start": {"h": 21, "m": 10}, "end": {"h": 22, "m": 59}}
+    ],
+    "class_table_item_template": [
+        "<b>${name}</b>",
+        "${teacher}",
+        "${classroom}"
+    ],
+    "holidays": [
+        {
+            "note": "",
+            "startDate": "2025-10-01",
+            "endDate": "2025-10-08"
+        }
+    ],
+    "special_class_days_note": "You can specify a day with classes on another day.",
+    "special_class_days": [],
+    "special_class_times": []
+}
