@@ -134,8 +134,10 @@ export default class HtmlManager {
         });
     }
     renderDailyTableHeader(timeTag, weekDay) {
-        $('.today-schedule .time-tag').html(timeTag);
-        $('.today-schedule .week-day').html(weekDay);
+        if(!$('.today-schedule .time-tag').html() && !$('.today-schedule .week-day').html()) {
+            $('.today-schedule .time-tag').html(timeTag);
+            $('.today-schedule .week-day').html(weekDay);
+        }
     }
     renderScheduleTable(schedule, wn, spl, hl) {
         const html = this.generateWeeklyTableHTML(schedule, wn, spl, hl);
