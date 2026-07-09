@@ -51,6 +51,7 @@ export default class HtmlManager {
         });
     }
     renderExamReminderTip(exams) {
+        if(exams.length === 0) return;
         const date = $DateManager.currentDate();
         const style = this.settings().layout.alert.exam_reminder_bootstrap_theme;
         $('.next-exam-area').empty();
