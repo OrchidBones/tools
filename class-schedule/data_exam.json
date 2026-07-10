@@ -1,0 +1,94 @@
+[
+    {
+        "name": "翻译I考试",
+        "course": "翻译I",
+        "type": "",
+        "teacher": "李侠",
+        "week": 18,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 3,
+            "time": 1,
+            "classtakingType": 0
+        }
+    },{
+        "name": "英语写作III考试",
+        "course": "英语写作III",
+        "type": "",
+        "teacher": "白莉",
+        "week": 18,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 4,
+            "time": 1,
+            "classtakingType": 0
+        }
+    },{
+        "name": "学生教育与班级管理考试",
+        "course": "学生教育与班级管理",
+        "type": "",
+        "teacher": "张晓娟",
+        "week": 18,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 4,
+            "time": 2,
+            "classtakingType": 0
+        }
+    },{
+        "name": "跨文化交际考试",
+        "course": "跨文化交际",
+        "type": "",
+        "teacher": "高艳梅",
+        "week": 18,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 5,
+            "time": 2,
+            "classtakingType": 0
+        }
+    },{
+        "name": "综合英语IV考试",
+        "course": "综合英语IV",
+        "type": "",
+        "teacher": "胡晓榕",
+        "week": 19,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 2,
+            "time": 2,
+            "classtakingType": 0
+        }
+    },{
+        "name": "二外II考试",
+        "course": "二外II",
+        "type": "",
+        "teacher": "赵彩琴",
+        "week": 19,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 3,
+            "time": 2,
+            "classtakingType": 0
+        }
+    },{
+        "name": "毛泽东思想和中国特色社会主义理论体系概论考试",
+        "course": "毛泽东思想和中国特色社会主义理论体系概论",
+        "type": "",
+        "teacher": "宫敏燕",
+        "week": 19,
+        "isExam": true,
+        "timetable": {
+            "classroom": "2-313",
+            "day": 4,
+            "time": 2,
+            "classtakingType": 0
+        }
+    }
+]

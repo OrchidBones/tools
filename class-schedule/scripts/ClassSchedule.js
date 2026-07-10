@@ -3,8 +3,7 @@
  */
 
 export default class ClassSchedule {
-    constructor(settings, data) {
-        this._source = data;
+    constructor(settings) {
         this._schedule = null;
         this._universalSettings = settings;
         this.initWeekNumber();

@@ -49,9 +49,10 @@ $.getJSON('settings.json', (settings)=>{
     $HtmlManager.applyLayoutSettings();
     const weeknumber = $DateManager.getCurrentWeekNumber();
 
-    $.getJSON('data.json', (scheduleData)=>{
-        $Global.initializeClassEvents(scheduleData);
-        const schedule = new ClassSchedule(settings, scheduleData);
+    $.getJSON('data_course.json', (courseData)=>{
+    $.getJSON('data_exam.json', (examData)=>{
+        $Global.initializeClassEvents(courseData, examData);
+        const schedule = new ClassSchedule(settings);
         window.$ClassSchedule = schedule;
 
         /**
@@ -85,6 +86,7 @@ $.getJSON('settings.json', (settings)=>{
                 $ClassSchedule.changeToWeek(w);
             }
         });
+    });
     });
 });
 });

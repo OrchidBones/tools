@@ -143,6 +143,10 @@ export default class HtmlManager {
     renderScheduleTable(schedule, wn, spl, hl) {
         const html = this.generateWeeklyTableHTML(schedule, wn, spl, hl);
         $('.whole-schedule span.week-number').html('<strong>'+wn+'</strong>');
+        $('.current-week-tag').empty();
+        if(wn === $DateManager.getCurrentWeekNumber()) {
+            $('.current-week-tag').html('（本周课表）');
+        }
         $('.whole-schedule div.table-area').empty();
         $('.whole-schedule div.table-area').append(html);
     }

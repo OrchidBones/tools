@@ -20,23 +20,22 @@ export default class Global {
     timetable() {
         return this._timetable;
     }
-    initializeClassEvents(data) {
-        this.registerClassEvents(data);
+    initializeClassEvents(courses, exams) {
+        this.registerClassEvents(courses, exams);
         this.bindCoursesToExams();
         this.refreshCourses();
         this.refreshExams();
     }
-    registerClassEvents(data) {
-        this.registerClassEventsFromData(data);
+    registerClassEvents(courses, exams) {
+        this.registerClassEventsFromData(courses, exams);
         // this.registerClassEventsFromSetting(); // 这个放在 ClassSchedule()
     }
-    registerClassEventsFromData(data) {
-        data.forEach(ce => {
-            if(!ce.isExam) { // Course
-                this.registerCourseFromData(ce);
-            } else { // exam
-                this.registerExamFromData(ce);
-            }
+    registerClassEventsFromData(courses, exams) {
+        courses.forEach(ce => {
+            this.registerCourseFromData(ce);
+        });
+        exams.forEach(ce => {
+            this.registerExamFromData(ce);
         });
     }
     registerClassEventsFromSetting() {
