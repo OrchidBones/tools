@@ -64,7 +64,13 @@ $.getJSON('settings.json', (settings)=>{
         $('#weeknumber').blur(()=>{
             const wn = +$('#weeknumber').val();
             if(!wn) {
-                $('#weeknumber').val($ClassSchedule.weekNumber());
+                const weeknum = $ClassSchedule.weekNumber();
+                if(weeknum.isBetween(0, $ClassSchedule.maxWeekNumber())) {
+                    $('#weeknumber').val(weeknum);
+                } else {
+                    $('#weeknumber').val('');
+                    return;
+                }
             }
             if(wn && schedule.isWeekNumberValid(wn)) {
                 schedule.changeToWeek(wn);
@@ -75,9 +81,11 @@ $.getJSON('settings.json', (settings)=>{
          * 周数页首导航
          */
         $('.btn-nav-prev').click(()=>{
-            const w = $ClassSchedule.weekNumber()-1;
-            if($ClassSchedule.isWeekNumberValid(w)) {
-                $ClassSchedule.changeToWeek(w);
+            for(let w = $ClassSchedule.weekNumber()-1; w > 0; w--) {
+                if($ClassSchedule.isWeekNumberValid(w)) {
+                    $ClassSchedule.changeToWeek(w);
+                    break;
+                }
             }
         });
         $('.btn-nav-next').click(()=>{

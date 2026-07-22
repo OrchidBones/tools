@@ -17,7 +17,9 @@
         "special_class_days_suffix_text": "（调休）",
         "holidays_suffix_text": "（放假）",
         "no_class_left_suffix_text": "（本周课结）",
+        "current_week_schedule_suffix": "（本周课表）",
         "time_format": "hh点mm分",
+        "alert_semester_end_text": "本学期已结束。",
         "alert_exam_reminder_intro_text": "未来${daydiff}天内有以下考试，请认真复习：",
         "alert_exam_reminder_body_entry_text": "<u>${countdown}</u> - <b>${name}</b>",
         "alert_exam_reminder_suffix_text": "",
@@ -25,10 +27,12 @@
         "alert_next_classroom_detection_text": "请在${time}前到 ${classroom} 上课",
         "alert_next_classroom_exam_detection_text": "请在${time}前到 ${classroom} 考试",
         "weekday_ordinal_numeral_text": "第 ${weeknumber} 周",
-        "table_head_date_format": "YYYY-MM-DD"
+        "table_head_date_format": "YYYY-MM-DD",
+        "placeholder_data_text": "---"
     },
     "layout": {
         "alert": {
+            "semester_end_bootstrap_theme": "primary",
             "exam_reminder_bootstrap_theme": "warning",
             "next_classroom_bootstrap_theme": "info",
             "next_classroom_exam_bootstrap_theme": "info"

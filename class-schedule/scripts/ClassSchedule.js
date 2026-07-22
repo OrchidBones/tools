@@ -43,6 +43,9 @@ export default class ClassSchedule {
     isWeekNumberValid(wn) {
         return wn.isBetween(1, this.maxWeekNumber());
     }
+    isSemesterEnd() {
+        return this.weekNumber() > this.maxWeekNumber();
+    }
     hasNoClassEventLeftThisWeek() {
         return !this._nextClass;
     }
@@ -238,6 +241,7 @@ export default class ClassSchedule {
         }
     }
     render() {
+        this.renderSemesterEndTip();
         this.renderExamReminderTip();
         this.renderNextClassroomTip();
         this.renderScheduleTable();
@@ -247,6 +251,11 @@ export default class ClassSchedule {
         this.updateWeekNumberInputValue();
         this.updateWeekNumberSwitcherState();
         this.applyCssStylesAfterwards();
+    }
+    renderSemesterEndTip() {
+        if(this.isSemesterEnd()) {
+            $HtmlManager.renderSemesterEndTip();
+        }
     }
     renderExamReminderTip() {
         if(this.needsExamReminderTip()) {
@@ -299,7 +308,7 @@ export default class ClassSchedule {
             timeTag = this.settings().terms.time_tag_today_text;
             weekDay = $StringConvertor.convertWeekDayChar(currentDay) + suffix;
         }
-        $HtmlManager.renderDailyTableHeader(timeTag, weekDay);
+        $HtmlManager.renderDailyTableHeader(timeTag, weekDay, this.weekNumber());
     }
     updateWeekNumberNaviState() {
         $HtmlManager.updateWeekNaviState(this.weekNumber());
@@ -308,7 +317,7 @@ export default class ClassSchedule {
         $HtmlManager.updateWeekNumberInputValue(this.weekNumber());
     }
     updateWeekNumberSwitcherState() {
-        $HtmlManager.updateWeekNumberSwitcherState(this.weekNumber(), this.maxWeekNumber());
+        $HtmlManager.updateWeekNumberSwitcherState(this.weekNumber());
     }
     applyCssStylesAfterwards() {
         $HtmlManager.applyCssStylesAfterwards();

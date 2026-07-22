@@ -9,6 +9,9 @@ export default class HtmlManager {
     settings() {
         return this._universalSettings;
     }
+    maxWeekNumber() {
+        return this.settings().max_week_number;
+    }
     applyLayoutSettings() {
         this.applySettingsForTitle();
         this.applySettingsForInput();
@@ -49,6 +52,14 @@ export default class HtmlManager {
             "background-color": $StringConvertor.convertCssColorText(currentColor, borderOpacity),
             "border-color": $StringConvertor.convertCssColorText(currentColor, Math.min(borderOpacity+diff, 100))
         });
+    }
+    renderSemesterEndTip() {
+        const style = this.settings().layout.alert.semester_end_bootstrap_theme;
+        $('.sem-end-area').empty();
+        let html = `<div class="sem-end-detection alert alert-${style}">`;
+        html += `<i class="fa fa-info-circle"></i><span class="sem-end-intro-text">${' '+this.settings().terms.alert_semester_end_text}</span>`;
+        html += '</div>';
+        $('.sem-end-area').html(html);
     }
     renderExamReminderTip(exams) {
         if(exams.length === 0) return;
@@ -107,16 +118,21 @@ export default class HtmlManager {
         $('#weekSwitcher .week-display').html(this.settings().terms.weekday_ordinal_numeral_text.simpleFormat('weeknumber', wn));
     }
     updateWeekNumberInputValue(wn) {
-        $('#weeknumber').val(wn);
+        if(wn.isBetween(1, this.maxWeekNumber())) {
+            $('#weeknumber').val(wn);
+        } else {
+            $('#weeknumber').empty()
+        }
     }
-    updateWeekNumberSwitcherState(wn, mwn) {
+    updateWeekNumberSwitcherState(wn) {
+        const mwn = this.maxWeekNumber();
         const prev = $('.btn-nav-prev'), next = $('.btn-nav-next');
         prev.attr('disabled', false);
         next.attr('disabled', false);
         if(wn === 1) {
             prev.attr('disabled', true);
         }
-        if(wn === mwn) {
+        if(wn >= mwn) {
             next.attr('disabled', true);
         }
     }
@@ -134,18 +150,26 @@ export default class HtmlManager {
             "background-color": $StringConvertor.convertCssColorText(nextColor, backgroundOpacity)
         });
     }
-    renderDailyTableHeader(timeTag, weekDay) {
+    renderDailyTableHeader(timeTag, weekDay, wn) {
         if(!$('.today-schedule .time-tag').html() && !$('.today-schedule .week-day').html()) {
             $('.today-schedule .time-tag').html(timeTag);
             $('.today-schedule .week-day').html(weekDay);
+            if(!wn.isBetween(1, this.maxWeekNumber())) {
+                $('.today-schedule .week-day').html(this.settings().terms.placeholder_data_text);
+            }
         }
     }
     renderScheduleTable(schedule, wn, spl, hl) {
         const html = this.generateWeeklyTableHTML(schedule, wn, spl, hl);
-        $('.whole-schedule span.week-number').html('<strong>'+wn+'</strong>');
-        $('.current-week-tag').empty();
-        if(wn === $DateManager.getCurrentWeekNumber()) {
-            $('.current-week-tag').html('（本周课表）');
+        if(wn.isBetween(1, this.maxWeekNumber())) {
+            $('.whole-schedule span.week-number').html('<strong>'+wn+'</strong>');
+            $('.current-week-tag').empty();
+            if(wn === $DateManager.getCurrentWeekNumber()) {
+                $('.current-week-tag').html(this.settings().terms.current_week_schedule_suffix);
+            }
+        } else {
+            $('.whole-schedule span.week-number').html(this.settings().terms.placeholder_data_text);
+            $('.current-week-tag').empty();
         }
         $('.whole-schedule div.table-area').empty();
         $('.whole-schedule div.table-area').append(html);
