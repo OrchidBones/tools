@@ -1,185 +1,205 @@
 [
     {
-        "name": "中国基础教育改革专题",
+        "name": "中学英语课程标准解读与教材分析",
+        "type_note": "必修、选修等类型",
         "type": "",
-        "teacher": "王翠英",
-        "startTime": 1,
-        "endTime": 8,
+        "teacher": "赵婉莉",
+        "startWeek": 1,
+        "endWeek": 16,
         "timetable": [
             {
-                "classroom": "2-212",
+                "classroom": "2-306",
                 "day": 1,
                 "time": 1,
+                "classtakingType_note": "0 - 每周都上，1 - 单周上，2 - 双周上，不写则默认为0",
                 "classtakingType": 0
             }
         ]
     },{
-        "name": "学生教育与班级管理",
-        "type": "",
-        "teacher": "张晓娟",
-        "startTime": 1,
-        "endTime": 8,
-        "timetable": [
-            {
-                "classroom": "2-408",
-                "day": 1,
-                "time": 2,
-                "classtakingType": 0
-            }
-        ]
-    },{
-        "name": "毛泽东思想和中国特色社会主义理论体系概论",
-        "type": "",
-        "teacher": "宫敏燕",
-        "startTime": 1,
-        "endTime": 14,
-        "timetable": [
-            {
-                "classroom": "2-212",
-                "day": 1,
-                "time": 3,
-                "classtakingType": 0
-            },{
-                "classroom": "2-212",
-                "day": 3,
-                "time": 1,
-                "classtakingType": 2
-            }
-        ]
-    },{
-        "name": "区域国别学导论",
-        "type": "",
-        "teacher": "宫昀",
-        "startTime": 1,
-        "endTime": 16,
-        "timetable": [
-            {
-                "classroom": "2-520",
-                "day": 1,
-                "time": 4,
-                "classtakingType": 0
-            }
-        ]
-    },{
-        "name": "英语戏剧",
-        "type": "",
-        "teacher": "张艳霞",
-        "startTime": 1,
-        "endTime": 16,
-        "timetable": [
-            {
-                "classroom": "2-212",
-                "day": 1,
-                "time": 5,
-                "classtakingType": 0
-            }
-        ]
-    },{
-        "name": "教师职业道德",
-        "type": "",
-        "teacher": "李桂梅",
-        "startTime": 1,
-        "endTime": 8,
-        "timetable": [
-            {
-                "classroom": "2-210",
-                "day": 2,
-                "time": 2,
-                "classtakingType": 0
-            }
-        ]
-    },{
-        "name": "综合英语IV",
-        "type": "",
-        "teacher": "胡晓榕",
-        "startTime": 1,
-        "endTime": 16,
-        "timetable": [
-            {
-                "classroom": "2-211",
-                "day": 2,
-                "time": 3,
-                "classtakingType": 0
-            },{
-                "classroom": "2-211",
-                "day": 5,
-                "time": 1,
-                "classtakingType": 0
-            }
-        ]
-    },{
-        "name": "二外II",
+        "name": "二外III",
         "type": "",
         "teacher": "赵彩琴",
-        "startTime": 1,
-        "endTime": 12,
+        "startWeek": 1,
+        "endWeek": 12,
+        "timetable": [
+            {
+                "classroom": "2-207",
+                "day": 1,
+                "time": 2
+            },{
+                "classroom": "2-207",
+                "day": 3,
+                "time": 3
+            }
+        ]
+    },{
+        "name": "中学英语课程与教学论",
+        "type": "",
+        "teacher": "邹强珍",
+        "startWeek": 1,
+        "endWeek": 16,
+        "timetable": [
+            {
+                "classroom": "2-321",
+                "day": 1,
+                "time": 3,
+                "classtakingType": 1
+            },{
+                "classroom": "2-318",
+                "day": 2,
+                "time": 1
+            }
+        ]
+    },{
+        "name": "习近平新时代中国特色社会主义思想概论",
+        "type": "",
+        "teacher": "高宁",
+        "startWeek": 1,
+        "endWeek": 14,
         "timetable": [
             {
                 "classroom": "2-118",
-                "day": 2,
-                "time": 4,
-                "classtakingType": 0
+                "day": 1,
+                "time": 4
             },{
-                "classroom": "2-323",
+                "classroom": "2-118",
                 "day": 4,
-                "time": 3,
-                "classtakingType": 0
+                "time": 2,
+                "classtakingType": 1
             }
         ]
     },{
-        "name": "英语写作III",
+        "name": "习近平总书记关于教育的重要论述研究（英文版）",
         "type": "",
-        "teacher": "白莉",
-        "startTime": 1,
-        "endTime": 16,
+        "teacher": "赵崇俊",
+        "startWeek": 9,
+        "endWeek": 16,
         "timetable": [
             {
-                "classroom": "2-116(东)",
-                "day": 3,
-                "time": 3,
-                "classtakingType": 0
+                "classroom": "2-212",
+                "day": 2,
+                "time": 2
             }
         ]
     },{
-        "name": "体育保健班",
+        "name": "翻译II",
         "type": "",
-        "teacher": "张武生",
-        "startTime": 1,
-        "endTime": 17,
-        "timetable": [
-            {
-                "classroom": "操场排球场",
-                "day": 3,
-                "time": 4,
-                "classtakingType": 0
-            }
-        ]
-    },{
-        "name": "翻译I",
-        "type": "",
-        "teacher": "李侠",
-        "startTime": 1,
-        "endTime": 16,
+        "teacher": "潘丽鹏",
+        "startWeek": 1,
+        "endWeek": 16,
         "timetable": [
             {
                 "classroom": "2-105",
-                "day": 5,
-                "time": 2,
-                "classtakingType": 0
+                "day": 2,
+                "time": 3
             }
         ]
     },{
-        "name": "跨文化交际",
+        "name": "语言学导论",
         "type": "",
-        "teacher": "高艳梅",
-        "startTime": 1,
-        "endTime": 16,
+        "teacher": "李静莹",
+        "startWeek": 1,
+        "endWeek": 16,
         "timetable": [
             {
-                "classroom": "2-224",
+                "classroom": "2-221",
+                "day": 3,
+                "time": 1
+            }
+        ]
+    },{
+        "name": "高级英语I",
+        "type": "",
+        "teacher": "于爱莲",
+        "startWeek": 1,
+        "endWeek": 16,
+        "timetable": [
+            {
+                "classroom": "2-116(西)",
+                "day": 1,
+                "time": 3
+            },{
+                "classroom": "2-116(西)",
                 "day": 5,
-                "time": 3,
-                "classtakingType": 0
+                "time": 2
+            }
+        ]
+    },{
+        "name": "就业指导",
+        "type": "",
+        "teacher": "王一帆",
+        "startWeek": 1,
+        "endWeek": 8,
+        "timetable": [
+            {
+                "classroom": "2-118",
+                "day": 3,
+                "time": 4
+            }
+        ]
+    },{
+        "name": "大语言模型与英语教学活动设计",
+        "type": "",
+        "teacher": "车乒",
+        "startWeek": 1,
+        "endWeek": 8,
+        "timetable": [
+            {
+                "classroom": "2-306",
+                "day": 4,
+                "time": 1
+            }
+        ]
+    },{
+        "name": "教育教学研究方法",
+        "type": "",
+        "teacher": "王洋",
+        "startWeek": 1,
+        "endWeek": 8,
+        "timetable": [
+            {
+                "classroom": "2-211",
+                "day": 4,
+                "time": 3
+            }
+        ]
+    },{
+        "name": "当代英国小说",
+        "type": "",
+        "teacher": "宫昀",
+        "startWeek": 1,
+        "endWeek": 16,
+        "timetable": [
+            {
+                "classroom": "2-211",
+                "day": 4,
+                "time": 4
+            }
+        ]
+    },{
+        "name": "英语文学导论",
+        "type": "",
+        "teacher": "宫昀",
+        "startWeek": 1,
+        "endWeek": 16,
+        "timetable": [
+            {
+                "classroom": "2-211",
+                "day": 5,
+                "time": 1
+            }
+        ]
+    },{
+        "name": "教学基本技能综合训练",
+        "type": "",
+        "teacher": "张晓娟",
+        "startWeek": 1,
+        "endWeek": 16,
+        "timetable": [
+            {
+                "classroom": "1-213",
+                "day": 5,
+                "time": 3
             }
         ]
     }

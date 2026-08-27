@@ -263,7 +263,7 @@ export default class ClassSchedule {
             const taken = $ExamManager.filterTakenAtDate(date, this.weekNumber());
             const exams = $ExamManager.allEvents().filter(e => {
                 if(taken.includes(e)) return false;
-                const d = $DateManager.getWeekdayDateByWeekNumber(e.day(), e.startTime());
+                const d = $DateManager.getWeekdayDateByWeekNumber(e.day(), e.startWeek());
                 const dif = $DateManager.getDayDifferenceBetween(date, d);
                 if(dif >= 0 && dif <= this.settings().exam_reminder_x_days_before) {
                     return true;

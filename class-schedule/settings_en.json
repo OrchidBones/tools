@@ -48,7 +48,7 @@
     "semester_start_date": "2025-08-31",
     "max_week_number": 20,
     "max_classes_per_day": 6,
-    "timetable_note": "The number of params must equal to the param max_classes_per_day.",
+    "timetable_note": "The number of params must be equal to the param max_classes_per_day.",
     "timetable": [
         {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
         {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},

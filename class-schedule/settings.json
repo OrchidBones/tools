@@ -45,7 +45,7 @@
             "special_class_background_opacity_100": "20"
         }
     },
-    "semester_start_date": "2026-03-01",
+    "semester_start_date": "2026-08-30",
     "max_week_number": 20,
     "max_classes_per_day": 6,
     "timetable_note": "参数数量必须与 max_classes_per_day 保持一致。",

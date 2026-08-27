@@ -39,7 +39,7 @@ export class ClassEventManager {
         return [];
     }
     filterByWeekNum(wn) {
-        return this._data.filter(c => (c.startTime() <= wn && c.endTime() >= wn));
+        return this._data.filter(c => (c.startWeek() <= wn && c.endWeek() >= wn));
     }
     filterByTeacher(teacher) {
         return this._data.filter(c => c.teacher() === teacher); // Array
@@ -71,7 +71,7 @@ export class CourseManager extends ClassEventManager {
     }
     filterActiveAtWeek(wn) {
         return this.filterByWeekNum(wn).filter(
-            c => (c.isOnEveryWeek() || (c.isOnSingleWeek() && c.startTime() === wn) || wn%2===1&&c.isOnOddWeek() || wn%2===0&&c.isOnEvenWeek())
+            c => (c.isOnEveryWeek() || (c.isOnSingleWeek() && c.startWeek() === wn) || wn%2===1&&c.isOnOddWeek() || wn%2===0&&c.isOnEvenWeek())
         );
     }
     filterActiveWeeklyAtDate(date) {
@@ -109,7 +109,7 @@ export class ExamManager extends ClassEventManager {
         return this._data.find(e => (e.name() === name || e.course().object().name === name));
     }
     filterByWeekNum(wn) {
-        return this._data.filter(e => e.startTime() === wn);
+        return this._data.filter(e => e.startWeek() === wn);
     }
     filterTakenAtDate(date/**, weeknumber(废弃) */) {
         const wn = $DateManager.getWeekNumberByDate(date);
@@ -120,7 +120,7 @@ export class ExamManager extends ClassEventManager {
             const time = c.time();  // time === class time index
             const timetable = $DateManager.timetable()[time];
             const tn = timetable.end.h*60+timetable.end.m;
-            return c.startTime() < wn || (c.startTime() === wn && ((wd > day) || (wd === day && wtn > tn)));
+            return c.startWeek() < wn || (c.startWeek() === wn && ((wd > day) || (wd === day && wtn > tn)));
         });
     }
 }

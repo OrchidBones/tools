@@ -29,10 +29,10 @@ export class ClassEvent {
     teacher() {
         return "";
     }
-    startTime() {
+    startWeek() {
         return 0;
     }
-    endTime() {
+    endWeek() {
         return 0;
     }
     day() {
@@ -95,11 +95,11 @@ export class Course extends ClassEvent {
     teacher() {
         return this.object().teacher;
     }
-    startTime() {
-        return this.object().startTime;
+    startWeek() {
+        return this.object().startWeek;
     }
-    endTime() {
-        return this.object().endTime;
+    endWeek() {
+        return this.object().endWeek;
     }
     timetable() {
         return this.object().timetable;
@@ -154,11 +154,11 @@ export class Exam extends ClassEvent {
         const object = this._course ? this._course.object() : this.object();
         return object.teacher;
     }
-    startTime() {
+    startWeek() {
         return this.object().week;
     }
-    endTime() {
-        return this.startTime();
+    endWeek() {
+        return this.startWeek();
     }
     timetable() {
         return [this.object().timetable];

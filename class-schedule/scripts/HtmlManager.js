@@ -69,7 +69,7 @@ export default class HtmlManager {
         let html = `<div class="next-classroom-detection alert alert-${style}">`;
         html += `<i class="fa fa-exclamation-circle"></i><span class="next-exam-intro-text">${this.settings().terms.alert_exam_reminder_intro_text.simpleFormat('daydiff', this.settings().exam_reminder_x_days_before)}</span>`;
         exams.forEach(e => {
-            const d = $DateManager.getWeekdayDateByWeekNumber(e.day(), e.startTime());
+            const d = $DateManager.getWeekdayDateByWeekNumber(e.day(), e.startWeek());
             const timetable = $DateManager.timetable()[e.time()];
             d.setTime(d.getTime()+1000*60*60*timetable.start.h+1000*60*timetable.start.m);
             const dayDif = $DateManager.getDayDifferenceBetween(date, d);

@@ -26,6 +26,15 @@ export default class Global {
         this.refreshCourses();
         this.refreshExams();
     }
+    refreshCourses() {
+        $CourseManager.refresh();
+    }
+    refreshExams() {
+        $ExamManager.refresh();
+    }
+    refreshCurrentDate() {
+        this._currentDate = new Date();
+    }
     registerClassEvents(courses, exams) {
         this.registerClassEventsFromData(courses, exams);
         // this.registerClassEventsFromSetting(); // 这个放在 ClassSchedule()
@@ -58,7 +67,7 @@ export default class Global {
             const day = timetable.day;
             const time = timetable.time;
             const classroom = timetable.classroom;
-            const classtakingType = timetable.classtakingType;
+            const classtakingType = timetable.classtakingType || 0;
             const cc = course.clone();
             cc.ctt = classtakingType;
             cc.classroom = classroom;
@@ -85,7 +94,7 @@ export default class Global {
         const classroom = plan.classroom || course.classroom();
         const classtakingType = 3; // class taken once only
         const cc = course.object().clone();
-        cc.startTime = weeknumber, cc.endTime = weeknumber;
+        cc.startWeek = weeknumber, cc.endWeek = weeknumber;
         cc.timetable = [{"classroom": classroom, "day": day, "time": time, "classtakingType": classtakingType}];
         cc.ctt = classtakingType;
         cc.classroom = classroom;
@@ -102,7 +111,7 @@ export default class Global {
         const classroom = plan.classroom || course.classroom();
         const classtakingType = 3; // class taken once only
         const cc = course.object().clone();
-        cc.startTime = weeknumber, cc.endTime = weeknumber;
+        cc.startWeek = weeknumber, cc.endWeek = weeknumber;
         cc.timetable = [{"classroom": classroom, "day": day, "time": time, "classtakingType": classtakingType}];
         cc.ctt = classtakingType;
         cc.classroom = classroom;
@@ -118,14 +127,5 @@ export default class Global {
                 e.setCourse(c);
             }
         });
-    }
-    refreshCourses() {
-        $CourseManager.refresh();
-    }
-    refreshExams() {
-        $ExamManager.refresh();
-    }
-    refreshCurrentDate() {
-        this._currentDate = new Date();
     }
 };
