@@ -45,7 +45,7 @@
             "special_class_background_opacity_100": "20"
         }
     },
-    "semester_start_date": "2025-08-31",
+    "semester_start_date": "2026-08-30",
     "max_week_number": 20,
     "max_classes_per_day": 6,
     "timetable_note": "The number of params must be equal to the param max_classes_per_day.",

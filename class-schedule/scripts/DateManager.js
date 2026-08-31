@@ -63,7 +63,7 @@ export default class DateManager {
                 endHours = timetable.end.h, endMinutes = timetable.end.m;
                 nextStartHours = nextTimetable.start.h, nextStartMinutes = nextTimetable.start.m;
             } else {
-                startHours = timetable.end.h, startMinutes = timetable.end.m;
+                startHours = timetable.start.h, startMinutes = timetable.start.m;
                 endHours = timetable.end.h, endMinutes = timetable.end.m;
                 nextStartHours = 23, nextStartMinutes = 59;
             }
