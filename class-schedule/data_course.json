@@ -1,8 +1,8 @@
 [
     {
         "name": "中学英语课程标准解读与教材分析",
-        "type_note": "必修、选修等类型",
-        "type": "",
+        "type_note": "考查课、考试课等类型",
+        "type": "考查",
         "teacher": "赵婉莉",
         "startWeek": 1,
         "endWeek": 16,
@@ -171,7 +171,7 @@
         "endWeek": 16,
         "timetable": [
             {
-                "classroom": "2-211",
+                "classroom": "2-313",
                 "day": 4,
                 "time": 4
             }

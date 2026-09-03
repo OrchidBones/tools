@@ -6,7 +6,6 @@
         "type": "",
         "teacher": "李侠",
         "week": 21,
-        "isExam": true,
         "timetable": {
             "classroom": "2-313",
             "day": 3,
