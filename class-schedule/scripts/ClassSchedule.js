@@ -21,7 +21,7 @@ export default class ClassSchedule {
     setWeekNumber(wn) {
         this._weekNumber = wn;
     }
-    initWeekNumber(wn) {
+    initWeekNumber() {
         this.setWeekNumber($DateManager.getCurrentWeekNumber());
     }
     changeToWeek(wn) {
@@ -43,8 +43,14 @@ export default class ClassSchedule {
     isWeekNumberValid(wn) {
         return wn.isBetween(1, this.maxWeekNumber());
     }
+    isScheduleOnCurrentWeek() {
+        return this.weekNumber() === $DateManager.getCurrentWeekNumber();
+    }
     isSemesterEnd() {
         return this.weekNumber() > this.maxWeekNumber();
+    }
+    isSemesterPrepared() {
+        return this.weekNumber() < 1;
     }
     hasNoClassEventLeftThisWeek() {
         return !this._nextClass;
@@ -206,6 +212,7 @@ export default class ClassSchedule {
     }
     setCurrentClassEvent() {
         this._currentClass = null;
+        if(!this.isScheduleOnCurrentWeek()) return;
         const currentDate = $DateManager.currentDate();
         const schedule = this._schedule;
         const wd = $DateManager.getCurrentWeekDay();
@@ -218,7 +225,7 @@ export default class ClassSchedule {
     }
     setNextClassEvent() {
         this._nextClass = null;
-        if(this._currentClass) return;
+        if(this._currentClass || !this.isScheduleOnCurrentWeek()) return;
         const currentDate = $DateManager.currentDate();
         const week = $DateManager.getWeekNumberByDate(currentDate);
         if(week !== this.weekNumber()) return;

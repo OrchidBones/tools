@@ -10,10 +10,6 @@ Object.prototype.clone = function() {
     return JSON.parse(JSON.stringify(this));
 };
 
-Date.prototype.clone = function() {
-    return new Date(this.getTime());
-};
-
 Number.prototype.isBetween = function(num1, num2) {
     if(num1!==undefined&&num2!==undefined) {
         let n1 = num1, n2 = num2;
@@ -47,7 +43,6 @@ $.getJSON('settings.json', (settings)=>{
     window.$HtmlManager = new HtmlManager(settings);
     window.$Global = new Global(settings);
     $HtmlManager.applyLayoutSettings();
-    const weeknumber = $DateManager.getCurrentWeekNumber();
 
     $.getJSON('data_course.json', (courseData)=>{
     $.getJSON('data_exam.json', (examData)=>{
