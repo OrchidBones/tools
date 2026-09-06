@@ -87,7 +87,10 @@ export default class ClassSchedule {
     getEmptySchedule() {
         const data = [null];
         for(let i = 0; i < 7; i++) {
-            const dayData = [null, null, null, null, null, null, null]; // dayData[0] should not be used in generating HTML
+            const dayData = [null]; // dayData[0] should not be used in generating HTML
+            for(let j = 0; j < this.settings().timetable.length; j++) {
+                dayData.push(null);
+            }
             data.push(dayData);
         }
         return data;
@@ -251,7 +254,7 @@ export default class ClassSchedule {
         this.renderSemesterEndTip();
         this.renderExamReminderTip();
         this.renderNextClassroomTip();
-        this.renderScheduleTable();
+        this.renderWeeklyScheduleTable();
         this.renderDailyScheduleTable();
         this.applyTommorrowClassList();
         this.updateWeekNumberNaviState();
@@ -287,10 +290,13 @@ export default class ClassSchedule {
             $HtmlManager.renderNextClassroomTooltip(nextClass, timeStr);
         }
     }
-    renderScheduleTable() {
-        $HtmlManager.renderScheduleTable(this._schedule, this.weekNumber(), this._specialClassDayList, this._holidayList);
+    renderWeeklyScheduleTable() {
+        $HtmlManager.showTipBars();
+        $HtmlManager.showWeekNavigation();
+        $HtmlManager.renderWeeklyScheduleTable(this._schedule, this.weekNumber(), this._specialClassDayList, this._holidayList);
     }
     renderDailyScheduleTable() {
+        $HtmlManager.showDailyScheduleTable();
         $HtmlManager.renderDailyScheduleTable(this._nextClassWeekDay, this._schedule, this.weekNumber());
     }
     applyTommorrowClassList() {

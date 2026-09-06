@@ -2,7 +2,7 @@
  * ClassEventManager
  */
 
-export class ClassEventManager {
+class ClassEventManager {
     constructor(settings) {
         this._data = [];
         this._universalSettings = settings;
@@ -95,6 +95,9 @@ export class CourseManager extends ClassEventManager {
             return weeknumber < wn || (weeknumber === wn && ((wd > day) || (wd === day && wtn > tn)));
         });
     }
+    filterFromData() {
+        return this.allEvents().filter(e => e.isFromData());
+    };
 };
 
 /**

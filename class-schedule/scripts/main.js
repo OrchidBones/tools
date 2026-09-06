@@ -1,10 +1,11 @@
 import DateManager from "./DateManager.js";
 import Global from "./Global.js";
-import { ClassEventManager, CourseManager, ExamManager } from "./ClassEventManager.js";
+import { CourseManager, ExamManager } from "./ClassEventManager.js";
 import StringConvertor from "./StringConvertor.js";
 import FormatManager from "./FormatManager.js";
 import HtmlManager from "./HtmlManager.js";
 import ClassSchedule from "./ClassSchedule.js";
+import ClassSchedule_Integrated from "./ClassSchedule_Integrated.js";
 
 Object.prototype.clone = function() {
     return JSON.parse(JSON.stringify(this));
@@ -47,7 +48,17 @@ $.getJSON('settings.json', (settings)=>{
     $.getJSON('data_course.json', (courseData)=>{
     $.getJSON('data_exam.json', (examData)=>{
         $Global.initializeClassEvents(courseData, examData);
-        const schedule = new ClassSchedule(settings);
+
+        /**
+         * 开学前生成一表通式课表 (ClassSchedule_Integrated 实例)，
+         * 开学后生成按周分配的课表（ClassSchedule 实例）
+         */
+        let schedule = null;
+        if($DateManager.getCurrentWeekNumber() < 1) {
+            schedule = new ClassSchedule_Integrated(settings);
+        } else {
+            schedule = new ClassSchedule(settings);
+        }
         window.$ClassSchedule = schedule;
 
         /**

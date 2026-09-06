@@ -14,13 +14,14 @@
         "next_week_text": "Next Week",
         "class_quantifier_text": "Class ${classnumber}",
         "weeknumber_customization_text": "Week Number",
-        "special_class_days_suffix_text": " (extra course)",
-        "holidays_suffix_text": " (rest)",
-        "no_class_left_suffix_text": " (no course left)",
-        "current_week_schedule_suffix": " (current)",
+        "special_class_days_suffix_text": " (Extra course)",
+        "holidays_suffix_text": " (Rest)",
+        "no_class_left_suffix_text": " (No course left)",
+        "current_week_schedule_suffix": " (Current)",
         "time_format": "hh: mm",
+        "alert_semester_start_text": "Next semester starts in <b>${dayDiff}</b> day(s), <b>${hourDiff}</b> hour(s), <b>${minDiff}</b> minute(s).",
         "alert_semester_end_text": "This semester has come to an end.",
-        "alert_exam_reminder_intro_text": "Exams to be taken in ${daydiff} days:",
+        "alert_exam_reminder_intro_text": "Exams to be taken within next ${dayDiff} days:",
         "alert_exam_reminder_body_entry_text": "<u>${countdown}</u> - <b>${name}</b>",
         "alert_exam_reminder_suffix_text": "Please get prepared.",
         "alert_exam_reminder_countdown_text": "${minute} minute(s), ${hour} hour(s), ${day} day(s)",
@@ -32,6 +33,7 @@
     },
     "layout": {
         "alert": {
+            "semester_start_bootstrap_theme": "primary",
             "semester_end_bootstrap_theme": "primary",
             "exam_reminder_bootstrap_theme": "warning",
             "next_classroom_bootstrap_theme": "info",
@@ -47,8 +49,6 @@
     },
     "semester_start_date": "2026-08-30",
     "max_week_number": 20,
-    "max_classes_per_day": 6,
-    "timetable_note": "The number of params must be equal to the param max_classes_per_day.",
     "timetable": [
         {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
         {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},
@@ -62,6 +62,7 @@
         "${teacher}",
         "${classroom}"
     ],
+    "integrated_class_table_item_template": "${name} ${teacher} Week[${startWeek}-${endWeek}] ${classroom}",
     "exam_reminder_x_days_before": 7,
     "holidays": [
         {

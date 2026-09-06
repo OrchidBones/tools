@@ -3,7 +3,7 @@
  * ClassEvent
  */
 
-export class ClassEvent {
+class ClassEvent {
     constructor(object, day, time, classroom) {
         this._data = object;
         this._day = day;
@@ -79,9 +79,16 @@ export class Course extends ClassEvent {
     constructor(object, day, time, classroom, takingType) {
         super(object, day, time, classroom);
         this._takingType = takingType;
+        this._isFromSettings = false;
     }
     isCourse() {
         return true;
+    }
+    isFromData() {
+        return !this._isFromSettings;
+    }
+    isFromSettings() {
+        return this._isFromSettings;
     }
     object() {
         return this._data;
@@ -121,6 +128,9 @@ export class Course extends ClassEvent {
     }
     isSpecial() {
         return this.isOnSingleWeek();
+    }
+    setAsFromSettings() {
+        this._isFromSettings = true;
     }
 };
 

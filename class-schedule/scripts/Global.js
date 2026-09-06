@@ -1,4 +1,4 @@
-import { ClassEvent, Course, Exam } from "./ClassEvent.js";
+import { Course, Exam } from "./ClassEvent.js";
 
 /**
  * Global
@@ -7,9 +7,14 @@ import { ClassEvent, Course, Exam } from "./ClassEvent.js";
 export default class Global {
     constructor(settings) {
         this._universalSettings = settings;
+        this._courseData = null;
+        this._examData = null;
         this._startDate = new Date(this._universalSettings.semester_start_date+" 00:00:00");
         this._timetable = [{start: {h: 0,  m: 0}, end: {h: 0,  m: 0}}].concat(this._universalSettings.timetable);
         this.refreshCurrentDate();
+    }
+    refreshCurrentDate() {
+        this._currentDate = new Date();
     }
     currentDate() {
         return this._currentDate;
@@ -19,6 +24,12 @@ export default class Global {
     }
     timetable() {
         return this._timetable;
+    }
+    courseData() {
+        return this._courseData;
+    }
+    examData() {
+        return this._examData;
     }
     initializeClassEvents(courses, exams) {
         this.registerClassEvents(courses, exams);
@@ -32,10 +43,9 @@ export default class Global {
     refreshExams() {
         $ExamManager.refresh();
     }
-    refreshCurrentDate() {
-        this._currentDate = new Date();
-    }
     registerClassEvents(courses, exams) {
+        this._courseData = courses;
+        this._examData = exams;
         this.registerClassEventsFromData(courses, exams);
         // this.registerClassEventsFromSetting(); // 这个放在 ClassSchedule()
     }
@@ -71,7 +81,8 @@ export default class Global {
             const cc = course.clone();
             cc.ctt = classtakingType;
             cc.classroom = classroom;
-            $CourseManager.register(new Course(cc, day, time, classroom, classtakingType));
+            const newCourse = new Course(cc, day, time, classroom, classtakingType);
+            $CourseManager.register(newCourse);
         }
     }
     registerExamFromData(exam) {
@@ -82,7 +93,8 @@ export default class Global {
         const cc = exam.clone();
         cc.ctt = 0;
         cc.classroom = classroom;
-        $ExamManager.register(new Exam(cc, day, time, classroom));
+        const newExam = new Exam(cc, day, time, classroom)
+        $ExamManager.register(newExam);
     }
     registerCourseByDateFromSetting(plan) {
         const course = $CourseManager.course(plan.class_name);
@@ -100,6 +112,7 @@ export default class Global {
         cc.classroom = classroom;
         const instance = new Course(cc, day, time, classroom, classtakingType);
         $CourseManager.register(instance);
+        instance.setAsFromSettings();
         return instance;
     }
     registerCourseByWeekDayFromSetting(plan) {
@@ -118,6 +131,7 @@ export default class Global {
         cc.week = weeknumber;
         const instance = new Course(cc, day, time, classroom, classtakingType);
         $CourseManager.register(instance);
+        instance.setAsFromSettings();
         return instance;
     }
     bindCoursesToExams() {

@@ -53,6 +53,21 @@ export default class HtmlManager {
             "border-color": $StringConvertor.convertCssColorText(currentColor, Math.min(borderOpacity+diff, 100))
         });
     }
+    renderSemesterStartTip() {
+        const style = this.settings().layout.alert.semester_start_bootstrap_theme;
+        const curDate = $DateManager.currentDate();
+        const startDate = $DateManager.startDate();
+        const dayDif = $DateManager.getDayDifferenceBetween(curDate, startDate) + 1;
+        const hourDif = $DateManager.getHourDifferenceBetween(curDate, startDate, true);
+        const minDif = $DateManager.getMinuteDifferenceBetween(curDate, startDate, true);
+        $('.sem-start-area').empty();
+        if(dayDif > 0) {
+            let html = `<div class="sem-start-detection alert alert-${style}">`;
+            html += `<i class="fa fa-info-circle"></i><span class="sem-start-intro-text">${' '+this.settings().terms.alert_semester_start_text.simpleFormat('dayDiff', dayDif).simpleFormat('hourDiff', hourDif).simpleFormat('minDiff', minDif)}</span>`;
+            html += '</div>';
+            $('.sem-end-area').html(html);
+        }
+    }
     renderSemesterEndTip() {
         const style = this.settings().layout.alert.semester_end_bootstrap_theme;
         $('.sem-end-area').empty();
@@ -67,7 +82,7 @@ export default class HtmlManager {
         const style = this.settings().layout.alert.exam_reminder_bootstrap_theme;
         $('.next-exam-area').empty();
         let html = `<div class="next-classroom-detection alert alert-${style}">`;
-        html += `<i class="fa fa-exclamation-circle"></i><span class="next-exam-intro-text">${this.settings().terms.alert_exam_reminder_intro_text.simpleFormat('daydiff', this.settings().exam_reminder_x_days_before)}</span>`;
+        html += `<i class="fa fa-exclamation-circle"></i><span class="next-exam-intro-text">${this.settings().terms.alert_exam_reminder_intro_text.simpleFormat('dayDiff', this.settings().exam_reminder_x_days_before)}</span>`;
         exams.forEach(e => {
             const d = $DateManager.getWeekdayDateByWeekNumber(e.day(), e.startWeek());
             const timetable = $DateManager.timetable()[e.time()];
@@ -159,7 +174,7 @@ export default class HtmlManager {
             }
         }
     }
-    renderScheduleTable(schedule, wn, spl, hl) {
+    renderWeeklyScheduleTable(schedule, wn, spl, hl) {
         const html = this.generateWeeklyTableHTML(schedule, wn, spl, hl);
         if(wn.isBetween(1, this.maxWeekNumber())) {
             $('.whole-schedule span.week-number').html('<strong>'+wn+'</strong>');
@@ -174,11 +189,37 @@ export default class HtmlManager {
         $('.whole-schedule div.table-area').empty();
         $('.whole-schedule div.table-area').append(html);
     }
+    renderWeeklyScheduleTable_Integrated(schedule) {
+        const html = this.generateWeeklyTableHTML_Integrated(schedule);
+        $('.whole-schedule span.week-number').html(this.settings().terms.placeholder_data_text);
+        $('.current-week-tag').empty();
+        $('.whole-schedule div.table-area').empty();
+        $('.whole-schedule div.table-area').append(html);
+    }
+    renderDailyScheduleTable_Empty() {
+        const daySche = [null];
+        for(let i = 0; i < this.settings().timetable.length; i++) {
+            daySche.push(null);
+        }
+        const html = this.generateDailyTableHTML_Empty(daySche);
+        if(!$('.today-schedule div.table-area').html()) {
+            $('.today-schedule div.table-area').append(html);
+        }
+    }
     renderDailyScheduleTable(nextClassWeekDay, schedule, wn) {
         const html = this.generateDailyTableHTML(nextClassWeekDay, schedule, wn);
         if(!$('.today-schedule div.table-area').html()) {
             $('.today-schedule div.table-area').append(html);
         }
+    }
+    generateDailyTableHTML_Empty(daySche) {
+        let html = '';
+        const prefix = '<table class="table table-bordered table-responsive">';
+        const suffix = '</table>';
+        html += prefix;
+        html += this.makeDailyTableHTML_Empty(daySche);
+        html += suffix;
+        return html;
     }
     generateDailyTableHTML(nextClassWeekDay, schedule, wn) {
         let html = '';
@@ -197,6 +238,28 @@ export default class HtmlManager {
         html += this.makeWeeklyTableHeadHTML(wn, spl, hl);
         html += this.makeWeeklyTableBodyHTML(schedule, wn);
         html += suffix;
+        return html;
+    }
+    generateWeeklyTableHTML_Integrated(schedule) {
+        let html = '';
+        const prefix = '<table class="table table-bordered table-responsive main-schedule">';
+        const suffix = '</table>';
+        html += prefix;
+        html += this.makeWeeklyTableHeadHTML_Integrated();
+        html += this.makeWeeklyTableBodyHTML_Integrated(schedule);
+        html += suffix;
+        return html;
+    }
+    makeDailyTableHTML_Empty(daySche) {
+        let html = '';
+        for(let i = 1; i < daySche.length; i++) {
+            let text = '<tr>';
+            const t = String(i*2-1) + '-' + String(i*2);
+            const tt = this.settings().terms.class_quantifier_text;
+            text += '<td>'+tt.simpleFormat('classnumber', t)+'</td>';
+            text += '<td></td></tr>';
+            html += text;
+        }
         return html;
     }
     makeDailyTableHTML(nextClassWeekDay, schedule, wn) {
@@ -235,7 +298,6 @@ export default class HtmlManager {
             text += '</td></tr>'
             html += text;
         }
-        html += '</tbody>';
         return html;
     }
     makeWeeklyTableHeadHTML(wn, spl, hl) {
@@ -252,13 +314,26 @@ export default class HtmlManager {
         </tr></thead>`;
         return html;
     }
+    makeWeeklyTableHeadHTML_Integrated() {
+        let html = `<thead><tr>
+            <th>${this.settings().terms.time_text}</th>
+            <th>${$StringConvertor.convertWeekDayChar(1)}</span></th>
+            <th>${$StringConvertor.convertWeekDayChar(2)}</span></th>
+            <th>${$StringConvertor.convertWeekDayChar(3)}</span></th>
+            <th>${$StringConvertor.convertWeekDayChar(4)}</span></th>
+            <th>${$StringConvertor.convertWeekDayChar(5)}</span></th>
+            <th>${$StringConvertor.convertWeekDayChar(6)}</span></th>
+            <th>${$StringConvertor.convertWeekDayChar(7)}</span></th>
+        </tr></thead>`;
+        return html;
+    }
     makeWeeklyTableBodyHTML(schedule, wn) {
         let html = '<tbody>';
         const suffix = '</tbody>';
         const takenCourses = $CourseManager.filterTakenAtDate($DateManager.currentDate(), wn);
         const takenExams = $ExamManager.filterTakenAtDate($DateManager.currentDate(), wn);
         const takenEvents = takenCourses.concat(takenExams);
-        for(let i = 1; i <= this.settings().max_classes_per_day; i++) {
+        for(let i = 1; i <= this.settings().timetable.length; i++) {
             let text1 = '<tr>';
             const t = String(i*2-1) + '-' + String(i*2);
             const tt = this.settings().terms.class_quantifier_text;
@@ -293,6 +368,33 @@ export default class HtmlManager {
         html += suffix;
         return html;
     }
+    makeWeeklyTableBodyHTML_Integrated(schedule) {
+        let html = '<tbody>';
+        const suffix = '</tbody>';
+        for(let i = 1; i <= this.settings().timetable.length; i++) {
+            let text1 = '<tr>';
+            const t = String(i*2-1) + '-' + String(i*2);
+            const tt = this.settings().terms.class_quantifier_text;
+            text1 += '<td>'+tt.simpleFormat('classnumber', t)+'</td>';
+            for(let j = 1; j <= 7; j++) {
+                const day = j;
+                const time = i;
+                const classList = schedule[day][time];
+                let text2 = '';
+                text2 += '<td id="class-'+day+'-'+time+'">';
+                classList.forEach((ce, i) => {
+                    if(i) text2 += '<br>';
+                    text2 += this.makeTableItemText_Integrated(ce);
+                });
+                text2 += '</td>';
+                text1 += text2;
+            }
+            text1 += '</tr>';
+            html += text1;
+        }
+        html += suffix;
+        return html;
+    }
     makeTableItemText(c, wn) {
         let t = '';
         this.settings().class_table_item_template.forEach((raw)=>{
@@ -300,6 +402,31 @@ export default class HtmlManager {
             t += raw1 + '<br>';
         });
         return t;
+    }
+    makeTableItemText_Integrated(c) {
+        const template = this.settings().integrated_class_table_item_template;
+        const t = $FormatManager.formatClassParamString(template, c);
+        return t;
+    }
+    showWeekNavigation() {
+        $('.weeknumber-navigation-area').show();
+        $('.input-area').show();
+    }
+    hideWeekNavigation() {
+        $('.weeknumber-navigation-area').hide();
+        $('.input-area').hide();
+    }
+    showDailyScheduleTable() {
+        $('.today-schedule').show();
+    }
+    hideDailyScheduleTable() {
+        $('.today-schedule').hide();
+    }
+    showTipBars() {
+        $('.tip-bar-area').show();
+    }
+    hideTipBars() {
+        $('.tip-bar-area').hide();
     }
     getSuffexForSpecialClassDays(wd, specialClassDayList) {
         return specialClassDayList.includes(wd) ? this.settings().terms.special_class_days_suffix_text : "";
