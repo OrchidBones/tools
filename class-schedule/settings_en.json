@@ -47,6 +47,7 @@
             "special_class_background_opacity_100": "20"
         }
     },
+    "semester_start_date_note": "The day before the first day of the semester",
     "semester_start_date": "2026-08-30",
     "max_week_number": 20,
     "timetable": [

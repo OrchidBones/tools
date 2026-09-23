@@ -47,14 +47,15 @@
             "special_class_background_opacity_100": "20"
         }
     },
+    "semester_start_date_note": "开学第一天的前一天",
     "semester_start_date": "2026-08-30",
     "max_week_number": 20,
     "timetable": [
         {"start": {"h": 8,  "m": 0},  "end": {"h": 9,  "m": 49}},
         {"start": {"h": 10, "m": 10}, "end": {"h": 11, "m": 59}},
-        {"start": {"h": 14, "m": 0}, "end": {"h": 15, "m": 49}},
+        {"start": {"h": 14, "m": 10}, "end": {"h": 15, "m": 59}},
         {"start": {"h": 16, "m": 10}, "end": {"h": 17, "m": 59}},
-        {"start": {"h": 19, "m": 0}, "end": {"h": 20, "m": 49}},
+        {"start": {"h": 19, "m": 0},  "end": {"h": 20, "m": 49}},
         {"start": {"h": 21, "m": 10}, "end": {"h": 22, "m": 59}}
     ],
     "class_table_item_template": [
@@ -66,29 +67,28 @@
     "exam_reminder_x_days_before": 7,
     "holidays": [
         {
-            "note": "清明节",
-            "startDate": "2026-04-04",
-            "endDate": "2026-04-06"
-        },
-        {
-            "note": "劳动节",
-            "startDate": "2026-05-01",
-            "endDate": "2026-05-05"
+            "common_note": "表示时间，可以用startDate/endDate，也可以用startWeek&startDay/endWeek&endDay来设定，用后者设定时week指学周，day指星期，值类型是数字。",
+            "note": "中秋节",
+            "startDate": "2026-09-25",
+            "endDate": "2026-09-27"
+        },{
+            "note": "国庆节",
+            "startDate": "2026-10-01",
+            "endDate": "2026-10-07"
         }
     ],
     "special_class_days_note": "指定某一天上另一天的课。可以设置调休等安排。",
     "special_class_days": [
         {
-            "note": "国庆前调休",
-            "ori_week": 0,
-            "ori_day": 0,
-            "tar_week": 0,
-            "tar_day": 0
+            "common_note": "表示时间，可以用ori_date/tar_date，也可以用ori_week&ori_day/tar_week&tar_day来设定，用后者设定时week指学周，day指星期，值类型是数字。ori是原本不上课的那一天，tar指的是要给这一天上哪天的课。",
+            "note": "中秋调休",
+            "ori_date": "2026-09-20",
+            "tar_date": "2026-10-06"
         },
         {
-            "note": "劳动节调休",
-            "ori_date": "2026-05-09",
-            "tar_date": "2026-05-12"
+            "note": "国庆调休",
+            "ori_date": "2026-10-10",
+            "tar_date": "2026-10-07"
         }
     ],
     "special_class_times": [

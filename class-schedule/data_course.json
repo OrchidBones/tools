@@ -127,7 +127,7 @@
     },{
         "name": "就业指导",
         "type": "",
-        "teacher": "王一帆",
+        "teacher": "王导员（别院）",
         "startWeek": 1,
         "endWeek": 8,
         "timetable": [
@@ -184,7 +184,7 @@
         "endWeek": 16,
         "timetable": [
             {
-                "classroom": "2-211",
+                "classroom": "2-213",
                 "day": 5,
                 "time": 1
             }

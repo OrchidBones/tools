@@ -53,10 +53,10 @@ export default class ClassSchedule {
         return this.weekNumber() < 1;
     }
     hasNoClassEventLeftThisWeek() {
-        return !this._nextClass;
+        return !this._nextClass && !this._currentClass;
     }
     isTodayOffClass() {
-        return this.hasNoClassEventLeftThisWeek() || this._nextClass && this._nextClass.day() > $DateManager.getCurrentWeekDay();
+        return !this._nextClass || this._nextClass && this._nextClass.day() > $DateManager.getCurrentWeekDay();
     }
     needsExamReminderTip() {
         return $ExamManager.allEvents().length;
@@ -128,7 +128,9 @@ export default class ClassSchedule {
                 const tempDaySchedule = tempSche[tarDay];
                 for(let i = 1; i < daySchedule.length; i++) {
                     daySchedule[i] = tempDaySchedule[i];
-                } 
+                }
+                const specialClassDayList = this._specialClassDayList;
+                if(!specialClassDayList.includes(oriDay)) specialClassDayList.push(oriDay);
             }
         });
     }
