@@ -1,3 +1,5 @@
+import { Course, Exam } from "./ClassEvent.js";
+
 /**
  * ClassSchedule
  */
@@ -127,7 +129,19 @@ export default class ClassSchedule {
                 const tempSche = this.assignSchedule(tarWeek);
                 const tempDaySchedule = tempSche[tarDay];
                 for(let i = 1; i < daySchedule.length; i++) {
-                    daySchedule[i] = tempDaySchedule[i];
+                    const obj = tempDaySchedule[i];
+                    let ce = null;
+                    if(obj) {
+                        if(obj.isCourse()) {
+                            ce = new Course(obj.object(), oriDay, obj.time(), obj.classroom(), obj.takingType());
+                            $CourseManager.register(ce);
+                        } else if(obj.isExam()) {
+                            ce = new Exam(obj.object(), oriDay, obj.time(), obj.classroom());
+                            $ExamManager.register(ce);
+                        }
+                        ce.setAsTemp();
+                    }
+                    daySchedule[i] = ce;
                 }
                 const specialClassDayList = this._specialClassDayList;
                 if(!specialClassDayList.includes(oriDay)) specialClassDayList.push(oriDay);

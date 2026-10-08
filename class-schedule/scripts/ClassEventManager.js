@@ -39,21 +39,22 @@ class ClassEventManager {
         return [];
     }
     filterByWeekNum(wn) {
-        return this._data.filter(c => (c.startWeek() <= wn && c.endWeek() >= wn));
+        return this.allEvents().filter(c => (c.startWeek() <= wn && c.endWeek() >= wn));
     }
     filterByTeacher(teacher) {
-        return this._data.filter(c => c.teacher() === teacher); // Array
+        return this.allEvents().filter(c => c.teacher() === teacher); // Array
     }
     filterByType(type) {
-        return this._data.filter(c => c.type() === type); // Array
+        return this.allEvents().filter(c => c.type() === type); // Array
     }
     findCurrent() {
-        return this._data.find(c => c.isCurrent());
+        return this.allEvents().find(c => c.isCurrent());
     }
     findNext() {
-        return this._data.find(c => c.isNext());
+        return this.allEvents().find(c => c.isNext());
     }
     refresh() {
+        this._data = this._data.filter(c => !c.isTemp());
         this._data.forEach(e => {e.refresh()});
     }
 }
@@ -67,7 +68,7 @@ export class CourseManager extends ClassEventManager {
         super();
     }
     course(name) {
-        return this._data.find(c => (c.name() === name && !c.isSpecial()));
+        return this._data.find(c => (c.name() === name && !c.isSpecial() && !c.isTemp()));
     }
     filterActiveAtWeek(wn) {
         return this.filterByWeekNum(wn).filter(
@@ -109,7 +110,7 @@ export class ExamManager extends ClassEventManager {
         super();
     }
     exam(name) {
-        return this._data.find(e => (e.name() === name || e.course().object().name === name));
+        return this._data.find(e => ((e.name() === name || e.course().object().name === name)&&!e.isTemp()));
     }
     filterByWeekNum(wn) {
         return this._data.filter(e => e.startWeek() === wn);

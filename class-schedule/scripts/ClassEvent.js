@@ -50,6 +50,9 @@ class ClassEvent {
     classtakingType() {
         return this.takingType();
     }
+    isTemp() { // auto generation for special day's class
+        return this._isTemp;
+    }
     isCurrent() {
         return this._isCurrent;
     }
@@ -59,13 +62,17 @@ class ClassEvent {
     isSpecial() {
         return false;
     }
+    setAsTemp() {
+        this._isTemp = true;
+    }
     setAsCurrent() {
-        return this._isCurrent = true;
+        this._isCurrent = true;
     }
     setAsNext() {
-        return this._isNext = true;
+        this._isNext = true;
     }
     refresh() {
+        this._isTemp = false;
         this._isCurrent = false;
         this._isNext = false;
     }
