@@ -47,7 +47,6 @@ export default class Global {
         this._courseData = courses;
         this._examData = exams;
         this.registerClassEventsFromData(courses, exams);
-        // this.registerClassEventsFromSetting(); // 这个放在 ClassSchedule()
     }
     registerClassEventsFromData(courses, exams) {
         courses.forEach(ce => {
@@ -61,7 +60,7 @@ export default class Global {
         const list = this._universalSettings.special_class_times;
         list.forEach(plan => {
             if(plan.action.toUpperCase() === 'ADD') { // try_add和remove写在ClassSchedule()
-                if(plan.ori_date) {
+                if(plan.date) {
                     // date
                     this.registerCourseByDateFromSetting(plan);
                 } else {

@@ -101,19 +101,28 @@
             "week": 0,
             "day": 0,
             "time": 0
-        },
-        {
-            "note": "国庆后第一节综英课老师身体不适请假无法上课",
+        },{
             "action": "remove",
-            "date": "2025-10-11",
-            "time": 1
-        },
-        {
-            "note": "综英调课",
-            "class_name": "综合英语IV",
-            "classroom": "2-211",
+            "date": "2026-10-13",
+            "time": 3
+        },{
+            "class_name": "翻译II",
             "action": "add",
-            "date": "2026-05-11",
+            "date": "2026-10-20",
+            "time": 2
+        },{
+            "note": "翻译顺延一周",
+            "class_name": "翻译II",
+            "action": "add",
+            "week": 17,
+            "day": 2,
+            "time": 3
+        },{
+            "note": "大语言模型辅助教学顺延一周",
+            "class_name": "大语言模型与英语教学活动设计",
+            "action": "add",
+            "week": 9,
+            "day": 4,
             "time": 1
         }
     ]
