@@ -202,5 +202,18 @@
                 "time": 3
             }
         ]
+    },{
+        "name": "形势与政策",
+        "type": "",
+        "teacher": "李娇",
+        "startWeek": 17,
+        "endWeek": 17,
+        "timetable": [
+            {
+                "classroom": "2-210",
+                "day": 4,
+                "time": 5
+            }
+        ]
     }
 ]

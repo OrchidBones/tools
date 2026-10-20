@@ -106,11 +106,6 @@
             "date": "2026-10-13",
             "time": 3
         },{
-            "class_name": "翻译II",
-            "action": "add",
-            "date": "2026-10-20",
-            "time": 2
-        },{
             "note": "翻译顺延一周",
             "class_name": "翻译II",
             "action": "add",
@@ -124,6 +119,19 @@
             "week": 9,
             "day": 4,
             "time": 1
+        },{
+            "note": "习思想顺延一课？",
+            "class_name": "习近平新时代中国特色社会主义思想概论",
+            "action": "add",
+            "week": 14,
+            "day": 4,
+            "time": 2
+        },{
+            "note": "高英老师参会",
+            "class_name": "高级英语",
+            "action": "remove",
+            "date": "2026-10-21",
+            "time": 2
         }
     ]
 }
