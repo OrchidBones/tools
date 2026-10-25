@@ -9,8 +9,8 @@
         "timetable": [
             {
                 "classroom": "2-306",
-                "day": 1,
-                "time": 1,
+                "day": 3,
+                "time": 4,
                 "classtakingType_note": "0 - 每周都上，1 - 单周上，2 - 双周上，不写则默认为0",
                 "classtakingType": 0
             }
