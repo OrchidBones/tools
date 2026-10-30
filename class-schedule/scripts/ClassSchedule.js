@@ -98,7 +98,6 @@ export default class ClassSchedule {
         return data;
     }
     applySpecialClassEvents() {
-        $Global.registerClassEventsFromSetting();
         this.performSpecialClassDaySetting();
         this.performSpecialClassTimeSetting();
         this.performHolidaySetting();
@@ -183,6 +182,9 @@ export default class ClassSchedule {
         const list = this.settings().special_class_times;
         list.forEach(plan => {
             switch(plan.action.toUpperCase()) {
+                case "ADD":
+                    this.performSpecialClassTime_ADD(plan);
+                    break;
                 case "TRY_ADD":
                     this.performSpecialClassTime_TRY_ADD(plan);
                     break;
@@ -192,12 +194,33 @@ export default class ClassSchedule {
             }
         })
     }
+    performSpecialClassTime_ADD(plan) {
+        let week, day;
+        const temp_date = new Date(plan.date+' 00:00:00');
+        const time = plan.time;
+        const schedule = this._schedule;
+        if(plan.date && temp_date) {// date
+            week = $DateManager.getWeekNumberByDate(temp_date);
+            day = $DateManager.getCertainDay(temp_date);
+            if(week === this.weekNumber()) {
+                const courseInstance = $Global.registerCourseByDateFromSetting(plan);
+                schedule[day][time] = courseInstance;
+            }
+        } else {// week day
+            week = plan.week;
+            day = plan.day;
+            if(week === this.weekNumber()) {
+                const courseInstance = $Global.registerCourseByWeekDayFromSetting(plan);
+                if(courseInstance) schedule[day][time] = courseInstance;
+            }
+        }
+    }
     performSpecialClassTime_TRY_ADD(plan) {
         let week, day;
         const temp_date = new Date(plan.date+' 00:00:00');
         const time = plan.time;
         const schedule = this._schedule;
-        if(temp_date) {// date
+        if(plan.date && temp_date) {// date
             week = $DateManager.getWeekNumberByDate(temp_date);
             day = $DateManager.getCertainDay(temp_date);
             if(!schedule[day][time] && week === this.weekNumber()) {

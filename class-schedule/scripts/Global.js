@@ -56,20 +56,7 @@ export default class Global {
             this.registerExamFromData(ce);
         });
     }
-    registerClassEventsFromSetting() {
-        const list = this._universalSettings.special_class_times;
-        list.forEach(plan => {
-            if(plan.action.toUpperCase() === 'ADD') { // try_add和remove写在ClassSchedule()
-                if(plan.date) {
-                    // date
-                    this.registerCourseByDateFromSetting(plan);
-                } else {
-                    // week/day
-                    this.registerCourseByWeekDayFromSetting(plan);
-                }
-            }
-        });
-    }
+    registerClassEventsFromSetting() { /* 写在ClassSchedule() */ }
     registerCourseFromData(course) {
         for(let i = 0; i < course.timetable.length; i++) {
             const timetable = course.timetable[i];
