@@ -4,20 +4,25 @@ $(document).ready(()=>{
         const prefix = '<ulds>{\n';
         const suffix = '}</ulds>';
         const textArray = [];
+
         textArray.push(prefix);
+
         const filename = $('#filename').val();
         if(!filename) {
             alert('请输入图像名称！');
             return;
         }
         textArray.push(indent+'"name": '+'"'+filename+'"'+',\n');
+
         const positionType = +$('.coordinate-anchor-area select').val();
         const x = positionType ? '"this.rx('+($('#coordinate-x').val() || '0')+')"' : ($('#coordinate-x').val() || '0');
         const y = positionType ? '"this.ry('+($('#coordinate-y').val() || '0')+')"' : ($('#coordinate-y').val() || '0');
         textArray.push(indent+'"x": '+x+',\n');
         textArray.push(indent+'"y": '+y+',\n');
+
         const zIndex = $('#z-index').val() || '0';
         textArray.push(indent+'"z": '+zIndex+',\n');
+
         if($('#foldername').val()) {
             const foldername = '"'+$('#foldername').val()+'"';
             textArray.push(indent+'"path": '+foldername+',\n');
@@ -57,11 +62,11 @@ $(document).ready(()=>{
             const anchorY = isNaN($('#anchor-y').val()) ? '"'+$('#anchor-y').val()+'"' : $('#anchor-y').val();
             textArray.push(indent+'"anchor.y": '+anchorY+',\n');
         }
-        if($('#blt-start-x').val() && $('#blt-start-y').val() && $('#blt-width').val() && $('#blt-height').val()) {
-            const startX = $('#blt-start-x').val();
-            const startY = $('#blt-start-y').val();
-            const width  = $('#blt-width').val();
-            const height = $('#blt-height').val();
+        if($('#blt-start-x').val() || $('#blt-start-y').val() || $('#blt-width').val() || $('#blt-height').val()) {
+            const startX = $('#blt-start-x').val() || 0;
+            const startY = $('#blt-start-y').val() || 0;
+            const width  = $('#blt-width').val() || 0;
+            const height = $('#blt-height').val() || 0;
             textArray.push(
                 indent+'"frame": "{'+
                 'x: '+startX+', '+
@@ -71,8 +76,10 @@ $(document).ready(()=>{
                 '}",\n'
             );
         }
+
         textArray[textArray.length - 1] = textArray[textArray.length - 1].replace(',\n','\n');
         textArray.push(suffix);
+        
         $('.result textArea').val(textArray.join(''));
     });
 })
